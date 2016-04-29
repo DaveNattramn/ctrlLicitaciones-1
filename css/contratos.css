@@ -1,0 +1,59 @@
+#buscar{
+	margin-top: 20px;
+}
+.right-inner-addon {
+    position: relative;
+
+}
+.right-inner-addon i {
+    position: absolute;
+    right: 0px;
+    padding: 10px 12px;
+    pointer-events: none;
+}
+.list-group{
+	margin-top: 30px;
+}
+.alerta{
+	text-align: center;
+}
+#d{
+	margin-right: 25px !important;
+}
+legend{
+	font-size: 24px;
+	margin-top: 10px;
+}
+#dias span{
+	color: red;
+	float: right;
+}
+.subtitulo{
+	font-size: 18px;
+	margin-top: 5px !important;
+}
+.busqueda{
+	margin: 0 auto;
+}
+#tabla_contratos td {
+	line-height: 12px;
+	height: 20px;
+	text-align: left;
+	width: 30px;
+}
+textarea{
+	text-align: justify;
+}
+#busqueda{
+	margin-top: 30px;
+}
+.g-botones,.alert{
+	margin-top: 15px;
+}
+#tabla-res{
+	display:block;
+	cursor: pointer;
+}
+.contratos{
+	display: none;
+}
