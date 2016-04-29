@@ -10,7 +10,7 @@ class ADMIN{
     private $contra;
     private $config;
     public $configini;
-    
+
     public function __construct() {
         $this->configini=parse_ini_file('config.ini',true);
         $this->servidor=  $this->configini['db']['servidor']; //Config::NOMBRE_BD;
@@ -22,7 +22,7 @@ class ADMIN{
         if($this->conexion === false){
            throw new ErrorException(odbc_errormsg());
        }
-       date_default_timezone_set('America/Mexico_City');       
+       date_default_timezone_set('America/Mexico_City');
     }
     /*Método que cierra una conexion abierta*/
 
@@ -105,7 +105,9 @@ class ADMIN{
     {
         $sql = "SELECT modulo FROM usuarios WHERE nombre = '".$nombre."' ";
         $exec = odbc_exec($this->conexion, $sql);
-        return $exec;   
+        return $exec;
     }
+
+
 }
 ?>
