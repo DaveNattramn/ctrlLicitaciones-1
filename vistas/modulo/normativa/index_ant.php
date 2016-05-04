@@ -19,28 +19,17 @@
 		<link rel="stylesheet" href="../../../css/navbar.css">
 	    <link rel="stylesheet" href="../../../css/side-menu.css">
 	    <link rel="shortcut icon" href="../../../favicon.ico" />
-
-
-            <script src="../../../js/jquery21.js"></script>
-            <script src="../../../js/bootstrap.js"></script>
-            <script src="../../../js/scripts_generales.js"></script>
-						<script src="../../../js/_Sagregar_obra.js"></script>
-
-						<script src="js/effects.js"></script>
-
 		<title>S.I.T. | NORMATIVA </title>
 
 
+		<script type="text/javascript" language="javascript" class="init">
+			$(document).ready(function() { $('#example').dataTable(
+					{ "aProcessing": true,
+						"aServerSide": true,
+						"ajax": "_S_mostrarObras.php", } ); } );
 
-		<script type="text/javascript" src="../../../recursos/DataTables/datatables2.js"></script>
-		<link rel="stylesheet" type="text/css" href="../../../recursos/DataTables/dataTables.css">
+		</script>
 
-
-<!--
-<script type="text/javascript" src="../../../js/dataTables.responsive.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../../../css/responsive.bootstrap.min.css">
-<script type="text/javascript" src="../../../js/responsive.bootstrap.js"></script>
--->
 	</head>
 
 	<body>
@@ -80,12 +69,17 @@
 										<div class="tab-content"> <!--CONTENIDO DE TABS-->
 												<br>
 
-											<div class="tab-pane active" > <!--TAB 1 TODAS LAS OBRAS-->
+											<div class="tab-pane active" id="example"> <!--TAB 1 TODAS LAS OBRAS-->
 
 												<div class="container"><!--div container-->
 
+													<div class="col-lg-12"> <!--div col lg 12-->
+														<input type="text" class="form-control" id="" placeholder="Buscar Obra...">
+														<br>
+													</div><!--fin div col lg 12-->
+
 													<div class="col-lg-12"> <!--div col lg 12 tabla -->
-														<table class="table table-hover table-condensed" id="mostrar">
+														<table class="table table-hover">
 															     <thead>
 																    <tr>
 																	    <th>#</th>
@@ -97,9 +91,51 @@
 																			<th>Tipo de Procedimiento</th>
 																    </tr>
 															     </thead>
+															     <tbody>
+																			 <!---EJEMPLO DE OBRA AUTORIZADA-->
+																	    <tr id="id_obra">
+																		    <td>1</td>
+																				<td>20163333</td>
+																				<td>CONSTRUCCIÓN DE CONCRETO HIDRÁULICO EN CALLE 5 DE MAYO Y CALLE MORELOS, EN LA CABECERA MUNICIPAL DE CAÑADA MORELOS, EN EL ESTADO DE PUEBLA</td>
+																				<td>CAÑADA MORELOS</td>
+																				<td>CAÑADA MORELOS</td>
+																				<td> $10,095,426.35 </td>
+																				<td>Licitación Publica Estatal</td>
+																	    </tr>
 
+																			<!---EJEMPLO DE OBRA CANCELADA-->
+																		 <tr class="danger" id="id_obra">
+																			 <td>2</td>
+																			 <td>20160078</td>
+																			 <td>ELABORACIÓN DE ESTUDIOS Y PROYECTO PARA EL MEJORAMIENTO DE LA IMAGEN URBANA DEL TRAYECTO DEL TREN TURISTICO PUEBLA - CHOLULA (A PRECIO ALZADO)</td>
+																			 <td>SAN JOSÉ CHIAPA</td>
+																			 <td>SAN JOSÉ CHIAPA</td>
+																			 <td> $13,553,898.00 </td>
+																			 <td>Invitación Restringida a 5 Federal</td>
+																		 </tr>
+
+																		 <!---EJEMPLO DE OBRA LICITADA-->
+																		<tr class="success" id="id_obra">
+																			<td>3</td>
+																			<td>20160007</td>
+																			<td>PROYECTO INTEGRAL PARA LA CONSTRUCCIÓN DE LA VÍA SAN MARTÍN TEXMELUCAN-HUEJOTZINGO. TRAMO I UBICADO EN EL ESTADO DE PUEBLA </td>
+																			<td>SAN MARTÍN TEXMELUCAN</td>
+																			<td>TEXMELUCAN-HUEJOTZINGO</td>
+																			<td> $211,382,760.00  </td>
+																			<td>Licitación Publica Estatal</td>
+																		</tr>
+															     </tbody>
 														</table>
 
+														<ul class="pagination">
+														  <li class="disabled"><a href="">&laquo;</a></li>
+														  <li class="active"><a href="">1</a></li>
+														  <li><a href="">2</a></li>
+														  <li><a href="">3</a></li>
+														  <li><a href="">4</a></li>
+														  <li><a href="">5</a></li>
+														  <li><a href="">&raquo;</a></li>
+														</ul>
 													</div><!--fin div col lg 12 tabla-->
 
 
@@ -382,8 +418,19 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 <!--NODAL INFO OBRAS-->
-					<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+					<div class="modal fade" id="modalObra">
 		        <div class="modal-dialog" style="width: 1000px;">
 		          <div class="modal-content">
 		            <div class="modal-header">
@@ -452,5 +499,14 @@
 
 
 
+
+    	      <script src="../../../js/jquery21.js"></script>
+            <script src="../../../js/jquery21.js"></script>
+            <script src="../../../js/bootstrap.js"></script>
+            <script src="../../../js/scripts_generales.js"></script>
+						<script src="../../../js/_Sagregar_obra.js"></script>
+						<script src="js/effects.js">
+
+						</script>
 	</body>
 </html>

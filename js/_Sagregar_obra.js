@@ -1,5 +1,30 @@
 $(document).ready(function () {
 
+      var mostrar = $('#mostrar').DataTable( {
+      "processing": true,
+         "serverSide": true,
+         "ajax":{
+             url :"../../../controladores/_S_mostrar_obra.php", // json datasource
+             type: "POST"/*,
+             error: function(){  // error handling
+              $(".example-error").html("");
+              $("#example").append('<tbody class="example-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
+              $("#example_processing").css("display","none");}*/
+            },
+
+               "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+                                                              // Cell click
+                                                               $('td', nRow).on('click', function() {
+                                                                 alert(aData[2]);
+
+                                                                 $('#myModal').modal({
+                                                                    show: true
+                                                                  });
+
+                                                               });
+            }
+
+        });
 
     $('#guardar_obra').click(function (event) {
 
@@ -92,7 +117,17 @@ $(document).ready(function () {
 
 
         });
+    });
 
 
-    }
-)});
+    $('#mostrar').on('dblclick', 'td', function(event) {
+      alert("Hola");
+    });
+
+
+
+
+
+
+
+});

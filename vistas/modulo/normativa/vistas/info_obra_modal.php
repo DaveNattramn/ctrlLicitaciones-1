@@ -9,12 +9,12 @@
 
                 <div class="col-lg-2  col-sm-6">
                   <label for="">No. de Obra</label>
-                  <input type="text" class="form-control" id="">
+                  <input type="text" class="form-control" id="no_obra">
                 </div>
 
                 <div class="col-lg-10 col-sm-6">
                     <label for="textArea" class="constrol-label">Descripción de la Obra</label>
-                    <textarea class="form-control" rows="3" id="textArea" name=""></textarea>
+                    <textarea class="form-control" rows="3" id="obra" name=""></textarea>
                     <input type="hidden" class="form-control" name="" value="">
                     <p class="help-block">Este texto aparecerá en caso de que si se modifica el nombre de la obra y existe, no aparezca como alerta</p>
                     <br>
@@ -22,12 +22,12 @@
 
                 <div class="col-lg-3  col-sm-6">
                   <label for="">Tipo de Inversión</label>
-                  <input type="text" class="form-control" id="">
+                  <input type="text" class="form-control" id="tipo_inversion">
                 </div>
 
                 <div class="col-lg-3  col-sm-6">
                   <label>Tipo de Solicitud</label>
-                  <select class="form-control option" name="">
+                  <select class="form-control option" name="" id="tipo_expediente">
                       <option></option>
                       <option>COSTO-BENEFICIO</option>
                       <option>ESTUDIOS Y PROYECTOS</option>
@@ -41,19 +41,19 @@
                   <label class="control-label">Monto Solicitado</label>
                     <div class="input-group">
                       <span class="input-group-addon">$</span>
-                      <input type="text" class="form-control">
+                      <input type="text" class="form-control" id="monto_solicitado">
                     </div>
                 </div>
 
                 <div class="col-lg-3  col-sm-6">
                   <label for="">Dimensión de Inversión</label>
-                  <input type="text" class="form-control" id="">
+                  <input type="text" class="form-control" id="dimension_inversion">
                   <br>
                 </div>
 
                 <div class="col-lg-3  col-sm-6">
-                  <label>Tipo de Solicitud</label>
-                  <select class="form-control option" name="">
+                  <label>Dependencia Solicitante</label>
+                  <select class="form-control option" name="" id="dependencia_solicitante">
                       <option></option>
                       <option>Secretaría de Infraestructura</option>
                     </select>

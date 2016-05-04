@@ -3,7 +3,7 @@
 require_once('../recursos/adodb/adodb.inc.php');
 
 class ADMIN{
-    private $conexion;
+    public $conexion;
     private $servidor;
     private $nombrebd;
     private $usuario;
@@ -28,6 +28,70 @@ class ADMIN{
 
       public function Cerrar(){
             odbc_close($this->conexion);
+      }
+
+
+      public function selectAllObras(){
+        $sql = "SELECT * FROM obra";
+        $exec = odbc_exec($this->conexion, $sql);
+        return $exec;
+      }
+
+
+      public function selectObraNormativa(){
+        $sql= " SELECT ob.id_obra, ob.no_obra, ob.obra, ub.municipio, ub.localidad, est.total, ob.tipo_adj_solicitado ";
+        $sql.= " FROM obra ob";
+        $sql.= " INNER JOIN";
+         $sql.= " ubicacion ub on ob.id_obra = ub.id_obra";
+         $sql.= " INNER JOIN";
+        $sql.= "  estructura_financiera est on ob.id_obra = est.id_obra	";
+
+        $query = odbc_exec($this->conexion, $sql);
+        return $query;
+      }
+
+      public function buscaSelectObraNormativa($req){
+        $sql= " SELECT ob.id_obra, ob.no_obra, ob.obra, ub.municipio, ub.localidad, est.total, ob.tipo_adj_solicitado ";
+        $sql.= " FROM obra ob";
+        $sql.= " INNER JOIN";
+         $sql.= " ubicacion ub on ob.id_obra = ub.id_obra";
+         $sql.= " INNER JOIN";
+        $sql.= "  estructura_financiera est on ob.id_obra = est.id_obra	";
+        $sql.= " WHERE 1=1 ";
+        if( !empty($req) ) {
+          $sql.="AND ( ob.id_obra LIKE ('%".$req."%') ";
+          $sql.=" OR ob.no_obra LIKE ('%".$req."%') ";
+          $sql.=" OR ob.obra LIKE ('%".$req."%') ";
+          $sql.=" OR ub.municipio LIKE ('%".$req."%') ";
+          $sql.=" OR ub.localidad LIKE ('%".$req."%') ";
+          $sql.=" OR est.total LIKE ('%".$req."%') ";
+          $sql.=" OR ob.tipo_adj_solicitado LIKE ('%".$req."%') )";
+        }
+        $query=odbc_exec($this->conexion, $sql);
+        return $query;
+      }
+
+      public function ordenaSelectObraNormativa($req,$req_o_c,$req_o_d,$req_s,$req_l){
+          $sql= " SELECT ob.id_obra, ob.no_obra, ob.obra, ub.municipio, ub.localidad, est.total, ob.tipo_adj_solicitado ";
+          $sql.= " FROM obra ob";
+          $sql.= " INNER JOIN";
+           $sql.= " ubicacion ub on ob.id_obra = ub.id_obra";
+           $sql.= " INNER JOIN";
+          $sql.= "  estructura_financiera est on ob.id_obra = est.id_obra	";
+          $sql.= " WHERE 1=1	";
+          if( !empty($req) ) {
+          	$sql.=" AND ( ob.id_obra LIKE ('%".$req."%') ";
+          	$sql.=" OR ob.no_obra LIKE ('%".$req."%') ";
+            $sql.=" OR ob.obra LIKE ('%".$req."%') ";
+            $sql.=" OR ub.municipio LIKE ('%".$req."%') ";
+            $sql.=" OR ub.localidad LIKE ('%".$req."%') ";
+            $sql.=" OR est.total LIKE ('%".$req."%') ";
+            $sql.=" OR ob.tipo_adj_solicitado LIKE ('%".$req."%') )";
+        }
+        $sql.=" ORDER BY ". $req_o_c."   ".$req_o_d." ";
+        //LIMIT ".$req_s." ,".$req_l."   ";*/
+        $query=odbc_exec($this->conexion, $sql);
+        return $query;
       }
 
 

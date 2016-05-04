@@ -32,15 +32,17 @@
 
 
 
-		<script type="text/javascript" src="../../../recursos/DataTables/datatables2.js"></script>
+
 		<link rel="stylesheet" type="text/css" href="../../../recursos/DataTables/dataTables.css">
+				<link rel="stylesheet" type="text/css" href="../../../css/responsive.bootstrap.min.css">
 
+				<script type="text/javascript" src="../../../recursos/DataTables/datatables.js"></script>
 
-<!--
-<script type="text/javascript" src="../../../js/dataTables.responsive.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../../../css/responsive.bootstrap.min.css">
 <script type="text/javascript" src="../../../js/responsive.bootstrap.js"></script>
--->
+	<script type="text/javascript" src="../../../js/dataTables.responsive.js"></script>
+
+
+
 	</head>
 
 	<body>
@@ -85,7 +87,8 @@
 												<div class="container"><!--div container-->
 
 													<div class="col-lg-12"> <!--div col lg 12 tabla -->
-														<table class="table table-hover table-condensed" id="mostrar">
+                            <div class="table-responsive">
+														<table class="table table-hover responsive display" id="mostrar">
 															     <thead>
 																    <tr>
 																	    <th>#</th>
@@ -99,7 +102,7 @@
 															     </thead>
 
 														</table>
-
+                          </div>
 													</div><!--fin div col lg 12 tabla-->
 
 
@@ -382,8 +385,19 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 <!--NODAL INFO OBRAS-->
-					<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+					<div class="modal fade" id="modalObra">
 		        <div class="modal-dialog" style="width: 1000px;">
 		          <div class="modal-content">
 		            <div class="modal-header">
