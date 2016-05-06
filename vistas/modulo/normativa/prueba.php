@@ -19,7 +19,7 @@
 		<link rel="stylesheet" href="../../../css/navbar.css">
 	    <link rel="stylesheet" href="../../../css/side-menu.css">
 	    <link rel="shortcut icon" href="../../../favicon.ico" />
-
+			<link rel="stylesheet" type="text/css" href="jquery.dataTables.css">
 		<title>S.I.T. | NORMATIVA </title>
 
 
@@ -36,33 +36,13 @@
 					 "ajax":{
 							 url :"../../../controladores/_S_mostrarObras.php", // json datasource
 							 type: "POST"
-						 },
+						 }
 
-						 		"fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-
-
-						 																										// Cell click
-						 																										$('td', nRow).on('click', function() {
-																																	$('#modal-content').modal({
-	        																												show: true
-	    																														});
-						 																										});
-						 																										}
 
 					});
 
-
-
-
-
-
-
-
 				}
-		);
-
-
-
+		)
 		</script>
 
 
@@ -82,29 +62,5 @@
         </table>
 </div>
 </div>
-
-
-					<div id="modal-content" class="modal fade" tabindex="-1" role="dialog">
-					    <div class="modal-dialog">
-					        <div class="modal-content">
-					            <div class="modal-header">
-					                <button type="button" class="close" data-dismiss="modal">×</button>
-					                <h3>Modal header</h3>
-					            </div>
-					            <div class="modal-body">
-					                <p>
-					                    <input type="text" id="txtname" />
-					                </p>
-					            </div>
-					            <div class="modal-footer">
-					                <a href="#" class="btn" data-dismiss="modal">Close</a>
-					                 <a href="#" class="btn btn-primary">Save changes</a>
-					            </div>
-					        </div>
-					    </div>
-					</div>
-
-
-
 	</body>
 </html>

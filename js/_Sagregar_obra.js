@@ -15,16 +15,23 @@ $(document).ready(function () {
                "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
                                                               // Cell click
                                                                $('td', nRow).on('click', function() {
-                                                                 alert(aData[2]);
+                                                                  var myModal = $('#myModal');
+                                                                  var txtobra = aData[0];
+                                                                  txtobra= getObra(aData[0]);
+                                                                    $('#m_obra').val(txtobra);
+                                                                    myModal.modal({ show: true });
 
-                                                                 $('#myModal').modal({
-                                                                    show: true
-                                                                  });
 
                                                                });
             }
 
         });
+
+        function getObra(idobra){
+          var value;
+          value = "El id_obra es "+idobra;
+          return value;
+        }
 
     $('#guardar_obra').click(function (event) {
 

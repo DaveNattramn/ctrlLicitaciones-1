@@ -9,31 +9,51 @@
 
                 <div class="col-lg-2  col-sm-6">
                   <label for="">No. de Obra</label>
-                  <input type="text" class="form-control" id="no_obra">
+                  <input type="text" class="form-control" id="m_no_obra">
                 </div>
 
                 <div class="col-lg-10 col-sm-6">
                     <label for="textArea" class="constrol-label">Descripción de la Obra</label>
-                    <textarea class="form-control" rows="3" id="obra" name=""></textarea>
+                    <textarea class="form-control" rows="3" id="m_obra" name=""></textarea>
                     <input type="hidden" class="form-control" name="" value="">
                     <p class="help-block">Este texto aparecerá en caso de que si se modifica el nombre de la obra y existe, no aparezca como alerta</p>
                     <br>
                 </div>
 
+                <div class="col-lg-4">
+                    <label for="">No. de Oficio Autorización</label>
+                    <input type="text" class="form-control" id="m_no_autorizacion">
+                </div>
+
+                <div class="col-lg-4">
+                    <label for="">Fecha del Oficio Autorización</label>
+                    <input type="date" class="form-control" id="m_fecha_autorizacion">
+                </div>
+
+                <div class="col-lg-4">
+                    <label for="">Fecha de Recibido el Oficio</label>
+                    <input type="date" class="form-control" id="m_fecha_recibido_autorizacion">
+                    <br>
+                </div>
+
+                <legend></legend>
+
                 <div class="col-lg-3  col-sm-6">
                   <label for="">Tipo de Inversión</label>
-                  <input type="text" class="form-control" id="tipo_inversion">
+                  <input type="text" class="form-control" id="m_tipo_inversion">
                 </div>
 
                 <div class="col-lg-3  col-sm-6">
                   <label>Tipo de Solicitud</label>
-                  <select class="form-control option" name="" id="tipo_expediente">
+                  <select class="form-control option" name="" id="m_tipo_expediente">
                       <option></option>
                       <option>COSTO-BENEFICIO</option>
                       <option>ESTUDIOS Y PROYECTOS</option>
                       <option>OBRA</option>
                       <option>PROYECTO INTEGRAL</option>
                       <option>SUPERVISIÓN</option>
+                      <option>MOBILIARIO Y EQUIPAMIENTO DE OBRA</option>
+                      <option>AFECTACIONES Y COMPRA DE TERRENOS</option>
                     </select>
                 </div>
 
@@ -41,88 +61,87 @@
                   <label class="control-label">Monto Solicitado</label>
                     <div class="input-group">
                       <span class="input-group-addon">$</span>
-                      <input type="text" class="form-control" id="monto_solicitado">
+                      <input type="text" class="form-control" id="m_monto_solicitado">
                     </div>
                 </div>
 
                 <div class="col-lg-3  col-sm-6">
                   <label for="">Dimensión de Inversión</label>
-                  <input type="text" class="form-control" id="dimension_inversion">
+                  <input type="text" class="form-control" id="m_dimension_inversion">
                   <br>
-                </div>
-
-                <div class="col-lg-3  col-sm-6">
-                  <label>Dependencia Solicitante</label>
-                  <select class="form-control option" name="" id="dependencia_solicitante">
-                      <option></option>
-                      <option>Secretaría de Infraestructura</option>
-                    </select>
-                </div>
-
-                <div class="col-lg-3  col-sm-6">
-                  <label>Dependencia Ejecutora</label>
-                  <select class="form-control option" name="">
-                      <option></option>
-                      <option>Secretaría de Infraestructura y Transportes</option>
-                    </select>
                 </div>
 
                 <div class="col-lg-3  col-sm-6">
                   <label>Unidad Responsable (U.R.)</label>
-                  <select class="form-control option" name="">
+                  <select class="form-control option" name="" id="m_unidad_responsable">
                       <option></option>
-                      <option>Dirección General de Proyectos</option>
-                      <option>Dirección de Vialidades Urbana</option>
+                      <option>DIRECCIÓN DE ALCANTARILLADO</option>
+                      <option>DIRECCIÓN DE CARRETERAS Y CAMINOS ESTATALES</option>
+                      <option>DIRECCION DE PROYECTOS</option>
+                      <option>DIRECCIÓN DE AGUA</option>
+                      <option>DIRECCIÓN DE SANEAMIENTO</option>
+                      <option>DIRECCIÓN DE ALCANTARILLADO</option>
+                      <option>OFICINA DEL C. SECRETARIO</option>
+                      <option>SUBSECRETARIA DE INFRAESTRUCTURA</option>
+                      <option>DIRECCIÓN DE OBRA PUBLICA</option>
+                      <option>DIRECCIÓN DE INFRAESTRUCTURA ESTRATEGICA</option>
+                      <option>SUBSECRETARIA DE COMUNICACIONES</option>
+                      <option>DIRECCIÓN DE INFRAESTRUCTURA DE COMUNICACIONES</option>
+                      <option>DIRECCIÓN DE CONSERVACION Y MANTENIMIENTO</option>
+                      <option>DIRECCIÓN DE NORMATIVIDAD Y GESTION CIUDADANA</option>
+                      <option>DIRECCIÓN TECNICA</option>
+                      <option>COORDINACIÓN GENERAL ADMINISTRATIVA</option>
+                      <option>DIRECCIÓN DE RECURSOS FINANCIEROS</option>
+                      <option>DIRECCIÓN DE RECURSOS HUMANOS</option>
+                      <option>DIRECCIÓN DE RECURSOS MATERIALES Y SERVICIOS GENERALES</option>
+                      <option>DIRECCIÓN DE ASUNTOS JURIDICOS</option>
                     </select>
                 </div>
 
                 <div class="col-lg-3  col-sm-6">
-                  <label for="">Etapa</label>
-                  <input type="text" class="form-control" id="">
-                  <br>
+                  <label>Etapa</label>
+                  <select class="form-control option" name="" id="m_etapa">
+                      <option></option>
+                      <option>Primera</option>
+                      <option>Segunda</option>
+                      <option>Tercera</option>
+                      <option>Cuarta</option>
+                      <option>Quinta</option>
+                      <option>Sexta</option>
+                      <option>No Aplica</option>
+                    </select>
                 </div>
 
                 <div class="col-lg-3  col-sm-6">
                   <label for="">Periodo de Ejecución</label>
-                  <input type="text" class="form-control" id="" placeholder="Semanas">
+                  <input type="text" class="form-control" id="m_periodo_ejecucion" placeholder="Semanas">
                 </div>
 
                 <div class="col-lg-3  col-sm-6">
                   <label for="">Propuesta Anual</label>
-                  <input type="text" class="form-control" id="">
-                </div>
-
-                <div class="col-lg-3  col-sm-6">
-                  <label for="">Normativa a Aplicar</label>
-                  <input type="text" class="form-control" id="">
+                  <input type="text" class="form-control" id="m_propuesta_anual">
                   <br>
                 </div>
 
-                <div class="col-lg-3  col-sm-6">
+                <div class="col-lg-4  col-sm-6">
+                  <label for="">Normativa a Aplicar</label>
+                  <input type="text" class="form-control" id="m_normativa_aplicar">
+                  <br>
+                </div>
+
+                <div class="col-lg-4  col-sm-6">
                   <label for="">Modalidad de Ejecución</label>
-                  <input type="text" class="form-control" id="">
+                  <input type="text" class="form-control" id="m_tipo_adj_solicitado">
                   <br>
                 </div>
 
                 <div class="col-lg-4">
                     <label for="textArea" class="constrol-label">Partidas</label>
-                    <textarea class="form-control" rows="2" id="textArea" name=""></textarea>
+                    <textarea class="form-control" rows="2" id="m_partidas" name=""></textarea>
                     <input type="hidden" class="form-control" name="" value="">
                     <br>
                 </div>
 
-                <div class="col-lg-4">
-                  <label for="">Clave Programa Presupuesto</label>
-                  <input type="text" class="form-control" id="">
-                  <br>
-                </div>
-
-                <div class="col-lg-4">
-                    <label for="textArea" class="constrol-label">Descripción Programa Presupuestario</label>
-                    <textarea class="form-control" rows="2" id="textArea" name=""></textarea>
-                    <input type="hidden" class="form-control" name="" value="">
-                    <br>
-                </div>
               </div>
           </div>
 
@@ -133,25 +152,25 @@
             <div class="panel-body">
                 <div class="col-lg-3  col-sm-6">
                   <label for="">Municipio</label>
-                  <input type="text" class="form-control" id="">
+                  <input type="text" class="form-control" id="m_municipio">
                   <br>
                 </div>
 
                 <div class="col-lg-3  col-sm-6">
                   <label for="">Localidad</label>
-                  <input type="text" class="form-control" id="">
+                  <input type="text" class="form-control" id="m_localidad">
                   <br>
                 </div>
 
                 <div class="col-lg-3  col-sm-6">
                   <label for="">Beneficiarios Directos</label>
-                  <input type="text" class="form-control" id="">
+                  <input type="text" class="form-control" id="m_beneficiarios_directos">
                   <br>
                 </div>
 
                 <div class="col-lg-3  col-sm-6">
                   <label for="">Beneficiarios Indirectos</label>
-                  <input type="text" class="form-control" id="">
+                  <input type="text" class="form-control" id="m_beneficiarios_indirectos">
                   <br>
                 </div>
             </div>
@@ -165,40 +184,41 @@
 
                     <div class="col-lg-4">
                       <label for="">Programa Federal</label>
-                      <input type="text" class="form-control" id="">
+                      <input type="text" class="form-control" id="m_programa_federal">
                       <br>
                     </div>
 
                     <div class="col-lg-4">
                       <label for="">Programa Estatal</label>
-                      <input type="text" class="form-control" id="">
+                      <input type="text" class="form-control" id="m_programa_estatal">
                       <br>
                     </div>
 
                     <div class="col-lg-4">
                       <label for="">Programa Municipal</label>
-                      <input type="text" class="form-control" id="">
+                      <input type="text" class="form-control" id="m_programa_municipal">
                       <br>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="input-group">
                           <span class="input-group-addon">$</span>
-                          <input type="text" class="form-control" placeholder="Aportación Federal">
+                          <input type="text" class="form-control" placeholder="Aportación Federal" id="m_aporte_federal">
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="input-group">
                           <span class="input-group-addon">$</span>
-                          <input type="text" class="form-control" placeholder="Aportación Estatal">
+                          <input type="text" class="form-control" placeholder="Aportación Estatal" id="aporte_estatal">
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="input-group">
                           <span class="input-group-addon">$</span>
-                          <input type="text" class="form-control" placeholder="Aportación Municipal">
+                          <input type="text" class="form-control" placeholder="Aportación Municipal" id="aporte_municipal
+">
                         </div>
                         <br>
                     </div>
@@ -209,7 +229,7 @@
                       <label for="">Aportación Beneficiarios</label>
                       <div class="input-group">
                         <span class="input-group-addon">$</span>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="aportacion_beneficiarios">
                       </div>
                       <br>
                     </div>
@@ -218,7 +238,7 @@
                       <label for="">Aportación Otros</label>
                       <div class="input-group">
                         <span class="input-group-addon">$</span>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="aportacion_otros">
                       </div>
                       <br>
                     </div>
