@@ -1,27 +1,26 @@
 <?php
 include('../modelo/_S_conexion.php');
 $requestData= $_REQUEST;
-$bd = new ADMIN();
 
+$bd = new ADMIN();
 
       $columns = array(
 // datatable column index  => database column name
 	       0 =>'id_obra',
-	       1 => 'no_obra',
-	       2=> 'obra',
-         3=> 'municipio',
-         4=> 'localidad',
-         5=> 'monto',
-         6 => 'tipo_adj_solicitado'
-
+	       1 =>'no_obra',
+	       2=>'obra',
+         3=>'municipio',
+         4=>'localidad',
+         5=>'total',
+         6 =>'tipo_adj_solicitado'
       );
-
 
       $query = $bd->selectObraNormativa();
       $totalData = odbc_num_rows($query);
       $totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.
       $query = $bd->buscaSelectObraNormativa($requestData['search']['value']);
       $totalFiltered = odbc_num_rows($query); // when there is a search parameter then we have to modify total number filtered rows as per search result.
+
       $query= $bd->ordenaSelectObraNormativa($requestData['search']['value'],$columns[$requestData['order'][0]['column']],$requestData['order'][0]['dir'],$requestData['start'],$requestData['length']);
 
       $data = array();

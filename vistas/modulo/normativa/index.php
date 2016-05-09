@@ -19,7 +19,7 @@
 		<link rel="stylesheet" href="../../../css/navbar.css">
 	    <link rel="stylesheet" href="../../../css/side-menu.css">
 	    <link rel="shortcut icon" href="../../../favicon.ico" />
-
+			<script src="../../../js/toastr.js"></script>
 
             <script src="../../../js/jquery21.js"></script>
             <script src="../../../js/bootstrap.js"></script>

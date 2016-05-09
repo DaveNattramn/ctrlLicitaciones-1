@@ -210,17 +210,16 @@
                     <div class="col-lg-4">
                         <div class="input-group">
                           <span class="input-group-addon">$</span>
-                          <input type="text" class="form-control" placeholder="Aportación Estatal" id="aporte_estatal">
+                          <input type="text" class="form-control" placeholder="Aportación Estatal" id="m_aporte_estatal">
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="input-group">
                           <span class="input-group-addon">$</span>
-                          <input type="text" class="form-control" placeholder="Aportación Municipal" id="aporte_municipal
-">
+                          <input type="text" class="form-control" placeholder="Aportación Municipal" id="m_aporte_municipal">
                         </div>
-                        <br>
+
                     </div>
 
                     <legend></legend>
@@ -229,7 +228,7 @@
                       <label for="">Aportación Beneficiarios</label>
                       <div class="input-group">
                         <span class="input-group-addon">$</span>
-                        <input type="text" class="form-control" id="aportacion_beneficiarios">
+                        <input type="text" class="form-control" id="m_aportacion_beneficiarios">
                       </div>
                       <br>
                     </div>
@@ -238,7 +237,7 @@
                       <label for="">Aportación Otros</label>
                       <div class="input-group">
                         <span class="input-group-addon">$</span>
-                        <input type="text" class="form-control" id="aportacion_otros">
+                        <input type="text" class="form-control" id="m_aportacion_otros">
                       </div>
                       <br>
                     </div>

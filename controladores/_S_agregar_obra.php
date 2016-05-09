@@ -19,8 +19,8 @@
   $normativa_aplicar = $_POST['normativa_aplicar'];
   $tipo_adj_solicitado = $_POST['tipo_adj_solicitado'];
   $partidas = $_POST['partidas'];
-  $clave_presupuesto = $_POST['clave_presupuesto'];
-  $desc_presupuesto = $_POST['desc_presupuesto'];
+  //$clave_presupuesto = $_POST['clave_presupuesto'];
+  //$desc_presupuesto = $_POST['desc_presupuesto'];
   $municipio = $_POST['municipio'];
   $localidad = $_POST['localidad'];
   $beneficiarios_directos = $_POST['beneficiarios_directos'];
@@ -36,7 +36,7 @@
   $aportacion_beneficiarios = $_POST['aportacion_beneficiarios'];
   $aportacion_otros = $_POST['aportacion_otros'];
 
-  $resultado=$bd->agregar_obra($obra,$tipo_inversion,$tipo_expediente,$monto_solicitado,$dimension_inversion,$dependencia_solicitante,$dependencia_ejecutora,$unidad_responsable,$etapa,$periodo_ejecucion,$propuesta_anual,$normativa_aplicar,$tipo_adj_solicitado,$partidas,$clave_presupuesto,$desc_presupuesto,$municipio,$localidad,$beneficiarios_directos,$beneficiarios_indirectos,$empleos_directos,$empleos_indirectos,$programa_federal,$aporte_federal,$programa_estatal,$aporte_estatal,$programa_municipal,$aporte_municipal,$aportacion_beneficiarios,$aportacion_otros);
+  $resultado=$bd->agregar_obra($obra,$tipo_inversion,$tipo_expediente,$monto_solicitado,$dimension_inversion,$dependencia_solicitante,$dependencia_ejecutora,$unidad_responsable,$etapa,$periodo_ejecucion,$propuesta_anual,$normativa_aplicar,$tipo_adj_solicitado,$partidas,$municipio,$localidad,$beneficiarios_directos,$beneficiarios_indirectos,$empleos_directos,$empleos_indirectos,$programa_federal,$aporte_federal,$programa_estatal,$aporte_estatal,$programa_municipal,$aporte_municipal,$aportacion_beneficiarios,$aportacion_otros);
 
   $bd->cerrar();
 ?>
