@@ -19,7 +19,7 @@
     $j_obra['unidad_responsable']=$row['unidad_responsable'];
     $j_obra['no_obra']=$row['no_obra'];
     $j_obra['no_autorizacion']=$row['no_autorizacion'];
-    $j_obra['fecha_autorizacion']=$row['fecha_autorizacion'];
+    $j_obra['fecha_autorizacion']=  $row['fecha_autorizacion'];
     $j_obra['fecha_recibido_autorizacion']=$row['fecha_recibido_autorizacion'];
     $j_obra['etapa']=$row['etapa'];
     $j_obra['periodo_ejecucion']=$row['periodo_ejecucion'];

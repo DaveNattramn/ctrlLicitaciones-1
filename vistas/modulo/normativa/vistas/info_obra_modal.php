@@ -10,6 +10,7 @@
                 <div class="col-lg-2  col-sm-6">
                   <label for="">No. de Obra</label>
                   <input type="text" class="form-control" id="m_no_obra">
+                  <input type="hidden" id="m_m">
                 </div>
 
                 <div class="col-lg-10 col-sm-6">

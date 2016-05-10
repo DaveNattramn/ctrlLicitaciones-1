@@ -151,7 +151,7 @@ $sql.= " ORDER BY ".$req_o_c."   ".$req_o_d." ";
 
     public function agregar_obra($obra,$tipo_inversion,$tipo_expediente,$monto_solicitado,$dimension_inversion,$dependencia_solicitante,$dependencia_ejecutora,$unidad_responsable,$etapa,$periodo_ejecucion,$propuesta_anual,$normativa_aplicar,$tipo_adj_solicitado,$partidas,$municipio,$localidad,$beneficiarios_directos,$beneficiarios_indirectos,$empleos_directos,$empleos_indirectos,$programa_federal,$aporte_federal,$programa_estatal,$aporte_estatal,$programa_municipal,$aporte_municipal,$aportacion_beneficiarios,$aportacion_otros)
       {
-//Falta añadir beneficiarios y empleos
+//Falta empleos
       $sql = "BEGIN TRANSACTION _tr
               BEGIN TRY
               INSERT INTO obra(obra,tipo_inversion,tipo_expediente,dimension_inversion,dependencia_solicitante,dependencia_ejecutora,unidad_responsable,etapa,periodo_ejecucion,propuesta_anual,normativa_aplicar,tipo_adj_solicitado,partidas)
@@ -183,5 +183,76 @@ $sql.= " ORDER BY ".$req_o_c."   ".$req_o_d." ";
       }
 
 
+public function getAlcances($idobra){
+  $sql = "SELECT * FROM alcance WHERE id_obra ='".$idobra."'";
+  $exec = odbc_exec($this->conexion, $sql);
+  return $exec;
+}
+
+
+      public function actualizar_obra($id_obra,$no_obra,$obra,$no_autorizacion,$fecha_autorizacion,$fecha_recibido_autorizacion,$tipo_inversion,$tipo_expediente,$monto_solicitado,$dimension_inversion,$unidad_responsable,$etapa,$periodo_ejecucion,$propuesta_anual,$normativa_aplicar,$tipo_adj_solicitado,$partidas,$municipio,$localidad,$beneficiarios_directos,$beneficiarios_indirectos,$empleos_directos,$empleos_indirectos,$programa_federal,$aporte_federal,$programa_estatal,$aporte_estatal,$programa_municipal,$aporte_municipal,$aportacion_beneficiarios,$aportacion_otros)
+        {
+  //Falta añadir empleos
+        $sql = "BEGIN TRANSACTION _tr
+                BEGIN TRY
+                UPDATE obra
+                SET no_obra=";
+        if(is_Numeric($no_obra)) {$sql.= "'".$no_obra."'";}
+        else { $sql.= "NULL";}
+
+        $sql.= ",obra='".$obra."',no_autorizacion='".$no_autorizacion."',fecha_autorizacion=";
+
+        if(validaDate($fecha_autorizacion,'Y-m-d')){$sql.="'".$fecha_autorizacion."'";}
+        else { $sql.= "NULL";}
+
+        $sql.= ",fecha_recibido_autorizacion=";
+        if(validaDate($fecha_recibido_autorizacion,'Y-m-d')){$sql.="'".$fecha_recibido_autorizacion."'";}
+        else { $sql.= "NULL";}
+
+         $sql.=",tipo_inversion='".$tipo_inversion."',
+        tipo_expediente='".$tipo_expediente."', dimension_inversion='".$dimension_inversion."',  unidad_responsable='".$unidad_responsable."', etapa='".$etapa."', periodo_ejecucion='".$periodo_ejecucion."', propuesta_anual='".$propuesta_anual."', normativa_aplicar='".$normativa_aplicar."',
+                              tipo_adj_solicitado='".$tipo_adj_solicitado."', partidas='".$partidas."'
+                      WHERE id_obra=".$id_obra."
+                UPDATE ubicacion
+                      SET municipio='".$municipio."', localidad='".$localidad."',beneficiarios_directos='".$beneficiarios_directos."',beneficiarios_indirectos='".$beneficiarios_indirectos."'
+                      WHERE id_obra=".$id_obra."
+                UPDATE estructura_financiera
+                      SET total='".$monto_solicitado."', programa_federal='".$programa_federal."', aporte_federal='".$aporte_federal."', programa_estatal='".$programa_estatal."', aporte_estatal='".$aporte_estatal."',
+                       programa_municipal='".$programa_municipal."', aporte_municipal='".$aporte_municipal."', aportacion_beneficiarios='".$aportacion_beneficiarios."', aportacion_otros='".$aportacion_otros."'
+                      WHERE id_obra=".$id_obra."
+                COMMIT TRANSACTION _tr
+                END TRY
+                BEGIN CATCH
+                  ROLLBACK TRANSACTION _tr
+                END CATCH";
+
+    		$exec = odbc_exec($this->conexion, $sql);
+            if ($exec) {
+              $message = $sql;
+
+                return true;
+
+            }
+            else
+            {
+              $message = $sql;
+
+                return false;
+            }
+        }
+
+
+
+
+
+
     }
+
+
+   function validaDate($date, $format)
+    {
+        $d = DateTime::createFromFormat($format, $date);
+        return $d && $d->format($format) == $date;
+    }
+
   ?>

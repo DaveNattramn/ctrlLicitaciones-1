@@ -1,6 +1,6 @@
 
 <blockquote>
-  <h4><small>CONSTRUCCIÓN DE CONCRETO HIDRÁULICO EN CALLE 5 DE MAYO Y CALLE MORELOS, EN LA CABECERA MUNICIPAL DE CAÑADA MORELOS, EN EL ESTADO DE PUEBLA</small></h4>
+  <h4><small><div id="contenido"></div></small></h4>
 </blockquote>
 
 <br>
@@ -10,41 +10,9 @@
   <div class="panel panel-primary">
     <!-- Default panel contents -->
     <div class="panel-heading"><strong><center>Alcances</center></strong></div>
-    <table class="table table-hover">
-           <thead>
-            <tr>
-              <th>Tipo de Obra</th>
-              <th>Num. Obj.</th>
-              <th>Objeto</th>
-              <th>Cantidad</th>
-              <th>U.M.</th>
-            </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <td>Supervisión</td>
-               <td>1</td>
-               <td>Vialidad</td>
-               <td>5656.00</td>
-               <td>Metros</td>
-             </tr>
-             <tr>
-               <td>Supervisión</td>
-               <td>1</td>
-               <td>Calle</td>
-               <td>2212.00</td>
-               <td>Metros</td>
-             </tr>
-             <tr>
-               <td>Supervisión</td>
-               <td>1</td>
-               <td>Boulevard</td>
-               <td>2599.00</td>
-               <td>Kilómetros</td>
-             </tr>
-           </tbody>
-    </table>
+    <div id="tabla_alc">
 
+    </div>
   </div>
 
 </div>
