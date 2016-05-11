@@ -64,6 +64,16 @@ table.dataTable tbody tr {
 table.dataTable tbody tr.selected {
   background-color: #B0BED9;
 }
+
+table.dataTable tbody tr.aceptada td{
+  background-color: #A9F5D0;
+}
+
+
+table.dataTable tbody tr.can td{
+  background-color: #F5A9A9;
+}
+
 table.dataTable tbody th,
 table.dataTable tbody td {
   padding: 8px 10px;

@@ -12,7 +12,8 @@ $bd = new ADMIN();
          3=>'municipio',
          4=>'localidad',
          5=>'total',
-         6 =>'tipo_adj_solicitado'
+         6 =>'tipo_adj_solicitado',
+         7=> 'estatus_recurso'
       );
 
       $query = $bd->selectObraNormativa();
@@ -36,6 +37,7 @@ $bd = new ADMIN();
               $nestedData[] = $row["localidad"];
               $nestedData[] = $row["total"];
 	             $nestedData[] = $row["tipo_adj_solicitado"];
+               $nestedData[] = $row["estatus_recurso"];
 	              $data[] = $nestedData;
               }
 

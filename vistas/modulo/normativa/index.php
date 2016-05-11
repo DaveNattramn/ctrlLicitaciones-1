@@ -18,23 +18,27 @@
 		<link rel="stylesheet" href="../../../css/font-awesome.css">
 		<link rel="stylesheet" href="../../../css/navbar.css">
 	    <link rel="stylesheet" href="../../../css/side-menu.css">
+
 	    <link rel="shortcut icon" href="../../../favicon.ico" />
-			<script src="../../../js/toastr.js"></script>
+
 
             <script src="../../../js/jquery21.js"></script>
             <script src="../../../js/bootstrap.js"></script>
             <script src="../../../js/scripts_generales.js"></script>
 						<script src="../../../js/_Sagregar_obra.js"></script>
-	
+
 						<script src="js/nvo_alcance.js"></script>
 						<script src="js/effects.js"></script>
 
 		<title>S.I.T. | NORMATIVA </title>
 
 
-
+<link rel="stylesheet" type="text/css" href="../../../recursos/DataTables/datatables.css">
 		<script type="text/javascript" src="../../../recursos/DataTables/datatables2.js"></script>
-		<link rel="stylesheet" type="text/css" href="../../../recursos/DataTables/dataTables.css">
+
+		<link rel="stylesheet" href="../../../css/toastr.css">
+		<script src="../../../js/toastr.js"></script>
+
 
 
 <!--
@@ -472,7 +476,7 @@
 									<legend></legend>
 		            <div class="modal-footer">
 
-		              <button id="" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar Proyecto</button>
+		              <button id="cancelar_obra" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar Proyecto</button>
 
 									<button type="button" id="" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Modificar</button>
 									<button type="button" id="actualizar_obra" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar</button>

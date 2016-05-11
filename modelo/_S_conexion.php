@@ -57,7 +57,7 @@ class ADMIN{
 
 
       public function selectObraNormativa(){
-        $sql= " SELECT ob.id_obra, ob.no_obra, ob.obra, ub.municipio, ub.localidad, est.total, ob.tipo_adj_solicitado ";
+        $sql= " SELECT ob.id_obra, ob.no_obra, ob.obra, ub.municipio, ub.localidad, est.total, ob.tipo_adj_solicitado, ob.estatus_recurso ";
         $sql.= " FROM obra ob";
         $sql.= " INNER JOIN";
          $sql.= " ubicacion ub on ob.id_obra = ub.id_obra";
@@ -69,7 +69,7 @@ class ADMIN{
       }
 
       public function buscaSelectObraNormativa($req){
-        $sql= " SELECT ob.id_obra, ob.no_obra, ob.obra, ub.municipio, ub.localidad, est.total, ob.tipo_adj_solicitado ";
+        $sql= " SELECT ob.id_obra, ob.no_obra, ob.obra, ub.municipio, ub.localidad, est.total, ob.tipo_adj_solicitado, ob.estatus_recurso ";
         $sql.= " FROM obra ob";
         $sql.= " INNER JOIN";
          $sql.= " ubicacion ub on ob.id_obra = ub.id_obra";
@@ -123,7 +123,7 @@ public function ordenaSelectObraNormativa($req,$req_o_c,$req_o_d,$req_s,$req_l){
 
   $sql= " WITH OrderedOrders AS ";
  $sql.= " ( ";
-  $sql.= " SELECT ob.id_obra, ob.no_obra, ob.obra, ub.municipio, ub.localidad, est.total, ob.tipo_adj_solicitado, ROW_NUMBER() OVER (ORDER BY ob.id_obra) AS RowNumber ";
+  $sql.= " SELECT ob.id_obra, ob.no_obra, ob.obra, ub.municipio, ub.localidad, est.total, ob.tipo_adj_solicitado, ob.estatus_recurso, ROW_NUMBER() OVER (ORDER BY ob.id_obra) AS RowNumber ";
           $sql.= " FROM obra ob ";
           $sql.= " INNER JOIN ";
            $sql.= " ubicacion ub on ob.id_obra = ub.id_obra ";
@@ -138,7 +138,7 @@ public function ordenaSelectObraNormativa($req,$req_o_c,$req_o_d,$req_s,$req_l){
             $sql.= " OR est.total LIKE ('%".$req."%')  ";
             $sql.= " OR ob.tipo_adj_solicitado LIKE ('%".$req."%') ) ";
 $sql.= " )  ";
-$sql.= " SELECT id_obra, no_obra, municipio, localidad, total, tipo_adj_solicitado, obra  ";
+$sql.= " SELECT id_obra, no_obra, municipio, localidad, total, tipo_adj_solicitado, estatus_recurso, obra  ";
 $sql.= " FROM OrderedOrders  ";
 $sql.= " WHERE RowNumber BETWEEN ".($req_s+1)." AND ".($req_l+$req_s)." ";
 $sql.= " ORDER BY ".$req_o_c."   ".$req_o_d." ";
@@ -187,6 +187,23 @@ public function getAlcances($idobra){
   $sql = "SELECT * FROM alcance WHERE id_obra ='".$idobra."'";
   $exec = odbc_exec($this->conexion, $sql);
   return $exec;
+}
+
+public function estatus_obra($id_obra,$estatus_recurso){
+  $sql= "UPDATE obra SET estatus_recurso='".$estatus_recurso."' WHERE id_obra='".$id_obra."'   ";
+  $exec = odbc_exec($this->conexion, $sql);
+      if ($exec) {
+        $message = $sql;
+
+          return true;
+
+      }
+      else
+      {
+        $message = $sql;
+
+          return false;
+      }
 }
 
 

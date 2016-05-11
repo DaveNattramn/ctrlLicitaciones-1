@@ -13,6 +13,26 @@ $(document).ready(function () {
               $("#example_processing").css("display","none");}*/
             },
 
+            "createdRow": function( row, data, dataIndex ) {
+
+
+                if ( data[7] == 'CANCELADA' ) {
+
+                   $(row).addClass('can');
+                  //$('tr', row).addClass('highlight');
+                  //$(row).addClass( 'important' );
+                }
+
+                if ( data[7] == 'ADJUDICADA DAOP' ) {
+
+                   $(row).addClass('aceptada');
+                  //$('tr', row).addClass('highlight');
+                  //$(row).addClass( 'important' );
+                }
+
+              },
+
+
                "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
                                                               // Cell click
                                                                $('td', nRow).on('click', function() {
@@ -63,6 +83,7 @@ $(document).ready(function () {
 
                                                                   });
                                                                     getAlcances(aData[0]).success(function (data) {
+                                                                      $('#tabla_alc').empty();
                                                                       var contentAlcance = "<table class='table table-hover'><thead><tr><th>Tipo de Obra</th><th>Num. Obj.</th><th>Objeto</th><th>Cantidad</th><th>U.M.</th></tr></thead><tbody>";
                                                                       var len = 0;
                                                                       var i;
@@ -70,7 +91,7 @@ $(document).ready(function () {
                                                                           if (data.hasOwnProperty(i)) {
                                                                             len++;
                                                                             }
-                                                                      }                                                                      
+                                                                      }
                                                                         for(i=0; i<len; i++){
                                                                           contentAlcance += '<tr>' +
                                                                                             '<td>'+ data[i].tipo_obra+'</td>'+
@@ -205,8 +226,37 @@ $(document).ready(function () {
 
             },
             success: function (data) {
+              $("#obra").val("");
+              $("#tipo_inversion").val("");
+              $("#tipo_expediente").val("");
+              $("#monto_solicitado").val("");
+              $("#dimension_inversion").val("") ;
+              $("#dependencia_solicitante").val("") ;
+              $("#dependencia_ejecutora").val("");
+              $("#unidad_responsable").val("");
+              $("#etapa").val("") ;
+              $("#periodo_ejecucion").val("") ;
+              $("#propuesta_anual").val("");
+              $("#normativa_aplicar").val("");
+              $("#tipo_adj_solicitado").val("");
+              $("#partidas").val("");
+              $("#municipio").val("");
+              $("#localidad").val("");
+              $("#localidad").val("");
+              $("#beneficiarios_directos").val("");
+              $("#beneficiarios_indirectos").val("");
+              $("#empleos_directos").val("");
+              $("#empleos_indirectos").val("");
+              $("#programa_federal").val("");
+              $("#aporte_federal").val("");
+              $("#programa_estatal").val("");
+              $("#aporte_estatal").val("");
+              $("#programa_municipal").val("");
+              $("#aporte_municipal").val("");
+              $("#aportacion_beneficiarios").val("");
+              $("#aportacion_otros").val("");
 
-                Command: toastr["success"]("Agregado con Éxito: " + obra);
+                Command: toastr["success"]("Obra agregada con Éxito");
                 toastr.options = {
                     "closeButton": false,
                     "debug": false,
@@ -302,7 +352,7 @@ $(document).ready(function () {
             },
             success: function (data) {
 
-                /*Command: toastr["success"]("Agregado con Éxito: " + obra);
+                Command: toastr["success"]("Obra actualizada");
                 toastr.options = {
                     "closeButton": false,
                     "debug": false,
@@ -319,7 +369,8 @@ $(document).ready(function () {
                     "hideEasing": "linear",
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
-                }*/
+                }
+                mostrar.ajax.reload();
             }
              ,
 
@@ -330,12 +381,60 @@ $(document).ready(function () {
 
         });
     });
+
+
+    $('#cancelar_obra').click(function (event) {
+         var estatus_recurso = 'CANCELADA';
+         var id_obra = act_id_obra;
+         $.ajax({
+
+             url: '../../../controladores/_S_estatus_obra.php',
+             type: 'post',
+             data: {
+               id_obra:id_obra,estatus_recurso:estatus_recurso
+             },
+             success: function (data) {
+
+                 Command: toastr["success"]("Obra cancelada");
+                 toastr.options = {
+                     "closeButton": false,
+                     "debug": false,
+                     "newestOnTop": false,
+                     "progressBar": false,
+                     "positionClass": "toast-top-right",
+                     "preventDuplicates": false,
+                     "onclick": null,
+                     "showDuration": "300",
+                     "hideDuration": "1000",
+                     "timeOut": "5000",
+                     "extendedTimeOut": "1000",
+                     "showEasing": "swing",
+                     "hideEasing": "linear",
+                     "showMethod": "fadeIn",
+                     "hideMethod": "fadeOut"
+                 }
+             }
+              ,
+
+             error: function (jqXHR, textStatus, errorThrown) {
+                 alert(errorThrown);
+             }
+
+
+         });
+
+    });
+
 /*    $('#mostrar').on('dblclick', 'td', function(event) {
       alert("Hola");
     });
 */
-
-
+/*
+$('#btn_nuevo_alcance').click(function (event) {
+     var alcModal = $('#modal_alcance');
+     alcModal.modal({ show: true });
+});
+*/
 
 
 
