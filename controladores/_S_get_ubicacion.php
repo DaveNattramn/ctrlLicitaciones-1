@@ -14,8 +14,8 @@
     $j_obra['localidad']=$row['localidad'];
     $j_obra['beneficiarios_directos']=$row['beneficiarios_directos'];
     $j_obra['beneficiarios_indirectos']=$row['beneficiarios_indirectos'];
-    //$j_obra['empleos_directos']=$row['empleos_directos'];
-    //$j_obra['empleos_indirectos']=$row['empleos_indirectos'];
+    $j_obra['empleos_directos']=$row['empleos_directos'];
+    $j_obra['empleos_indirectos']=$row['empleos_indirectos'];
   }
 
 

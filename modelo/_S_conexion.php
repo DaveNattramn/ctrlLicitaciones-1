@@ -57,7 +57,7 @@ class ADMIN{
 
 
       public function selectObraNormativa(){
-        $sql= " SELECT ob.id_obra, ob.no_obra, ob.obra, ub.municipio, ub.localidad, est.total, ob.tipo_adj_solicitado, ob.estatus_recurso ";
+        $sql= " SELECT ob.id_obra, ob.no_obra, ob.obra, ub.municipio, ub.localidad, est.total, ob.tipo_adj_solicitado, ob.estatus_general ";
         $sql.= " FROM obra ob";
         $sql.= " INNER JOIN";
          $sql.= " ubicacion ub on ob.id_obra = ub.id_obra";
@@ -69,7 +69,7 @@ class ADMIN{
       }
 
       public function buscaSelectObraNormativa($req){
-        $sql= " SELECT ob.id_obra, ob.no_obra, ob.obra, ub.municipio, ub.localidad, est.total, ob.tipo_adj_solicitado, ob.estatus_recurso ";
+        $sql= " SELECT ob.id_obra, ob.no_obra, ob.obra, ub.municipio, ub.localidad, est.total, ob.tipo_adj_solicitado, ob.estatus_general ";
         $sql.= " FROM obra ob";
         $sql.= " INNER JOIN";
          $sql.= " ubicacion ub on ob.id_obra = ub.id_obra";
@@ -123,7 +123,7 @@ public function ordenaSelectObraNormativa($req,$req_o_c,$req_o_d,$req_s,$req_l){
 
   $sql= " WITH OrderedOrders AS ";
  $sql.= " ( ";
-  $sql.= " SELECT ob.id_obra, ob.no_obra, ob.obra, ub.municipio, ub.localidad, est.total, ob.tipo_adj_solicitado, ob.estatus_recurso, ROW_NUMBER() OVER (ORDER BY ob.id_obra) AS RowNumber ";
+  $sql.= " SELECT ob.id_obra, ob.no_obra, ob.obra, ub.municipio, ub.localidad, est.total, ob.tipo_adj_solicitado, ob.estatus_general, ROW_NUMBER() OVER (ORDER BY ob.id_obra) AS RowNumber ";
           $sql.= " FROM obra ob ";
           $sql.= " INNER JOIN ";
            $sql.= " ubicacion ub on ob.id_obra = ub.id_obra ";
@@ -138,7 +138,7 @@ public function ordenaSelectObraNormativa($req,$req_o_c,$req_o_d,$req_s,$req_l){
             $sql.= " OR est.total LIKE ('%".$req."%')  ";
             $sql.= " OR ob.tipo_adj_solicitado LIKE ('%".$req."%') ) ";
 $sql.= " )  ";
-$sql.= " SELECT id_obra, no_obra, municipio, localidad, total, tipo_adj_solicitado, estatus_recurso, obra  ";
+$sql.= " SELECT id_obra, no_obra, municipio, localidad, total, tipo_adj_solicitado, estatus_general, obra  ";
 $sql.= " FROM OrderedOrders  ";
 $sql.= " WHERE RowNumber BETWEEN ".($req_s+1)." AND ".($req_l+$req_s)." ";
 $sql.= " ORDER BY ".$req_o_c."   ".$req_o_d." ";
@@ -151,7 +151,7 @@ $sql.= " ORDER BY ".$req_o_c."   ".$req_o_d." ";
 
     public function agregar_obra($obra,$tipo_inversion,$tipo_expediente,$monto_solicitado,$dimension_inversion,$dependencia_solicitante,$dependencia_ejecutora,$unidad_responsable,$etapa,$periodo_ejecucion,$propuesta_anual,$normativa_aplicar,$tipo_adj_solicitado,$partidas,$municipio,$localidad,$beneficiarios_directos,$beneficiarios_indirectos,$empleos_directos,$empleos_indirectos,$programa_federal,$aporte_federal,$programa_estatal,$aporte_estatal,$programa_municipal,$aporte_municipal,$aportacion_beneficiarios,$aportacion_otros)
       {
-//Falta empleos
+
       $sql = "BEGIN TRANSACTION _tr
               BEGIN TRY
               INSERT INTO obra(obra,tipo_inversion,tipo_expediente,dimension_inversion,dependencia_solicitante,dependencia_ejecutora,unidad_responsable,etapa,periodo_ejecucion,propuesta_anual,normativa_aplicar,tipo_adj_solicitado,partidas)
@@ -159,7 +159,7 @@ $sql.= " ORDER BY ".$req_o_c."   ".$req_o_d." ";
                             '".$tipo_adj_solicitado."', '".$partidas."')
               DECLARE @ID INT
           		SET @ID = SCOPE_IDENTITY()
-              INSERT INTO ubicacion(id_obra,municipio,localidad,beneficiarios_directos,beneficiarios_indirectos) VALUES (@ID,'".$municipio."', '".$localidad."','".$beneficiarios_directos."','".$beneficiarios_indirectos."')
+              INSERT INTO ubicacion(id_obra,municipio,localidad,beneficiarios_directos,beneficiarios_indirectos,empleos_directos,empleos_indirectos) VALUES (@ID,'".$municipio."', '".$localidad."','".$beneficiarios_directos."','".$beneficiarios_indirectos."','".$empleos_directos."','".$empleos_indirectos."')
               INSERT INTO estructura_financiera(id_obra,total,programa_federal,aporte_federal,programa_estatal,aporte_estatal,programa_municipal,aporte_municipal,aportacion_beneficiarios,aportacion_otros) VALUES (@ID,'".$monto_solicitado."', '".$programa_federal."', '".$aporte_federal."', '".$programa_estatal."', '".$aporte_estatal."', '".$programa_municipal."', '".$aporte_municipal."', '".$aportacion_beneficiarios."', '".$aportacion_otros."')
               COMMIT TRANSACTION _tr
               END TRY
@@ -182,6 +182,39 @@ $sql.= " ORDER BY ".$req_o_c."   ".$req_o_d." ";
           }
       }
 
+      public function validaObra($obra){
+        $sql = "SELECT COUNT(obra) AS obra FROM obra WHERE obra ='".$obra."'";
+        $exec = odbc_exec($this->conexion, $sql);
+            if ($exec) {
+                return $exec;
+
+            }
+            else
+            {
+                return false;
+            }
+      }
+
+      public function validaCambioObra($obra, $id_obra){
+        $sql = "SELECT COUNT(obra) AS obra FROM obra WHERE obra ='".$obra."'  AND NOT id_obra='".$id_obra."'   ";
+        
+        $exec = odbc_exec($this->conexion, $sql);
+            if ($exec) {
+                return $exec;
+
+            }
+            else
+            {
+                return false;
+            }
+      }
+
+      public function getCeldaObra($id_obra, $columna){
+        $sql = "SELECT ".$columna." FROM obra WHERE id_obra ='".$id_obra."'";
+        $exec = odbc_exec($this->conexion, $sql);
+
+        return $exec;
+      }
 
 public function getAlcances($idobra){
   $sql = "SELECT * FROM alcance WHERE id_obra ='".$idobra."'";
@@ -189,8 +222,8 @@ public function getAlcances($idobra){
   return $exec;
 }
 
-public function estatus_obra($id_obra,$estatus_recurso){
-  $sql= "UPDATE obra SET estatus_recurso='".$estatus_recurso."' WHERE id_obra='".$id_obra."'   ";
+public function estatus_obra($id_obra,$estatus_general){
+  $sql= "UPDATE obra SET estatus_general='".$estatus_general."' WHERE id_obra='".$id_obra."'   ";
   $exec = odbc_exec($this->conexion, $sql);
       if ($exec) {
         $message = $sql;
@@ -209,7 +242,7 @@ public function estatus_obra($id_obra,$estatus_recurso){
 
       public function actualizar_obra($id_obra,$no_obra,$obra,$no_autorizacion,$fecha_autorizacion,$fecha_recibido_autorizacion,$tipo_inversion,$tipo_expediente,$monto_solicitado,$dimension_inversion,$unidad_responsable,$etapa,$periodo_ejecucion,$propuesta_anual,$normativa_aplicar,$tipo_adj_solicitado,$partidas,$municipio,$localidad,$beneficiarios_directos,$beneficiarios_indirectos,$empleos_directos,$empleos_indirectos,$programa_federal,$aporte_federal,$programa_estatal,$aporte_estatal,$programa_municipal,$aporte_municipal,$aportacion_beneficiarios,$aportacion_otros)
         {
-  //Falta añadir empleos
+
         $sql = "BEGIN TRANSACTION _tr
                 BEGIN TRY
                 UPDATE obra
@@ -231,7 +264,7 @@ public function estatus_obra($id_obra,$estatus_recurso){
                               tipo_adj_solicitado='".$tipo_adj_solicitado."', partidas='".$partidas."'
                       WHERE id_obra=".$id_obra."
                 UPDATE ubicacion
-                      SET municipio='".$municipio."', localidad='".$localidad."',beneficiarios_directos='".$beneficiarios_directos."',beneficiarios_indirectos='".$beneficiarios_indirectos."'
+                      SET municipio='".$municipio."', localidad='".$localidad."',beneficiarios_directos='".$beneficiarios_directos."',beneficiarios_indirectos='".$beneficiarios_indirectos."',empleos_directos='".$empleos_directos."',empleos_indirectos='".$empleos_indirectos."'
                       WHERE id_obra=".$id_obra."
                 UPDATE estructura_financiera
                       SET total='".$monto_solicitado."', programa_federal='".$programa_federal."', aporte_federal='".$aporte_federal."', programa_estatal='".$programa_estatal."', aporte_estatal='".$aporte_estatal."',
@@ -258,7 +291,47 @@ public function estatus_obra($id_obra,$estatus_recurso){
             }
         }
 
+public function select_municipios(){
+  $sql = "SELECT DISTINCT municipio_nombre from municipio_localidad ORDER BY municipio_nombre ASC";
 
+      $exec = odbc_exec($this->conexion, $sql);
+        return $exec;
+}
+
+public function select_localidad($municipio){
+  $sql = "SELECT localidad_nombre from municipio_localidad WHERE municipio_nombre='".$municipio."'  ORDER BY localidad_nombre ASC";
+
+      $exec = odbc_exec($this->conexion, $sql);
+        return $exec;
+}
+
+
+public function select_localidadPoblacion($municipio_nombre,$localidad_nombre){
+  $sql = "SELECT poblacion_total FROM municipio_localidad WHERE municipio_nombre='".$municipio_nombre."' AND localidad_nombre='".$localidad_nombre."' ";
+
+  $exec = odbc_exec($this->conexion, $sql);
+  return $exec;
+}
+
+
+public function agregar_alcance($id_obra,$tipo_obra,$num_obj,$objeto,$cantidad,$um){
+  $sql = "INSERT INTO alcance(id_obra,tipo_obra,num_obj,objeto,cantidad,um)
+         VALUES ('".$id_obra."', '".$tipo_obra."', '".$num_obj."', '".$objeto."', '".$cantidad."', '".$um."')";
+
+      $exec = odbc_exec($this->conexion, $sql);
+      if ($exec) {
+        $message = $sql;
+
+          return true;
+
+      }
+      else
+      {
+        $message = $sql;
+
+          return false;
+      }
+}
 
 
 

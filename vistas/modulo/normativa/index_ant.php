@@ -19,17 +19,18 @@
 		<link rel="stylesheet" href="../../../css/navbar.css">
 	    <link rel="stylesheet" href="../../../css/side-menu.css">
 	    <link rel="shortcut icon" href="../../../favicon.ico" />
+
+		<script src="../../../js/moment.min.js"></script>
+    <script src="../../../js/interact.min.js"></script>
+    <script src="../../../js/angular.js"></script>
+    <script src="../../../js/angular-animate.js"></script>
+    <script src="../../../js/ui-bootstrap-tpls.min.js"></script>
+    <script src="../../../js/angular-bootstrap-calendar-tpls.min.js"></script>
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../css/angular-bootstrap-calendar.min.css" rel="stylesheet">
+
+
 		<title>S.I.T. | NORMATIVA </title>
-
-
-		<script type="text/javascript" language="javascript" class="init">
-			$(document).ready(function() { $('#example').dataTable(
-					{ "aProcessing": true,
-						"aServerSide": true,
-						"ajax": "_S_mostrarObras.php", } ); } );
-
-		</script>
-
 	</head>
 
 	<body>
@@ -58,7 +59,6 @@
       		</div>
     	</nav>
 
-
 					<div class="info col-lg-12" id="lista de obras">
 
 										<ul class="nav nav-tabs">
@@ -69,9 +69,7 @@
 										<div class="tab-content"> <!--CONTENIDO DE TABS-->
 												<br>
 
-											<div class="tab-pane active" id="example"> <!--TAB 1 TODAS LAS OBRAS-->
-
-												<div class="container"><!--div container-->
+											<div class="tab-pane active" id="1"> <!--TAB 1 TODAS LAS OBRAS-->
 
 													<div class="col-lg-12"> <!--div col lg 12-->
 														<input type="text" class="form-control" id="" placeholder="Buscar Obra...">
@@ -138,8 +136,6 @@
 														</ul>
 													</div><!--fin div col lg 12 tabla-->
 
-
-												</div><!--fin div container-->
 											</div> <!--FIN TAB1 DE TODAS LAS OBRAS-->
 
 
@@ -158,7 +154,7 @@
 
 																<div class="col-lg-12">
 												            <label for="textArea" class="constrol-label">Descripción de la Obra</label>
-												            <textarea class="form-control" rows="3" id="obra" name="" ></textarea>
+												            <textarea class="form-control" rows="3" id="textArea" name=""></textarea>
 												            <input type="hidden" class="form-control" name="" value="">
 																		<p class="help-block">Este texto aparecerá si el nombre de la obra ya existe</p>
 												            <br>
@@ -166,109 +162,107 @@
 
 																<div class="col-lg-3  col-sm-6">
 	 														    <label for="">Tipo de Inversión</label>
-	 														    <input type="text" class="form-control" id="tipo_inversion">
+	 														    <input type="text" class="form-control" id="">
  													      </div>
 
 																<div class="col-lg-3  col-sm-6">
-																	<label>Tipo de Solicitud</label>
-											            <select class="form-control option" id="tipo_expediente" name="">
-											                <option></option>
-																			<option>COSTO-BENEFICIO</option>
-																			<option>ESTUDIOS Y PROYECTOS</option>
-																			<option>OBRA</option>
-																			<option>PROYECTO INTEGRAL</option>
-																			<option>SUPERVISIÓN</option>
-																		</select>
- 													      </div>
+								                  <label>Tipo de Solicitud</label>
+								                  <select class="form-control option" name="">
+								                      <option></option>
+								                      <option>COSTO-BENEFICIO</option>
+								                      <option>ESTUDIOS Y PROYECTOS</option>
+								                      <option>OBRA</option>
+								                      <option>PROYECTO INTEGRAL</option>
+								                      <option>SUPERVISIÓN</option>
+								                      <option>MOBILIARIO Y EQUIPAMIENTO DE OBRA</option>
+								                      <option>AFECTACIONES Y COMPRA DE TERRENOS</option>
+								                    </select>
+								                </div>
 
 																<div class="col-lg-3  col-sm-6">
 																	<label class="control-label">Monto Solicitado</label>
 																	  <div class="input-group">
 																	    <span class="input-group-addon">$</span>
-																	    <input type="text" class="form-control" id="monto_solicitado">
+																	    <input type="text" class="form-control">
 																	  </div>
  													      </div>
 
 																<div class="col-lg-3  col-sm-6">
 	 														    <label for="">Dimensión de Inversión</label>
-	 														    <input type="text" class="form-control" id="dimension_inversion">
+	 														    <input type="text" class="form-control" id="">
 																	<br>
  													      </div>
 
 																<div class="col-lg-3  col-sm-6">
-																	<label>Dependencia Solicitante</label>
-											            <select class="form-control option" name="" id="dependencia_solicitante">
-											                <option></option>
-																			<option>Secretaría de Infraestructura</option>
-																		</select>
- 													      </div>
+								                  <label>Unidad Responsable (U.R.)</label>
+								                  <select class="form-control option" name="">
+								                      <option></option>
+								                      <option>DIRECCIÓN DE ALCANTARILLADO</option>
+								                      <option>DIRECCIÓN DE CARRETERAS Y CAMINOS ESTATALES</option>
+								                      <option>DIRECCION DE PROYECTOS</option>
+								                      <option>DIRECCIÓN DE AGUA</option>
+								                      <option>DIRECCIÓN DE SANEAMIENTO</option>
+								                      <option>DIRECCIÓN DE ALCANTARILLADO</option>
+								                      <option>OFICINA DEL C. SECRETARIO</option>
+								                      <option>SUBSECRETARIA DE INFRAESTRUCTURA</option>
+								                      <option>DIRECCIÓN DE OBRA PUBLICA</option>
+								                      <option>DIRECCIÓN DE INFRAESTRUCTURA ESTRATEGICA</option>
+								                      <option>SUBSECRETARIA DE COMUNICACIONES</option>
+								                      <option>DIRECCIÓN DE INFRAESTRUCTURA DE COMUNICACIONES</option>
+								                      <option>DIRECCIÓN DE CONSERVACION Y MANTENIMIENTO</option>
+								                      <option>DIRECCIÓN DE NORMATIVIDAD Y GESTION CIUDADANA</option>
+								                      <option>DIRECCIÓN TECNICA</option>
+								                      <option>COORDINACIÓN GENERAL ADMINISTRATIVA</option>
+								                      <option>DIRECCIÓN DE RECURSOS FINANCIEROS</option>
+								                      <option>DIRECCIÓN DE RECURSOS HUMANOS</option>
+								                      <option>DIRECCIÓN DE RECURSOS MATERIALES Y SERVICIOS GENERALES</option>
+								                      <option>DIRECCIÓN DE ASUNTOS JURIDICOS</option>
+								                    </select>
+								                </div>
 
 																<div class="col-lg-3  col-sm-6">
-																	<label>Dependencia Ejecutora</label>
-											            <select class="form-control option" name="" id="dependencia_ejecutora">
-											                <option></option>
-																			<option>Secretaría de Infraestructura y Transportes</option>
-																		</select>
- 													      </div>
+								                  <label>Etapa</label>
+								                  <select class="form-control option" name="">
+								                      <option></option>
+								                      <option>Primera</option>
+								                      <option>Segunda</option>
+								                      <option>Tercera</option>
+								                      <option>Cuarta</option>
+								                      <option>Quinta</option>
+								                      <option>Sexta</option>
+								                      <option>No Aplica</option>
+								                    </select>
+								                </div>
 
 																<div class="col-lg-3  col-sm-6">
-																	<label>Unidad Responsable (U.R.)</label>
-											            <select class="form-control option" name="" id="unidad_responsable">
-											                <option></option>
-																			<option>Dirección General de Proyectos</option>
-																			<option>Dirección de Vialidades Urbana</option>
-																		</select>
- 													      </div>
+								                  <label for="">Periodo de Ejecución</label>
+								                  <input type="text" class="form-control" id="" placeholder="Semanas">
+								                </div>
 
-																<div class="col-lg-3  col-sm-6">
-	 														    <label for="">Etapa</label>
-	 														    <input type="text" class="form-control" id="etapa">
-																	<br>
- 													      </div>
+								                <div class="col-lg-3  col-sm-6">
+								                  <label for="">Propuesta Anual</label>
+								                  <input type="text" class="form-control" id="">
+								                  <br>
+								                </div>
 
-																<div class="col-lg-3  col-sm-6">
-	 														    <label for="">Periodo de Ejecución</label>
-	 														    <input type="text" class="form-control" id="periodo_ejecucion" placeholder="Semanas">
- 													      </div>
+								                <div class="col-lg-4  col-sm-6">
+								                  <label for="">Normativa a Aplicar</label>
+								                  <input type="text" class="form-control" id="">
+								                  <br>
+								                </div>
 
-																<div class="col-lg-3  col-sm-6">
-	 														    <label for="">Propuesta Anual</label>
-	 														    <input type="text" class="form-control" id="propuesta_anual">
- 													      </div>
+								                <div class="col-lg-4  col-sm-6">
+								                  <label for="">Modalidad de Ejecución</label>
+								                  <input type="text" class="form-control" id="">
+								                  <br>
+								                </div>
 
-																<div class="col-lg-3  col-sm-6">
-	 														    <label for="">Normativa a Aplicar</label>
-	 														    <input type="text" class="form-control" id="normativa_aplicar">
-																	<br>
- 													      </div>
-
-																<div class="col-lg-3  col-sm-6">
-	 														    <label for="">Modalidad de Ejecución</label>
-	 														    <input type="text" class="form-control" id="tipo_adj_solicitado">
-																	<br>
- 													      </div>
-
-																<legend></legend>
-
-																<div class="col-lg-4">
-												            <label for="textArea" class="constrol-label">Partidas</label>
-												            <textarea class="form-control" rows="2" id="partidas" name=""></textarea>
-												            <input type="hidden" class="form-control" name="" value="">
-												            <br>
-												        </div>
-
-																<div class="col-lg-4">
-	 														    <label for="">Clave Programa Presupuesto</label>
-	 														    <input type="text" class="form-control" id="clave_presupuesto">
-																	<br>
- 													      </div>
-
-																<div class="col-lg-4">
-												            <label for="textArea" class="constrol-label">Descripción Programa Presupuestario</label>
-												            <textarea class="form-control" rows="2" id="desc_presupuesto" name=""></textarea>
-												            <input type="hidden" class="form-control" name="" value="">
-												            <br>
-												        </div>
+								                <div class="col-lg-4">
+								                    <label for="textArea" class="constrol-label">Partidas</label>
+								                    <textarea class="form-control" rows="2" id="textArea" name=""></textarea>
+								                    <input type="hidden" class="form-control" name="" value="">
+								                    <br>
+								                </div>
 														  </div>
 													</div>
 
@@ -282,25 +276,25 @@
 														<div class="panel-body">
 																<div class="col-lg-3  col-sm-6">
 																	<label for="">Municipio</label>
-																	<input type="text" class="form-control" id="municipio">
+																	<input type="text" class="form-control" id="">
 																	<br>
 																</div>
 
 																<div class="col-lg-3  col-sm-6">
 																	<label for="">Localidad</label>
-																	<input type="text" class="form-control" id="localidad">
+																	<input type="text" class="form-control" id="">
 																	<br>
 																</div>
 
 																<div class="col-lg-3  col-sm-6">
 																	<label for="">Beneficiarios Directos</label>
-																	<input type="text" class="form-control" id="beneficiarios_directos">
+																	<input type="text" class="form-control" id="">
 																	<br>
 																</div>
 
 																<div class="col-lg-3  col-sm-6">
 																	<label for="">Beneficiarios Indirectos</label>
-																	<input type="text" class="form-control" id="beneficiarios_indirectos">
+																	<input type="text" class="form-control" id="">
 																	<br>
 																</div>
 														</div>
@@ -316,40 +310,40 @@
 
 																		<div class="col-lg-4">
 																			<label for="">Programa Federal</label>
-																			<input type="text" class="form-control" id="programa_federal">
+																			<input type="text" class="form-control" id="">
 																			<br>
 																		</div>
 
 																		<div class="col-lg-4">
 																			<label for="">Programa Estatal</label>
-																			<input type="text" class="form-control" id="programa_estatal">
+																			<input type="text" class="form-control" id="">
 																			<br>
 																		</div>
 
 																		<div class="col-lg-4">
 																			<label for="">Programa Municipal</label>
-																			<input type="text" class="form-control" id="programa_municipal">
+																			<input type="text" class="form-control" id="">
 																			<br>
 																		</div>
 
 																		<div class="col-lg-4">
 																			  <div class="input-group">
 																			    <span class="input-group-addon">$</span>
-																			    <input type="text" class="form-control" placeholder="Aportación Federal" id="aporte_federal">
+																			    <input type="text" class="form-control" placeholder="Aportación Federal">
 																			  </div>
 		 													      </div>
 
 																		<div class="col-lg-4">
 																			  <div class="input-group">
 																			    <span class="input-group-addon">$</span>
-																			    <input type="text" class="form-control" placeholder="Aportación Estatal" id="aporte_estatal">
+																			    <input type="text" class="form-control" placeholder="Aportación Estatal">
 																			  </div>
 		 													      </div>
 
 																		<div class="col-lg-4">
 																			  <div class="input-group">
 																			    <span class="input-group-addon">$</span>
-																			    <input type="text" class="form-control" placeholder="Aportación Municipal" id="aporte_municipal">
+																			    <input type="text" class="form-control" placeholder="Aportación Municipal">
 																			  </div>
 																				<br>
 		 													      </div>
@@ -360,7 +354,7 @@
 																			<label for="">Aportación Beneficiarios</label>
 																			<div class="input-group">
 																				<span class="input-group-addon">$</span>
-																				<input type="text" class="form-control" id="aportacion_beneficiarios">
+																				<input type="text" class="form-control">
 																			</div>
 																			<br>
 																		</div>
@@ -369,7 +363,7 @@
 																			<label for="">Aportación Otros</label>
 																			<div class="input-group">
 																				<span class="input-group-addon">$</span>
-																				<input type="text" class="form-control" id="aportacion_otros">
+																				<input type="text" class="form-control">
 																			</div>
 																			<br>
 																		</div>
@@ -393,7 +387,7 @@
 
 
 													<div class="col-lg-12">
-															<center><button type="submit" id="guardar_obra" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar</button></center>
+															<center><button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar</button></center>
 															<br>
 													</div>
 
@@ -462,8 +456,9 @@
 		            <div class="modal-body">
 
 									<div class="col-lg-12">
-									  <ul class="nav nav-tabs nav-justified">
+									  <ul class="nav nav-tabs">
 									    <li class="active"><a href="#general" data-toggle="tab" aria-expanded="false"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>  General</a></li>
+											<li class=""><a href="#alcances" data-toggle="tab" aria-expanded="true"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> 	Alcances</a></li>
 									    <li class=""><a href="#profile" data-toggle="tab" aria-expanded="true"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 	Revisiones</a></li>
 									  </ul>
 									  <div id="myTabContent" class="tab-content">
@@ -474,11 +469,21 @@
 												?>
 
 											</div><!--div de tab 1-->
-											<div class="tab-pane fade" id="profile">
-												<p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+
+											<div class="tab-pane fade" id="alcances"><!--div de tab 2-->
+												<?php
+													require("vistas/alcances.php");
+												?>
+											</div>
+
+											<div class="tab-pane fade" id="profile"><!--div de tab 3-->
+												<?php
+													require("vistas/revisiones.php");
+												?>
 											</div>
 										</div>
 									</div>
+
 
 
 		            </div><!--Div de modal body-->
@@ -504,9 +509,12 @@
             <script src="../../../js/jquery21.js"></script>
             <script src="../../../js/bootstrap.js"></script>
             <script src="../../../js/scripts_generales.js"></script>
-						<script src="../../../js/_Sagregar_obra.js"></script>
-						<script src="js/effects.js">
-
-						</script>
+						<script src="js/effects.js"></script>
+						<script src="js/nvo_alcance.js"></script>
+						<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
 	</body>
 </html>

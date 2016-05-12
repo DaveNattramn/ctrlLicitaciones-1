@@ -30,7 +30,7 @@
   <br>
   <div class="col-lg-3  col-sm-6">
     <label>Tipo de Obra</label>
-    <select class="form-control option input-sm" name="">
+    <select class="form-control option input-sm" id="ma_tipo_obra">
         <option></option>
         <option>Obra</option>
         <option>Supervisión</option>
@@ -39,13 +39,13 @@
 
   <div class="col-lg-2 col-sm-6">
     <label for="">Num. Obj.</label>
-    <input type="text" class="form-control input-sm" id="">
+    <input type="text" class="form-control input-sm" id="ma_num_obj">
     <br>
   </div>
 
   <div class="col-lg-2  col-sm-6">
     <label>Objeto</label>
-    <select class="form-control option input-sm" name="">
+    <select class="form-control option input-sm" name="" id="ma_objeto">
         <option></option>
         <option>Vialidad</option>
         <option>Calle</option>
@@ -56,13 +56,13 @@
 
   <div class="col-lg-2 col-sm-6">
     <label for="">Cantidad</label>
-    <input type="text" class="form-control input-sm" id="">
+    <input type="text" class="form-control input-sm" id="ma_cantidad">
     <br>
   </div>
 
   <div class="col-lg-3  col-sm-6">
     <label>U.M.</label>
-    <select class="form-control option input-sm" name="">
+    <select class="form-control option input-sm" name="" id="ma_um">
         <option></option>
         <option>Metros</option>
         <option>Metros Cuadrados</option>
@@ -73,7 +73,7 @@
   </div>
 
 
-  <a href="#" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" id="gdr_alcance"></span> Guardar Alcance</a>
+  <a href="#" id="guardar_alcance" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" id="gdr_alcance"></span> Guardar Alcance</a>
   <br><br>
 
 </div>

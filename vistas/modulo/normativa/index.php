@@ -26,6 +26,7 @@
             <script src="../../../js/bootstrap.js"></script>
             <script src="../../../js/scripts_generales.js"></script>
 						<script src="../../../js/_Sagregar_obra.js"></script>
+					  <script src="../../../js/_S_validarObras.js"></script>
 
 						<script src="js/nvo_alcance.js"></script>
 						<script src="js/effects.js"></script>
@@ -40,12 +41,11 @@
 		<script src="../../../js/toastr.js"></script>
 
 
-
 <!--
-<script type="text/javascript" src="../../../js/dataTables.responsive.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../../../css/responsive.bootstrap.min.css">
 
 <script type="text/javascript" src="../../../js/responsive.bootstrap.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../recursos/DataTables/responsive.bootstrap.css">
+
 -->
 	</head>
 
@@ -80,10 +80,10 @@
 						<div class="list-group panel-primary">
 							<a href="" class="list-group-item list-group-item active">Inicio <i class="fa fa-dashboard fa-lg"></i></a>
 							<!--<a href="#demo3" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#MainMenu">Inicio <i class="fa fa-dashboard fa-lg"></i></a>-->
-							<a href="#Usuarios" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#MainMenu">Obras <i class="glyphicon glyphicon-th-list"></i></a>
-							<div class="collapse" id="Usuarios">
-								<a href="#Todos_los_Usuarios" id="todos" class="btn1 list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Todos los Usuarios</a>
-								<a href="#Agregar_Nuevo_Usuario" id="nuevo_user" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Agregar Nuevo Usuario</a>
+							<a href="#Obras" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#MainMenu">Obras <i class="glyphicon glyphicon-th-list"></i></a>
+							<div class="collapse" id="Obras">
+								<a href="#" id="" class="btn1 list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> </a>
+								<a href="#" id="" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> </a>
 							</div>
 							<a href="#modulos" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#MainMenu">Modulos <i class="fa fa-cubes fa-lg"></i></a>
 							<div class="collapse" id="modulos">
@@ -108,7 +108,7 @@
 
 												<div class="container"><!--div container-->
 
-													<div class="col-lg-12"> <!--div col lg 12 tabla -->
+													<div class="col-lg-10"> <!--div col lg 12 tabla -->
 														<table class="table table-hover table-condensed" id="mostrar">
 															     <thead>
 																    <tr>
@@ -136,7 +136,7 @@
 
 												<div class="container"> <!-- CONTENEDOR DE TODO DE INGRESO DE NUEVA OBRA --->
 
-													<div class="col-lg-12"> <!--col lg 12-->
+													<div class="col-lg-10"> <!--col lg 12-->
 
 														<div class="panel panel-default"><!--PRIMER PANEL-->
 														  <div class="panel-heading">
@@ -144,11 +144,11 @@
 														  </div>
 														  <div class="panel-body">
 
-																<div class="col-lg-12">
+																<div class="col-lg-10">
 												            <label for="textArea" class="constrol-label">Descripción de la Obra</label>
-												            <textarea class="form-control" rows="3" id="obra" name="" ></textarea>
+												            <textarea class="form-control" rows="3" id="obra" name="" required></textarea>
 												            <input type="hidden" class="form-control" name="" value="">
-																		<p class="help-block">Este texto aparecerá si el nombre de la obra ya existe</p>
+																		<p class="help-block"></p>
 												            <br>
 												        </div>
 
@@ -278,7 +278,7 @@
 
 												</div> <!--DIV DE COL -LG-12-->
 
-												<div class="col-lg-12  col-sm-6"><!--2do col lg 12-->
+												<div class="col-lg-10  col-sm-6"><!--2do col lg 12-->
 													<div class="panel panel-default"><!--2do PANEL-->
 														<div class="panel-heading">
 															<h3 class="panel-title">Ubicación</h3>
@@ -286,32 +286,51 @@
 														<div class="panel-body">
 																<div class="col-lg-3  col-sm-6">
 																	<label for="">Municipio</label>
-																	<input type="text" class="form-control" id="municipio">
+																	<select  class="form-control option" id="municipio">
+
+																		</select>
 																	<br>
 																</div>
 
 																<div class="col-lg-3  col-sm-6">
 																	<label for="">Localidad</label>
-																	<input type="text" class="form-control" id="localidad">
+																	<select class="form-control option" id="localidad">
+
+																	</select>
 																	<br>
 																</div>
 
 																<div class="col-lg-3  col-sm-6">
 																	<label for="">Beneficiarios Directos</label>
-																	<input type="text" class="form-control" id="beneficiarios_directos">
+																	<input type="text" class="form-control" id="beneficiarios_directos" readonly>
 																	<br>
 																</div>
 
 																<div class="col-lg-3  col-sm-6">
 																	<label for="">Beneficiarios Indirectos</label>
-																	<input type="text" class="form-control" id="beneficiarios_indirectos">
+																	<input type="text" class="form-control" id="beneficiarios_indirectos" readonly>
 																	<br>
 																</div>
+
+
+																<div class="col-lg-3  col-sm-6">
+																	<label for="">Empleos directos</label>
+																	<input type="text" class="form-control" id="empleos_directos" readonly>
+																	<br>
+																</div>
+
+
+																<div class="col-lg-3  col-sm-6">
+																	<label for="">Empleos Indirectos</label>
+																	<input type="text" class="form-control" id="empleos_indirectos" readonly>
+																	<br>
+																</div>
+
 														</div>
 													</div><!--div 2do PANEL-->
 												</div><!--fin 2do col lg 12-->
 
-												<div class="col-lg-12  col-sm-6"><!--3er col lg 12-->
+												<div class="col-lg-10  col-sm-6"><!--3er col lg 12-->
 													<div class="panel panel-default"><!--2do PANEL-->
 															<div class="panel-heading">
 																<h3 class="panel-title">Estructura Financiera</h3>
@@ -378,14 +397,8 @@
 																			<br>
 																		</div>
 
-																		<div class="col-lg-12">
-																			<h3>Total: </h3> $3,644,988.54
-																			<!---EN CASO DE QUE LA SUMA DE LOS MONTOS SEA DIFERENTE MANDAR ALERTA ERROR-->
-																			<span class="label label-danger" id=""><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> La suma de los Montos es diferente al Monto Solicitado VERIFICAR A LA BREVEDAD</span>
+																		<div class="col-lg-10" id="suma_total">
 
-																			<br>
-																			<!---EN CASO DE QUE LA SUMA DE LOS MONTOS SEA EXACTA MOSTRAR ALERTA POSITIVA-->
-																			<span class="label label-success" id=""><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>
 																		</div>
 																</div><!--panel body-->
 													</div>
@@ -396,7 +409,7 @@
 												</div> <!--DIV DE CONTAINER-->
 
 
-													<div class="col-lg-12">
+													<div class="col-lg-10">
 															<center><button type="submit" id="guardar_obra" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar</button></center>
 															<br>
 													</div>
@@ -424,14 +437,14 @@
 										</div>
 
 										<div class="col-lg-4 col-sm-4">
-											<div class="alert alert-dismissible alert-success">
-												Estatus del Recurso: <strong>Autorizado</strong>
+											<div class="alert alert-dismissible alert-success" id="alerta_recurso">
+
 											</div>
 										</div>
 
 										<div class="col-lg-4 col-sm-4">
-											<div class="alert alert-dismissible alert-info">
-												Estatus Obra: <strong>En Revisión S.I.T. </strong>
+											<div class="alert alert-dismissible alert-info" id="alerta_obra">
+
 											</div>
 										</div>
 

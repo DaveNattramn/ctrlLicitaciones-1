@@ -724,7 +724,7 @@ $.extend( Responsive.prototype, {
 				break;
 			}
 		}
-
+		
 		// Show the columns for that break point
 		var columnsVis = this._columnsVisiblity( breakpoint );
 		this.s.current = columnsVis;

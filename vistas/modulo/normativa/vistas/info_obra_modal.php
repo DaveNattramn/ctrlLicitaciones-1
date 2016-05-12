@@ -9,7 +9,7 @@
 
                 <div class="col-lg-2  col-sm-6">
                   <label for="">No. de Obra</label>
-                  <input type="text" class="form-control" id="m_no_obra">
+                  <input type="text" class="form-control" id="m_no_obra" >
                   <input type="hidden" id="m_m">
                 </div>
 
@@ -17,7 +17,7 @@
                     <label for="textArea" class="constrol-label">Descripción de la Obra</label>
                     <textarea class="form-control" rows="3" id="m_obra" name=""></textarea>
                     <input type="hidden" class="form-control" name="" value="">
-                    <p class="help-block">Este texto aparecerá en caso de que si se modifica el nombre de la obra y existe, no aparezca como alerta</p>
+                    <p class="help-block"></p>
                     <br>
                 </div>
 
@@ -153,27 +153,47 @@
             <div class="panel-body">
                 <div class="col-lg-3  col-sm-6">
                   <label for="">Municipio</label>
-                  <input type="text" class="form-control" id="m_municipio">
+                  <select  class="form-control option" id="m_municipio">
+
+                    </select>
                   <br>
                 </div>
 
                 <div class="col-lg-3  col-sm-6">
                   <label for="">Localidad</label>
-                  <input type="text" class="form-control" id="m_localidad">
+                  <select class="form-control option" id="m_localidad">
+
+                  </select>
                   <br>
                 </div>
 
                 <div class="col-lg-3  col-sm-6">
                   <label for="">Beneficiarios Directos</label>
-                  <input type="text" class="form-control" id="m_beneficiarios_directos">
+                  <input type="text" class="form-control" id="m_beneficiarios_directos" readonly>
                   <br>
                 </div>
 
                 <div class="col-lg-3  col-sm-6">
                   <label for="">Beneficiarios Indirectos</label>
-                  <input type="text" class="form-control" id="m_beneficiarios_indirectos">
+                  <input type="text" class="form-control" id="m_beneficiarios_indirectos" readonly>
                   <br>
                 </div>
+
+
+
+                																<div class="col-lg-3  col-sm-6">
+                																	<label for="">Empleos directos</label>
+                																	<input type="text" class="form-control" id="m_empleos_directos" readonly>
+                																	<br>
+                																</div>
+
+
+                																<div class="col-lg-3  col-sm-6">
+                																	<label for="">Empleos Indirectos</label>
+                																	<input type="text" class="form-control" id="m_empleos_indirectos" readonly>
+                																	<br>
+                																</div>
+
             </div>
           </div><!--div 2do PANEL-->
 
@@ -243,14 +263,8 @@
                       <br>
                     </div>
 
-                    <div class="col-lg-12">
-                      <h3>Total: </h3> $3,644,988.54
-                      <!---EN CASO DE QUE LA SUMA DE LOS MONTOS SEA DIFERENTE MANDAR ALERTA ERROR-->
-                      <span class="label label-danger" id=""><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> La suma de los Montos es diferente al Monto Solicitado VERIFICAR A LA BREVEDAD</span>
+                    <div class="col-lg-12" id="m_suma_total">
 
-                      <br>
-                      <!---EN CASO DE QUE LA SUMA DE LOS MONTOS SEA EXACTA MOSTRAR ALERTA POSITIVA-->
-                      <span class="label label-success" id=""><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>
                     </div>
                 </div><!--panel body-->
           </div>
