@@ -1,7 +1,7 @@
 <?php
   include('../modelo/_S_conexion.php');
   $bd = new ADMIN();
-  $id = $_POST['id_obra'];
+  $id = utf8_decode($_POST['id_obra']);
 
   $result = $bd->getUbicacion($id);
 
@@ -9,13 +9,13 @@
 
   while($row = odbc_fetch_array($result))
   {
-  	$j_obra['id_obra']=$row['id_obra'];
-  	$j_obra['municipio']=$row['municipio'];
-    $j_obra['localidad']=$row['localidad'];
-    $j_obra['beneficiarios_directos']=$row['beneficiarios_directos'];
-    $j_obra['beneficiarios_indirectos']=$row['beneficiarios_indirectos'];
-    $j_obra['empleos_directos']=$row['empleos_directos'];
-    $j_obra['empleos_indirectos']=$row['empleos_indirectos'];
+  	$j_obra['id_obra']=utf8_encode($row['id_obra']);
+  	$j_obra['municipio']=utf8_encode($row['municipio']);
+    $j_obra['localidad']=utf8_encode($row['localidad']);
+    $j_obra['beneficiarios_directos']=utf8_encode($row['beneficiarios_directos']);
+    $j_obra['beneficiarios_indirectos']=utf8_encode($row['beneficiarios_indirectos']);
+    $j_obra['empleos_directos']=utf8_encode($row['empleos_directos']);
+    $j_obra['empleos_indirectos']=utf8_encode($row['empleos_indirectos']);
   }
 
 

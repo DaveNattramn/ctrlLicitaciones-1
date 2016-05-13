@@ -9,8 +9,8 @@
 
   $j_obra = array();
 
-  	$j_obra['poblacion_total']= odbc_result($bd->select_localidadPoblacion($municipio_nombre,"TOTAL DEL MUNICIPIO"),1);
-    $j_obra['poblacion_localidad']= odbc_result($bd->select_localidadPoblacion($municipio_nombre,$localidad_nombre),1);
+  	$j_obra['poblacion_total']= utf8_encode(odbc_result($bd->select_localidadPoblacion($municipio_nombre,"TOTAL DEL MUNICIPIO"),1));
+    $j_obra['poblacion_localidad']= utf8_encode(odbc_result($bd->select_localidadPoblacion($municipio_nombre,$localidad_nombre),1));
 
 
   echo json_encode($j_obra);

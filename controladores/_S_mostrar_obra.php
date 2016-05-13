@@ -30,14 +30,14 @@ $bd = new ADMIN();
       while( $row= odbc_fetch_array($query) ) {  // preparing an array
 	         $nestedData=array();
 
-	          $nestedData[] = $row["id_obra"];
-	           $nestedData[] = $row["no_obra"];
-	            $nestedData[] = $row["obra"];
-              $nestedData[] = $row["municipio"];
-              $nestedData[] = $row["localidad"];
-              $nestedData[] = '$' . number_format($row["total"],2);
-	             $nestedData[] = $row["tipo_adj_solicitado"];
-               $nestedData[] = $row["estatus_general"];
+	          $nestedData[] = utf8_encode($row["id_obra"]);
+	           $nestedData[] = utf8_encode($row["no_obra"]);
+	            $nestedData[] = utf8_encode($row["obra"]);
+              $nestedData[] = utf8_encode($row["municipio"]);
+              $nestedData[] = utf8_encode($row["localidad"]);
+              $nestedData[] = '$' . number_format(utf8_encode($row["total"]),2);
+	             $nestedData[] = utf8_encode($row["tipo_adj_solicitado"]);
+               $nestedData[] = utf8_encode($row["estatus_general"]);
 	              $data[] = $nestedData;
               }
 

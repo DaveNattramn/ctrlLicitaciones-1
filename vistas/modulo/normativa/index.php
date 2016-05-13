@@ -75,26 +75,8 @@
       		</div>
     	</nav>
 
-			<div class="col-lg-2 col-md-2">
-						<div id="menu-principal">
-						<div class="list-group panel-primary">
-							<a href="" class="list-group-item list-group-item active">Inicio <i class="fa fa-dashboard fa-lg"></i></a>
-							<!--<a href="#demo3" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#MainMenu">Inicio <i class="fa fa-dashboard fa-lg"></i></a>-->
-							<a href="#Obras" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#MainMenu">Obras <i class="glyphicon glyphicon-th-list"></i></a>
-							<div class="collapse" id="Obras">
-								<a href="#" id="" class="btn1 list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> </a>
-								<a href="#" id="" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> </a>
-							</div>
-							<a href="#modulos" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#MainMenu">Modulos <i class="fa fa-cubes fa-lg"></i></a>
-							<div class="collapse" id="modulos">
-							</div>
-						</div>
-					</div>
-			</div>
 
-
-
-					<div class="info col-lg-10" id="lista de obras">
+					<div class="info col-lg-12" id="lista de obras">
 
 										<ul class="nav nav-tabs">
 			                	<li class="active"><a href="#1" class="tabs" data-toggle="tab"> <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Todos las Obras</a></li>
@@ -108,7 +90,7 @@
 
 												<div class="container"><!--div container-->
 
-													<div class="col-lg-10"> <!--div col lg 12 tabla -->
+													<div class="col-lg-12"> <!--div col lg 12 tabla -->
 														<table class="table table-hover table-condensed" id="mostrar">
 															     <thead>
 																    <tr>
@@ -136,7 +118,7 @@
 
 												<div class="container"> <!-- CONTENEDOR DE TODO DE INGRESO DE NUEVA OBRA --->
 
-													<div class="col-lg-10"> <!--col lg 12-->
+													<div class="col-lg-12"> <!--col lg 12-->
 
 														<div class="panel panel-default"><!--PRIMER PANEL-->
 														  <div class="panel-heading">
@@ -144,7 +126,7 @@
 														  </div>
 														  <div class="panel-body">
 
-																<div class="col-lg-10">
+																<div class="col-lg-12">
 												            <label for="textArea" class="constrol-label">Descripción de la Obra</label>
 												            <textarea class="form-control" rows="3" id="obra" name="" required></textarea>
 												            <input type="hidden" class="form-control" name="" value="">
@@ -278,7 +260,7 @@
 
 												</div> <!--DIV DE COL -LG-12-->
 
-												<div class="col-lg-10  col-sm-6"><!--2do col lg 12-->
+												<div class="col-lg-12  col-sm-6"><!--2do col lg 12-->
 													<div class="panel panel-default"><!--2do PANEL-->
 														<div class="panel-heading">
 															<h3 class="panel-title">Ubicación</h3>
@@ -330,7 +312,7 @@
 													</div><!--div 2do PANEL-->
 												</div><!--fin 2do col lg 12-->
 
-												<div class="col-lg-10  col-sm-6"><!--3er col lg 12-->
+												<div class="col-lg-12  col-sm-6"><!--3er col lg 12-->
 													<div class="panel panel-default"><!--2do PANEL-->
 															<div class="panel-heading">
 																<h3 class="panel-title">Estructura Financiera</h3>
@@ -397,7 +379,7 @@
 																			<br>
 																		</div>
 
-																		<div class="col-lg-10" id="suma_total">
+																		<div class="col-lg-12" id="suma_total">
 
 																		</div>
 																</div><!--panel body-->
@@ -409,7 +391,7 @@
 												</div> <!--DIV DE CONTAINER-->
 
 
-													<div class="col-lg-10">
+													<div class="col-lg-12">
 															<center><button type="submit" id="guardar_obra" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar</button></center>
 															<br>
 													</div>

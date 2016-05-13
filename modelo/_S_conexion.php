@@ -197,7 +197,7 @@ $sql.= " ORDER BY ".$req_o_c."   ".$req_o_d." ";
 
       public function validaCambioObra($obra, $id_obra){
         $sql = "SELECT COUNT(obra) AS obra FROM obra WHERE obra ='".$obra."'  AND NOT id_obra='".$id_obra."'   ";
-        
+
         $exec = odbc_exec($this->conexion, $sql);
             if ($exec) {
                 return $exec;
@@ -209,21 +209,28 @@ $sql.= " ORDER BY ".$req_o_c."   ".$req_o_d." ";
             }
       }
 
-      public function getCeldaObra($id_obra, $columna){
+      public function get_valor_obra($id_obra, $columna){
         $sql = "SELECT ".$columna." FROM obra WHERE id_obra ='".$id_obra."'";
         $exec = odbc_exec($this->conexion, $sql);
 
         return $exec;
       }
 
-public function getAlcances($idobra){
-  $sql = "SELECT * FROM alcance WHERE id_obra ='".$idobra."'";
+public function getAlcances($id_obra){
+  $sql = "SELECT * FROM alcance WHERE id_obra ='".$id_obra."'";
   $exec = odbc_exec($this->conexion, $sql);
   return $exec;
 }
 
-public function estatus_obra($id_obra,$estatus_general){
-  $sql= "UPDATE obra SET estatus_general='".$estatus_general."' WHERE id_obra='".$id_obra."'   ";
+public function getRevisiones($id_obra,$area){
+  $sql = "SELECT * FROM revisiones WHERE id_obra ='".$id_obra."'  AND area='".$area."' ";
+
+  $exec = odbc_exec($this->conexion, $sql);
+  return $exec;
+}
+
+public function set_valor_obra($id_obra,$columna,$valor){
+  $sql= "UPDATE obra SET ".$columna."='".$valor."' WHERE id_obra='".$id_obra."'   ";
   $exec = odbc_exec($this->conexion, $sql);
       if ($exec) {
         $message = $sql;
@@ -333,6 +340,32 @@ public function agregar_alcance($id_obra,$tipo_obra,$num_obj,$objeto,$cantidad,$
       }
 }
 
+public function agregar_revision($id_obra,$fecha_ingreso,$fecha_entrega,$observaciones,$area){
+  $sql = "INSERT INTO revisiones(id_obra,area,fecha_ingreso,fecha_entrega,observaciones)
+         VALUES ('".$id_obra."', '".$area."', ";
+         if(validaDate($fecha_ingreso,'Y-m-d')){$sql.="'".$fecha_ingreso."' ,";}
+         else { $sql.= "NULL ,";}
+         if(validaDate($fecha_entrega,'Y-m-d')){$sql.="'".$fecha_entrega."' ,";}
+         else { $sql.= "NULL ,";}
+  $sql.= " '".$observaciones."')";
+
+
+
+
+      $exec = odbc_exec($this->conexion, $sql);
+      if ($exec) {
+        $message = $sql;
+
+          return true;
+
+      }
+      else
+      {
+        $message = $sql;
+
+          return false;
+      }
+}
 
 
 

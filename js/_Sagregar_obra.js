@@ -42,19 +42,7 @@ $(document).ready(function () {
                                                                   act_id_obra = aData[0];
                                                                   var contenidoRecurso = "";
                                                                   var contenidoObra = "";
-
-                                                                  getCeldaObra(act_id_obra,'estatus_general').success(function (data) {
-                                                                  contenidoObra = "Estatus Obra: <strong>"+data.estatus_general+"</strong>";
-                                                                  $('#alerta_recurso').empty()
-                                                                                      .append(contenidoObra);
-
-                                                                  });
-
-                                                                  getCeldaObra(act_id_obra,'estatus_recurso').success(function (data) {
-                                                                  contenidoRecurso = "Estatus del Recurso: <strong>"+data.estatus_recurso+"</strong>";
-                                                                  $('#alerta_obra').empty()
-                                                                                   .append(contenidoRecurso);
-                                                                  });
+                                                                  actualizar_datos();
 
                                                                   getObra(aData[0]).success(function (data) {
 
@@ -165,8 +153,118 @@ $(document).ready(function () {
                                                                           contentAlcance += "</tbody></table>";
                                                                           $('#tabla_alc').append(contentAlcance);
                                                                   });
-          /*                                                          getRevisiones(aData[0]).success(function (data) {
-                                                                                                              });*/
+                                                                    getRevisiones(aData[0],"NORMATIVA").success(function (data) {
+                                                                      $('#tabla_normativa').empty();
+                                                                      var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";
+                                                                      var len = 0;
+                                                                      var i;
+                                                                      for(i in data){
+                                                                        if (data.hasOwnProperty(i)) {
+                                                                          len++;
+                                                                          }
+                                                                      }
+                                                                      if(len>0){
+                                                                      for(i=0; i<len; i++){
+                                                                         contentRevision += '<tr>' +
+                                                                                           '<td>'+ (i+1)+'</td>'+
+                                                                                           '<td>'+ data[i].observaciones+'</td>'+
+                                                                                           '<td>'+ data[i].fecha_ingreso+'</td>'+
+                                                                                           '<td>'+ data[i].fecha_entrega+'</td>'+
+                                                                                           '</tr>';
+                                                                         }
+                                                                      contentRevision += "</tbody></table>";
+                                                                      $('#tabla_normativa').append(contentRevision);
+                                                                    }
+                                                                    else {
+                                                                      contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
+                                                                      $('#tabla_normativa').append(contentRevision);
+                                                                    }
+                                                                    });
+
+                                                                    getRevisiones(aData[0],"DIRECCION").success(function (data) {
+                                                                      $('#tabla_direccion').empty();
+                                                                      var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";
+                                                                      var len = 0;
+                                                                      var i;
+                                                                      for(i in data){
+                                                                        if (data.hasOwnProperty(i)) {
+                                                                          len++;
+                                                                          }
+                                                                      }
+                                                                      if(len>0){
+                                                                      for(i=0; i<len; i++){
+                                                                         contentRevision += '<tr>' +
+                                                                                           '<td>'+ (i+1)+'</td>'+
+                                                                                           '<td>'+ data[i].observaciones+'</td>'+
+                                                                                           '<td>'+ data[i].fecha_ingreso+'</td>'+
+                                                                                           '<td>'+ data[i].fecha_entrega+'</td>'+
+                                                                                           '</tr>';
+                                                                         }
+                                                                      contentRevision += "</tbody></table>";
+                                                                      $('#tabla_direccion').append(contentRevision);
+                                                                    }
+                                                                    else {
+                                                                      contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
+                                                                      $('#tabla_direccion').append(contentRevision);
+                                                                    }
+                                                                    });
+
+                                                                    getRevisiones(aData[0],"SEGUIMIENTO A LA INVERSIÓN").success(function (data) {
+                                                                      $('#tabla_seguimiento').empty();
+                                                                      var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";
+                                                                      var len = 0;
+                                                                      var i;
+                                                                      for(i in data){
+                                                                        if (data.hasOwnProperty(i)) {
+                                                                          len++;
+                                                                          }
+                                                                      }
+                                                                      if(len>0){
+                                                                      for(i=0; i<len; i++){
+                                                                         contentRevision += '<tr>' +
+                                                                                           '<td>'+ (i+1)+'</td>'+
+                                                                                           '<td>'+ data[i].observaciones+'</td>'+
+                                                                                           '<td>'+ data[i].fecha_ingreso+'</td>'+
+                                                                                           '<td>'+ data[i].fecha_entrega+'</td>'+
+                                                                                           '</tr>';
+                                                                         }
+                                                                      contentRevision += "</tbody></table>";
+                                                                      $('#tabla_seguimiento').append(contentRevision);
+                                                                    }
+                                                                    else {
+                                                                      contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
+                                                                      $('#tabla_seguimiento').append(contentRevision);
+                                                                    }
+                                                                    });
+
+                                                                    getRevisiones(aData[0],"LICITACIONES").success(function (data) {
+                                                                      $('#tabla_licitaciones').empty();
+                                                                      var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";
+                                                                      var len = 0;
+                                                                      var i;
+                                                                      for(i in data){
+                                                                        if (data.hasOwnProperty(i)) {
+                                                                          len++;
+                                                                          }
+                                                                      }
+                                                                      if(len>0){
+                                                                      for(i=0; i<len; i++){
+                                                                         contentRevision += '<tr>' +
+                                                                                           '<td>'+ (i+1)+'</td>'+
+                                                                                           '<td>'+ data[i].observaciones+'</td>'+
+                                                                                           '<td>'+ data[i].fecha_ingreso+'</td>'+
+                                                                                           '<td>'+ data[i].fecha_entrega+'</td>'+
+                                                                                           '</tr>';
+                                                                         }
+                                                                      contentRevision += "</tbody></table>";
+                                                                      $('#tabla_licitaciones').append(contentRevision);
+                                                                    }
+                                                                    else {
+                                                                      contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
+                                                                      $('#tabla_licitaciones').append(contentRevision);
+                                                                    }
+                                                                    });
+
 
                                                                     myModal.modal({ show: true });
 
@@ -176,11 +274,21 @@ $(document).ready(function () {
 
         });
 
+      function setValorObra(id_obra,columna,valor){
+         return  $.ajax({
 
-      function getCeldaObra(idobra,columna){
+              url: '../../../controladores/_S_set_valor_obra.php',
+              type: 'post',
+              data: {
+                id_obra:id_obra,columna:columna,valor:valor
+              }
+            });
+      }
+
+      function getValorObra(idobra,columna){
         return $.ajax({
           type: 'POST',
-          url: '../../../controladores/_S_get_celdaObra.php',
+          url: '../../../controladores/_S_get_valor_obra.php',
           data: {"id_obra" : idobra, "columna":columna},
           dataType: 'json',
         });
@@ -215,14 +323,22 @@ $(document).ready(function () {
 
         }
 
-        function getAlcances(idobra){
+        function getAlcances(id_obra){
           return $.ajax({
             type: 'POST',
             url: '../../../controladores/_S_get_alcances.php',
-            data: {"id_obra" : idobra},
+            data: {"id_obra" : id_obra},
             dataType: 'json',
           });
+        }
 
+        function getRevisiones(id_obra,area){
+          return $.ajax({
+            type: 'POST',
+            url: '../../../controladores/_S_get_revisiones.php',
+            data: {"id_obra" : id_obra, "area":area},
+            dataType: 'json',
+          });
         }
 /*
         function getRevisiones(idobra){
@@ -505,6 +621,7 @@ $(document).ready(function () {
                     "hideMethod": "fadeOut"
                 }
                 mostrar.ajax.reload();
+                actualizar_datos();
             }
              ,
 
@@ -564,14 +681,15 @@ $(document).ready(function () {
 
 
     $('#cancelar_obra').click(function (event) {
-         var estatus_general = 'CANCELADA';
+         var valor = 'CANCELADA';
+         var columna = "estatus_general"
          var id_obra = act_id_obra;
          $.ajax({
 
-             url: '../../../controladores/_S_estatus_obra.php',
+             url: '../../../controladores/_S_set_valor_obra.php',
              type: 'post',
              data: {
-               id_obra:id_obra,estatus_general:estatus_general
+               id_obra:id_obra,columna:columna,valor:valor
              },
              success: function (data) {
 
@@ -594,6 +712,7 @@ $(document).ready(function () {
                      "hideMethod": "fadeOut"
                  }
                  mostrar.ajax.reload();
+                 actualizar_datos();
              }
               ,
 
@@ -610,6 +729,75 @@ $(document).ready(function () {
       alert("Hola");
     });
 */
+
+function actualizar_datos(){
+  var valor;
+
+
+
+  //estatus_recurso
+  getValorObra(act_id_obra,'no_obra').success(function (data) {
+      valor = data.no_obra;
+      if(valor!=null){
+        setValorObra(act_id_obra,'estatus_recurso','AUTORIZADO').success(function (data) {
+                              getValorObra(act_id_obra,'estatus_recurso').success(function (data) {
+                                contenidoRecurso = "Estatus del Recurso: <strong>"+data.estatus_recurso+"</strong>";
+                                $('#alerta_recurso').empty()
+                                  .append(contenidoRecurso);
+                              });
+        });
+      }
+      else{
+        getValorObra(act_id_obra,'obra').success(function (data) {
+          valor = data.obra;
+          if(valor!=null){
+            setValorObra(act_id_obra,'estatus_recurso','EN INTEGRACIÓN DE EXPEDIENTE').success(function (data) {
+                                  getValorObra(act_id_obra,'estatus_recurso').success(function (data) {
+                                    contenidoRecurso = "Estatus del Recurso: <strong>"+data.estatus_recurso+"</strong>";
+                                    $('#alerta_recurso').empty()
+                                      .append(contenidoRecurso);
+                                  });
+            });
+          }
+        });
+      }
+
+
+
+  });
+
+
+  //estatus_general
+
+getValorObra(act_id_obra,'estatus_general').success(function (data) {
+  valor = data.estatus_general;
+  if(valor=='CANCELADA'){
+    contenidoObra = "Estatus Obra: <strong>"+valor+"</strong>";
+    $('#alerta_obra').empty()
+      .append(contenidoObra);
+
+  }
+  else{
+    getValorObra(act_id_obra,'obra').success(function (data) {
+      valor = data.obra;
+      if(valor!=null){
+          setValorObra(act_id_obra,'estatus_general','AUN NO ENTREGADO').success(function (data) {
+                          getValorObra(act_id_obra,'estatus_general').success(function (data) {
+                            contenidoObra = "Estatus Obra: <strong>"+data.estatus_general+"</strong>";
+                            $('#alerta_obra').empty()
+                              .append(contenidoObra);
+
+                          });
+            });
+      }
+    });
+  }
+});
+
+
+
+}
+
 function obra_existe(){
   var obra = $("#obra").val();
   return $.ajax({
@@ -788,6 +976,317 @@ $('#guardar_alcance').click(function (event) {
 
 });
 
+
+
+$('#enviar_normativa').click(function (event) {
+  var id_obra = act_id_obra;
+  var area = "NORMATIVA";
+  var r_fecha_recibido = $("#mr_fecha_recibido_n").val();
+  var r_fecha_envio = $("#mr_fecha_envio_n").val();
+  var observaciones = $("#mr_observaciones_n").val();
+
+  $.ajax({
+
+      url: '../../../controladores/_S_agregar_revision.php',
+      type: 'post',
+      data: {
+        id_obra:id_obra, r_fecha_recibido:r_fecha_recibido,r_fecha_envio:r_fecha_envio, observaciones:observaciones, area:area
+      },
+      success: function (data) {
+
+          Command: toastr["success"]("Revisión agregada");
+          toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "newestOnTop": false,
+              "progressBar": false,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+          }
+          mostrar.ajax.reload();
+          $("#mr_fecha_envio_n").val("");
+          $("#mr_fecha_recibido_n").val("");
+          $("#mr_observaciones_n").val("");
+
+          getRevisiones(id_obra,area).success(function (data) {
+            $('#tabla_normativa').empty();
+            var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";
+            var len = 0;
+            var i;
+            for(i in data){
+              if (data.hasOwnProperty(i)) {
+                len++;
+                }
+            }
+            if(len>0){
+            for(i=0; i<len; i++){
+               contentRevision += '<tr>' +
+                                 '<td>'+ (i+1)+'</td>'+
+                                 '<td>'+ data[i].observaciones+'</td>'+
+                                 '<td>'+ data[i].fecha_ingreso+'</td>'+
+                                 '<td>'+ data[i].fecha_entrega+'</td>'+
+                                 '</tr>';
+               }
+            contentRevision += "</tbody></table>";
+            $('#tabla_normativa').append(contentRevision);
+            }
+            else {
+              contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
+              $('#tabla_normativa').append(contentRevision);
+            }
+        });
+      }
+       ,
+
+      error: function (jqXHR, textStatus, errorThrown) {
+          alert(errorThrown);
+      }
+
+
+  });
+});
+
+
+  $('#enviar_direccion').click(function (event) {
+    var id_obra = act_id_obra;
+    var area = "DIRECCION";
+    var r_fecha_recibido = $("#mr_fecha_recibido_d").val();
+    var r_fecha_envio = $("#mr_fecha_envio_d").val();
+    var observaciones = $("#mr_observaciones_d").val();
+
+    $.ajax({
+
+        url: '../../../controladores/_S_agregar_revision.php',
+        type: 'post',
+        data: {
+          id_obra:id_obra, r_fecha_recibido:r_fecha_recibido,r_fecha_envio:r_fecha_envio, observaciones:observaciones, area:area
+        },
+        success: function (data) {
+
+            Command: toastr["success"]("Revisión agregada");
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            mostrar.ajax.reload();
+            $("#mr_fecha_envio_d").val("");
+            $("#mr_fecha_recibido_d").val("");
+            $("#mr_observaciones_d").val("");
+
+            getRevisiones(id_obra,area).success(function (data) {
+              $('#tabla_direccion').empty();
+              var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";
+              var len = 0;
+              var i;
+              for(i in data){
+                if (data.hasOwnProperty(i)) {
+                  len++;
+                  }
+              }
+              if(len>0){
+              for(i=0; i<len; i++){
+                 contentRevision += '<tr>' +
+                                   '<td>'+ (i+1)+'</td>'+
+                                   '<td>'+ data[i].observaciones+'</td>'+
+                                   '<td>'+ data[i].fecha_ingreso+'</td>'+
+                                   '<td>'+ data[i].fecha_entrega+'</td>'+
+                                   '</tr>';
+                 }
+              contentRevision += "</tbody></table>";
+              $('#tabla_direccion').append(contentRevision);
+              }
+              else {
+                contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
+                $('#tabla_direccion').append(contentRevision);
+              }
+          });
+        }
+         ,
+
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+
+
+    });
+});
+
+$('#enviar_seguimiento').click(function (event) {
+  var id_obra = act_id_obra;
+  var area = "SEGUIMIENTO A LA INVERSIÓN";
+  var r_fecha_recibido = $("#mr_fecha_recibido_s").val();
+  var r_fecha_envio = $("#mr_fecha_envio_s").val();
+  var observaciones = $("#mr_observaciones_s").val();
+
+  $.ajax({
+
+      url: '../../../controladores/_S_agregar_revision.php',
+      type: 'post',
+      data: {
+        id_obra:id_obra, r_fecha_recibido:r_fecha_recibido,r_fecha_envio:r_fecha_envio, observaciones:observaciones, area:area
+      },
+      success: function (data) {
+
+          Command: toastr["success"]("Revisión agregada");
+          toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "newestOnTop": false,
+              "progressBar": false,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+          }
+          mostrar.ajax.reload();
+          $("#mr_fecha_envio_s").val("");
+          $("#mr_fecha_recibido_s").val("");
+          $("#mr_observaciones_s").val("");
+
+          getRevisiones(id_obra,area).success(function (data) {
+            $('#tabla_seguimiento').empty();
+            var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";
+            var len = 0;
+            var i;
+            for(i in data){
+              if (data.hasOwnProperty(i)) {
+                len++;
+                }
+            }
+            if(len>0){
+            for(i=0; i<len; i++){
+               contentRevision += '<tr>' +
+                                 '<td>'+ (i+1)+'</td>'+
+                                 '<td>'+ data[i].observaciones+'</td>'+
+                                 '<td>'+ data[i].fecha_ingreso+'</td>'+
+                                 '<td>'+ data[i].fecha_entrega+'</td>'+
+                                 '</tr>';
+               }
+            contentRevision += "</tbody></table>";
+            $('#tabla_seguimiento').append(contentRevision);
+            }
+            else {
+              contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
+              $('#tabla_seguimiento').append(contentRevision);
+            }
+        });
+      }
+       ,
+
+      error: function (jqXHR, textStatus, errorThrown) {
+          alert(errorThrown);
+      }
+
+
+  });
+});
+
+
+$('#enviar_licitaciones').click(function (event) {
+  var id_obra = act_id_obra;
+  var area = "LICITACIONES";
+  var r_fecha_recibido = $("#mr_fecha_recibido_l").val();
+  var r_fecha_envio = $("#mr_fecha_envio_l").val();
+  var observaciones = $("#mr_observaciones_l").val();
+
+  $.ajax({
+
+      url: '../../../controladores/_S_agregar_revision.php',
+      type: 'post',
+      data: {
+        id_obra:id_obra, r_fecha_recibido:r_fecha_recibido,r_fecha_envio:r_fecha_envio, observaciones:observaciones, area:area
+      },
+      success: function (data) {
+
+          Command: toastr["success"]("Revisión agregada");
+          toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "newestOnTop": false,
+              "progressBar": false,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+          }
+          mostrar.ajax.reload();
+          $("#mr_fecha_envio_l").val("");
+          $("#mr_fecha_recibido_l").val("");
+          $("#mr_observaciones_l").val("");
+
+          getRevisiones(id_obra,area).success(function (data) {
+            $('#tabla_licitaciones').empty();
+            var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";
+            var len = 0;
+            var i;
+            for(i in data){
+              if (data.hasOwnProperty(i)) {
+                len++;
+                }
+            }
+            if(len>0){
+            for(i=0; i<len; i++){
+               contentRevision += '<tr>' +
+                                 '<td>'+ (i+1)+'</td>'+
+                                 '<td>'+ data[i].observaciones+'</td>'+
+                                 '<td>'+ data[i].fecha_ingreso+'</td>'+
+                                 '<td>'+ data[i].fecha_entrega+'</td>'+
+                                 '</tr>';
+               }
+            contentRevision += "</tbody></table>";
+            $('#tabla_licitaciones').append(contentRevision);
+            }
+            else {
+              contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
+              $('#tabla_licitaciones').append(contentRevision);
+            }
+        });
+      }
+       ,
+
+      error: function (jqXHR, textStatus, errorThrown) {
+          alert(errorThrown);
+      }
+
+
+  });
+});
 
 
 

@@ -103,7 +103,7 @@ $(document).ready(function(){
                                                     if(!($.isNumeric(aportacion_beneficiarios))) aportacion_beneficiarios = 0;
 
                                                     suma = parseFloat(aporte_federal)+parseFloat(aporte_estatal)+parseFloat(aporte_municipal)+parseFloat(aportacion_otros)+parseFloat(aportacion_beneficiarios);
-                                                    contenido_mensaje= "<h3>Total: $" + parseFloat(suma).toFixed(2) + "</h3>        ";
+                                                    contenido_mensaje= "<h3>Total: $" + numero_coma(parseFloat(suma).toFixed(2)) + "</h3>        ";
 
 
                                                     if(parseFloat(monto_solicitado).toFixed(2) == parseFloat(suma).toFixed(2)){
@@ -178,7 +178,7 @@ $(document).ready(function(){
                                                     if(!($.isNumeric(aportacion_beneficiarios))) aportacion_beneficiarios = 0;
 
                                                     suma = parseFloat(aporte_federal)+parseFloat(aporte_estatal)+parseFloat(aporte_municipal)+parseFloat(aportacion_otros)+parseFloat(aportacion_beneficiarios);
-                                                    contenido_mensaje= "<h3>Total: $" + parseFloat(suma).toFixed(2) + "</h3>        ";
+                                                    contenido_mensaje= "<h3>Total: $" + numero_coma(parseFloat(suma).toFixed(2)) + "</h3>        ";
 
 
                                                     if(parseFloat(monto_solicitado).toFixed(2) == parseFloat(suma).toFixed(2)){
@@ -229,5 +229,11 @@ $(document).ready(function(){
                                                         m_sumaAportes();
                                                   });
 
+
+function numero_coma(x) {
+  var parts = x.toString().split(".");
+   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+   return parts.join(".");
+}
 
 });
