@@ -5,6 +5,7 @@ $(document).ready(function () {
           "processing": true,
           "serverSide": true,
           "responsive": true,
+          "sDom": "flrtip",
           "ajax":{
              url :"../../../controladores/_S_mostrar_obra.php", // json datasource
              type: "POST"/*,
@@ -40,15 +41,14 @@ $(document).ready(function () {
                                                                   myModal = $('#myModal');
 
                                                                   act_id_obra = aData[0];
-                                                                  var contenidoRecurso = "";
-                                                                  var contenidoObra = "";
+
                                                                   actualizar_datos();
 
                                                                   getObra(aData[0]).success(function (data) {
 
 
-                                                                    $('#contenido').empty();
-                                                                    $('<p>'+data.obra+'</p>').appendTo('#contenido');
+                                                                    $('#contenido_alcance').empty();
+                                                                    $('<small>'+data.obra+'</small>').appendTo('#contenido_alcance');
 
                                                                     $('#m_obra').val(data.obra);
                                                                     $('#m_no_obra').val(data.no_obra);
@@ -266,6 +266,8 @@ $(document).ready(function () {
                                                                     });
 
 
+                                                                    cambiar_read(true);
+
                                                                     myModal.modal({ show: true });
 
 
@@ -273,6 +275,37 @@ $(document).ready(function () {
             }
 
         });
+
+
+        function cambiar_read(valor){
+
+                                                                              $('#m_no_obra').prop('readonly', valor);
+                                                                              $('#m_obra').prop('readonly', valor);
+                                                                              $('#m_no_autorizacion').prop('readonly', valor);
+                                                                              $('#m_fecha_autorizacion').prop('readonly', valor);
+                                                                              $('#m_fecha_recibido_autorizacion').prop('readonly', valor);
+                                                                              $('#m_tipo_inversion').prop('readonly', valor);
+                                                                              $('#m_tipo_expediente').attr('disabled', valor);
+                                                                              $('#m_monto_solicitado').prop('readonly', valor);
+                                                                              $('#m_dimension_inversion').prop('readonly', valor);
+                                                                              $('#m_unidad_responsable').attr('disabled', valor);
+                                                                              $('#m_etapa').attr('disabled', valor);
+                                                                              $('#m_periodo_ejecucion').prop('readonly', valor);
+                                                                              $('#m_propuesta_anual').prop('readonly', valor);
+                                                                              $('#m_normativa_aplicar').prop('readonly', valor);
+                                                                              $('#m_tipo_adj_solicitado').prop('readonly', valor);
+                                                                              $('#m_partidas').prop('readonly', valor);
+                                                                              $('#m_municipio').attr('disabled', valor);
+                                                                              $('#m_localidad').attr('disabled', valor);
+                                                                              $('#m_programa_federal').prop('readonly', valor);
+                                                                              $('#m_programa_estatal').prop('readonly', valor);
+                                                                              $('#m_programa_municipal').prop('readonly', valor);
+                                                                              $('#m_aporte_federal').prop('readonly', valor);
+                                                                              $('#m_aporte_estatal').prop('readonly', valor);
+                                                                              $('#m_aporte_municipal').prop('readonly', valor);
+                                                                              $('#m_aportacion_beneficiarios').prop('readonly', valor);
+                                                                              $('#m_aportacion_otros').prop('readonly', valor);
+        }
 
       function setValorObra(id_obra,columna,valor){
          return  $.ajax({
@@ -352,33 +385,31 @@ $(document).ready(function () {
 
     $('#guardar_obra').click(function (event) {
 
-        var obra = $("#obra").val();
-        var tipo_inversion = $("#tipo_inversion").val();
-        var tipo_expediente = $("#tipo_expediente").val();
+        var obra = $("#obra").val().trim();
+        var tipo_inversion = $("#tipo_inversion").val().trim();
+        var tipo_expediente = $("#tipo_expediente").val().trim();
         var monto_solicitado = $("#monto_solicitado").val().replace(/[^0-9\.]+/g,"");
-        var dimension_inversion = $("#dimension_inversion").val() ;
-        var dependencia_solicitante = $("#dependencia_solicitante").val() ;
-        var dependencia_ejecutora = $("#dependencia_ejecutora").val();
-        var unidad_responsable = $("#unidad_responsable").val();
-        var etapa = $("#etapa").val() ;
-        var periodo_ejecucion = $("#periodo_ejecucion").val() ;
-        var propuesta_anual = $("#propuesta_anual").val();
-        var normativa_aplicar = $("#normativa_aplicar").val();
-        var tipo_adj_solicitado = $("#tipo_adj_solicitado").val();
-        var partidas = $("#partidas").val();
-        //var clave_presupuesto = $("#clave_presupuesto").val();
-        //var desc_presupuesto = $("#desc_presupuesto").val();
+        var dimension_inversion = $("#dimension_inversion").val().trim();
+        var dependencia_solicitante = $("#dependencia_solicitante").val().trim();
+        var dependencia_ejecutora = $("#dependencia_ejecutora").val().trim();
+        var unidad_responsable = $("#unidad_responsable").val().trim();
+        var etapa = $("#etapa").val().trim();
+        var periodo_ejecucion = $("#periodo_ejecucion").val().trim();
+        var propuesta_anual = $("#propuesta_anual").val().trim();
+        var normativa_aplicar = $("#normativa_aplicar").val().trim();
+        var tipo_adj_solicitado = $("#tipo_adj_solicitado").val().trim();
+        var partidas = $("#partidas").val().trim();
         var municipio = $("#municipio").val();
         var localidad = $("#localidad").val();
         var beneficiarios_directos = $("#beneficiarios_directos").val();
         var beneficiarios_indirectos = $("#beneficiarios_indirectos").val();
         var empleos_directos = $("#empleos_directos").val();
         var empleos_indirectos = $("#empleos_indirectos").val();
-        var programa_federal = $("#programa_federal").val();
+        var programa_federal = $("#programa_federal").val().trim();
         var aporte_federal = $("#aporte_federal").val().replace(/[^0-9\.]+/g,"");
-        var programa_estatal = $("#programa_estatal").val();
+        var programa_estatal = $("#programa_estatal").val().trim();
         var aporte_estatal = $("#aporte_estatal").val().replace(/[^0-9\.]+/g,"");
-        var programa_municipal = $("#programa_municipal").val();
+        var programa_municipal = $("#programa_municipal").val().trim();
         var aporte_municipal = $("#aporte_municipal").val().replace(/[^0-9\.]+/g,"");
         var aportacion_beneficiarios = $("#aportacion_beneficiarios").val().replace(/[^0-9\.]+/g,"");
         var aportacion_otros = $("#aportacion_otros").val().replace(/[^0-9\.]+/g,"");
@@ -395,90 +426,162 @@ $(document).ready(function () {
         if(!($.isNumeric(aportacion_otros))) aportacion_otros = 0;
         if(!($.isNumeric(aportacion_beneficiarios))) aportacion_beneficiarios = 0;
 
+
+
+
+              $("#d_obra").removeClass('col-lg-12 has-error').addClass('col-lg-12');
+              $("#d_tipo_inversion").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+              $("#d_tipo_expediente").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+              $("#d_dimension_inversion").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+              $("#d_dependencia_solicitante").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+              $("#d_dependencia_ejecutora").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+              $("#d_unidad_responsable").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+              $("#d_etapa").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+              $("#d_periodo_ejecucion").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+              $("#d_propuesta_anual").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+              $("#d_normativa_aplicar").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+              $("#d_tipo_adj_solicitado").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+              $("#d_partidas").removeClass('col-lg-4 has-error').addClass('col-lg-4');
+              $("#d_programa_federal").removeClass('col-lg-4 has-error').addClass('col-lg-4');
+              $("#d_programa_estatal").removeClass('col-lg-4 has-error').addClass('col-lg-4');
+              $("#d_programa_municipal").removeClass('col-lg-4 has-error').addClass('col-lg-4');
+
+              $("#d_monto_solicitado").removeClass('col-lg-4 has-error').addClass('col-lg-4');
+
+              if(monto_solicitado==0)$("#d_monto_solicitado").removeClass('col-lg-12').addClass('col-lg-12 has-error');
+
+                if(obra=="")$("#d_obra").removeClass('col-lg-12').addClass('col-lg-12 has-error');
+                if(tipo_inversion=="")$("#d_tipo_inversion").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                if(tipo_expediente=="")$("#d_tipo_expediente").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                if(dimension_inversion=="")$("#d_dimension_inversion").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                if(dependencia_solicitante=="")$("#d_dependencia_solicitante").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                if(dependencia_ejecutora=="")$("#d_dependencia_ejecutora").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                if(unidad_responsable=="")$("#d_unidad_responsable").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                if(etapa=="")$("#d_etapa").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                if(periodo_ejecucion=="")$("#d_periodo_ejecucion").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                if(propuesta_anual=="")$("#d_propuesta_anual").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                if(normativa_aplicar=="")$("#d_normativa_aplicar").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                if(tipo_adj_solicitado=="")$("#d_tipo_adj_solicitado").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                if(partidas=="")$("#d_partidas").removeClass('col-lg-4 ').addClass('col-lg-4 has-error');
+                if(programa_federal=="" && programa_estatal=="" && programa_municipal==""){
+                  $("#d_programa_federal").removeClass('col-lg-4 ').addClass('col-lg-4 has-error');
+                  $("#d_programa_estatal").removeClass('col-lg-4 ').addClass('col-lg-4 has-error');
+                  $("#d_programa_municipal").removeClass('col-lg-4 ').addClass('col-lg-4 has-error');
+                }
+
+
+
         var condicion_obra;
         obra_existe().success(function (data) {condicion_obra = data.obra;
         if(Number(condicion_obra) == 0 ){
           var suma_final = parseFloat(aporte_federal)+parseFloat(aporte_estatal)+parseFloat(aporte_municipal)+parseFloat(aportacion_otros)+parseFloat(aportacion_beneficiarios);
-          if(parseFloat(monto_solicitado).toFixed(2) == parseFloat(suma_final).toFixed(2)){
+          if(parseFloat(monto_solicitado).toFixed(2) == parseFloat(suma_final).toFixed(2)   && monto_solicitado>0 ){
+            if(obra!="" && tipo_inversion!="" && tipo_expediente!="" && dimension_inversion!="" && dependencia_ejecutora!="" && dependencia_solicitante!="" && unidad_responsable!="" && etapa!="" && periodo_ejecucion!=""
+                  && propuesta_anual!="" && normativa_aplicar!="" && tipo_adj_solicitado!="" && partidas!="" && (programa_federal!="" || programa_estatal!="" || programa_municipal!="" ))
+                  {
 
-          $.ajax({
+                      $.ajax({
 
-              url: '../../../controladores/_S_agregar_obra.php',
-              type: 'post',
-              data: {
-                obra:obra,tipo_inversion:tipo_inversion,tipo_expediente:tipo_expediente,monto_solicitado:monto_solicitado,
-                dimension_inversion:dimension_inversion,dependencia_solicitante:dependencia_solicitante,
-                dependencia_ejecutora:dependencia_ejecutora,unidad_responsable:unidad_responsable,etapa:etapa,
-                periodo_ejecucion:periodo_ejecucion,propuesta_anual:propuesta_anual,normativa_aplicar:normativa_aplicar,
-                tipo_adj_solicitado:tipo_adj_solicitado,partidas:partidas,
-                municipio:municipio,localidad:localidad,beneficiarios_directos:beneficiarios_directos,
-                beneficiarios_indirectos:beneficiarios_indirectos,empleos_directos:empleos_directos,empleos_indirectos:empleos_indirectos,
-                programa_federal:programa_federal,aporte_federal:aporte_federal,programa_estatal:programa_estatal,
-                aporte_estatal:aporte_estatal,programa_municipal:programa_municipal,aporte_municipal:aporte_municipal,
-                aportacion_beneficiarios:aportacion_beneficiarios,aportacion_otros:aportacion_otros
+                      url: '../../../controladores/_S_agregar_obra.php',
+                      type: 'post',
+                      data: {
+                        obra:obra,tipo_inversion:tipo_inversion,tipo_expediente:tipo_expediente,monto_solicitado:monto_solicitado,
+                        dimension_inversion:dimension_inversion,dependencia_solicitante:dependencia_solicitante,
+                        dependencia_ejecutora:dependencia_ejecutora,unidad_responsable:unidad_responsable,etapa:etapa,
+                        periodo_ejecucion:periodo_ejecucion,propuesta_anual:propuesta_anual,normativa_aplicar:normativa_aplicar,
+                        tipo_adj_solicitado:tipo_adj_solicitado,partidas:partidas,
+                        municipio:municipio,localidad:localidad,beneficiarios_directos:beneficiarios_directos,
+                        beneficiarios_indirectos:beneficiarios_indirectos,empleos_directos:empleos_directos,empleos_indirectos:empleos_indirectos,
+                        programa_federal:programa_federal,aporte_federal:aporte_federal,programa_estatal:programa_estatal,
+                        aporte_estatal:aporte_estatal,programa_municipal:programa_municipal,aporte_municipal:aporte_municipal,
+                        aportacion_beneficiarios:aportacion_beneficiarios,aportacion_otros:aportacion_otros
 
-              },
-              success: function (data) {
-                $("#obra").val("");
-                $("#tipo_inversion").val("");
-                $("#tipo_expediente").val("");
-                $("#monto_solicitado").val("");
-                $("#dimension_inversion").val("") ;
-                $("#dependencia_solicitante").val("") ;
-                $("#dependencia_ejecutora").val("");
-                $("#unidad_responsable").val("");
-                $("#etapa").val("") ;
-                $("#periodo_ejecucion").val("") ;
-                $("#propuesta_anual").val("");
-                $("#normativa_aplicar").val("");
-                $("#tipo_adj_solicitado").val("");
-                $("#partidas").val("");
-                $("#municipio").val("");
-                $("#localidad").val("");
-                $("#localidad").val("");
-                $("#beneficiarios_directos").val("");
-                $("#beneficiarios_indirectos").val("");
-                $("#empleos_directos").val("");
-                $("#empleos_indirectos").val("");
-                $("#programa_federal").val("");
-                $("#aporte_federal").val("");
-                $("#programa_estatal").val("");
-                $("#aporte_estatal").val("");
-                $("#programa_municipal").val("");
-                $("#aporte_municipal").val("");
-                $("#aportacion_beneficiarios").val("");
-                $("#aportacion_otros").val("");
-                $('#suma_total').empty();
+                      },
+                      success: function (data) {
 
-                  Command: toastr["success"]("Obra agregada con Éxito");
-                  toastr.options = {
-                      "closeButton": false,
-                      "debug": false,
-                      "newestOnTop": false,
-                      "progressBar": false,
-                      "positionClass": "toast-top-right",
-                      "preventDuplicates": false,
-                      "onclick": null,
-                      "showDuration": "300",
-                      "hideDuration": "1000",
-                      "timeOut": "5000",
-                      "extendedTimeOut": "1000",
-                      "showEasing": "swing",
-                      "hideEasing": "linear",
-                      "showMethod": "fadeIn",
-                      "hideMethod": "fadeOut"
+
+                        $("#obra").val("");
+                        $("#tipo_inversion").val("");
+                        $("#tipo_expediente").val("");
+                        $("#monto_solicitado").val("");
+                        $("#dimension_inversion").val("") ;
+                        $("#dependencia_solicitante").val("") ;
+                        $("#dependencia_ejecutora").val("");
+                        $("#unidad_responsable").val("");
+                        $("#etapa").val("") ;
+                        $("#periodo_ejecucion").val("") ;
+                        $("#propuesta_anual").val("");
+                        $("#normativa_aplicar").val("");
+                        $("#tipo_adj_solicitado").val("");
+                        $("#partidas").val("");
+                        $("#municipio").val("");
+                        $("#localidad").val("");
+                        $("#beneficiarios_directos").val("");
+                        $("#beneficiarios_indirectos").val("");
+                        $("#empleos_directos").val("");
+                        $("#empleos_indirectos").val("");
+                        $("#programa_federal").val("");
+                        $("#aporte_federal").val("");
+                        $("#programa_estatal").val("");
+                        $("#aporte_estatal").val("");
+                        $("#programa_municipal").val("");
+                        $("#aporte_municipal").val("");
+                        $("#aportacion_beneficiarios").val("");
+                        $("#aportacion_otros").val("");
+                        $('#suma_total').empty();
+
+                        Command: toastr["success"]("Obra agregada con Éxito");
+                        toastr.options = {
+                          "closeButton": false,
+                          "debug": false,
+                          "newestOnTop": false,
+                          "progressBar": false,
+                          "positionClass": "toast-top-right",
+                          "preventDuplicates": false,
+                          "onclick": null,
+                          "showDuration": "300",
+                          "hideDuration": "1000",
+                          "timeOut": "5000",
+                          "extendedTimeOut": "1000",
+                          "showEasing": "swing",
+                          "hideEasing": "linear",
+                          "showMethod": "fadeIn",
+                          "hideMethod": "fadeOut"
+                        }
+                        mostrar.ajax.reload();
+                      }
+                      ,
+
+                      error: function (jqXHR, textStatus, errorThrown) {
+                        alert(errorThrown);
+                      }
+
+
+                    }); //end ajax agregar obra
+
+              }//endif campos vacios
+              else{
+
+                Command: toastr["error"]("Campos obligatorios vacios");
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
                   }
-                  mostrar.ajax.reload();
+
               }
-               ,
-
-              error: function (jqXHR, textStatus, errorThrown) {
-                  alert(errorThrown);
-              }
-
-
-          });
-
         }//endif montos
         else{
 
@@ -531,22 +634,22 @@ $(document).ready(function () {
     $('#actualizar_obra').click(function (event) {
 
         var id_obra = act_id_obra;
-        var no_obra = $("#m_no_obra").val();
-        var obra = $("#m_obra").val();
-        var no_autorizacion = $("#m_no_autorizacion").val();
-        var fecha_autorizacion = $("#m_fecha_autorizacion").val();
-        var fecha_recibido_autorizacion = $("#m_fecha_recibido_autorizacion").val();
-        var tipo_inversion = $("#m_tipo_inversion").val();
-        var tipo_expediente = $("#m_tipo_expediente").val();
+        var no_obra = $("#m_no_obra").val().trim();
+        var obra = $("#m_obra").val().trim();
+        var no_autorizacion = $("#m_no_autorizacion").val().trim();
+        var fecha_autorizacion = $("#m_fecha_autorizacion").val().trim();
+        var fecha_recibido_autorizacion = $("#m_fecha_recibido_autorizacion").val().trim();
+        var tipo_inversion = $("#m_tipo_inversion").val().trim();
+        var tipo_expediente = $("#m_tipo_expediente").val().trim();
         var monto_solicitado = $("#m_monto_solicitado").val().replace(/[^0-9\.]+/g,"");
-        var dimension_inversion = $("#m_dimension_inversion").val() ;
-        var unidad_responsable = $("#m_unidad_responsable").val();
-        var etapa = $("#m_etapa").val() ;
-        var periodo_ejecucion = $("#m_periodo_ejecucion").val() ;
-        var propuesta_anual = $("#m_propuesta_anual").val();
-        var normativa_aplicar = $("#m_normativa_aplicar").val();
-        var tipo_adj_solicitado = $("#m_tipo_adj_solicitado").val();
-        var partidas = $("#m_partidas").val();
+        var dimension_inversion = $("#m_dimension_inversion").val().trim();
+        var unidad_responsable = $("#m_unidad_responsable").val().trim();
+        var etapa = $("#m_etapa").val().trim();
+        var periodo_ejecucion = $("#m_periodo_ejecucion").val().trim();
+        var propuesta_anual = $("#m_propuesta_anual").val().trim();
+        var normativa_aplicar = $("#m_normativa_aplicar").val().trim();
+        var tipo_adj_solicitado = $("#m_tipo_adj_solicitado").val().trim();
+        var partidas = $("#m_partidas").val().trim();
         var municipio = $("#m_municipio").val();
         var localidad = $("#m_localidad").val();
         var beneficiarios_directos = $("#m_beneficiarios_directos").val();
@@ -555,9 +658,9 @@ $(document).ready(function () {
         var empleos_indirectos = $("#m_empleos_indirectos").val();
         var programa_federal = $("#m_programa_federal").val();
         var aporte_federal = $("#m_aporte_federal").val().replace(/[^0-9\.]+/g,"");
-        var programa_estatal = $("#m_programa_estatal").val();
+        var programa_estatal = $("#m_programa_estatal").val().trim();
         var aporte_estatal = $("#m_aporte_estatal").val().replace(/[^0-9\.]+/g,"");
-        var programa_municipal = $("#m_programa_municipal").val();
+        var programa_municipal = $("#m_programa_municipal").val().trim();
         var aporte_municipal = $("#m_aporte_municipal").val().replace(/[^0-9\.]+/g,"");
         var aportacion_beneficiarios = $("#m_aportacion_beneficiarios").val().replace(/[^0-9\.]+/g,"");
         var aportacion_otros = $("#m_aportacion_otros").val().replace(/[^0-9\.]+/g,"");
@@ -576,59 +679,126 @@ $(document).ready(function () {
         if(!($.isNumeric(aportacion_beneficiarios))) aportacion_beneficiarios = 0;
 
 
+                      $("#dm_obra").removeClass('col-lg-12 has-error').addClass('col-lg-12');
+                      $("#dm_tipo_inversion").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                      $("#dm_tipo_expediente").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                      $("#dm_dimension_inversion").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                      $("#dm_dependencia_solicitante").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                      $("#dm_dependencia_ejecutora").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                      $("#dm_unidad_responsable").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                      $("#dm_etapa").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                      $("#dm_periodo_ejecucion").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                      $("#dm_propuesta_anual").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                      $("#dm_normativa_aplicar").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                      $("#dm_tipo_adj_solicitado").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                      $("#dm_partidas").removeClass('col-lg-4 has-error').addClass('col-lg-4');
+                      $("#dm_programa_federal").removeClass('col-lg-4 has-error').addClass('col-lg-4');
+                      $("#dm_programa_estatal").removeClass('col-lg-4 has-error').addClass('col-lg-4');
+                      $("#dm_programa_municipal").removeClass('col-lg-4 has-error').addClass('col-lg-4');
+
+                      $("#dm_monto_solicitado").removeClass('col-lg-4 has-error').addClass('col-lg-4');
+
+                      if(monto_solicitado==0)$("#dm_monto_solicitado").removeClass('col-lg-12').addClass('col-lg-12 has-error');
+
+                        if(obra=="")$("#dm_obra").removeClass('col-lg-12').addClass('col-lg-12 has-error');
+                        if(tipo_inversion=="")$("#dm_tipo_inversion").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                        if(tipo_expediente=="")$("#dm_tipo_expediente").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                        if(dimension_inversion=="")$("#dm_dimension_inversion").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                        if(dependencia_solicitante=="")$("#dm_dependencia_solicitante").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                        if(dependencia_ejecutora=="")$("#dm_dependencia_ejecutora").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                        if(unidad_responsable=="")$("#dm_unidad_responsable").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                        if(etapa=="")$("#dm_etapa").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                        if(periodo_ejecucion=="")$("#dm_periodo_ejecucion").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                        if(propuesta_anual=="")$("#dm_propuesta_anual").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                        if(normativa_aplicar=="")$("#dm_normativa_aplicar").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                        if(tipo_adj_solicitado=="")$("#dm_tipo_adj_solicitado").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
+                        if(partidas=="")$("#dm_partidas").removeClass('col-lg-4 ').addClass('col-lg-4 has-error');
+                        if(programa_federal=="" && programa_estatal=="" && programa_municipal==""){
+                          $("#dm_programa_federal").removeClass('col-lg-4 ').addClass('col-lg-4 has-error');
+                          $("#dm_programa_estatal").removeClass('col-lg-4 ').addClass('col-lg-4 has-error');
+                          $("#dm_programa_municipal").removeClass('col-lg-4 ').addClass('col-lg-4 has-error');
+                        }
+
+
         var condicion_obra;
         obra_existe_id(id_obra).success(function (data) {condicion_obra = data.obra;
         if(Number(condicion_obra) == 0 ){
           var suma_final = parseFloat(aporte_federal)+parseFloat(aporte_estatal)+parseFloat(aporte_municipal)+parseFloat(aportacion_otros)+parseFloat(aportacion_beneficiarios);
-          if(parseFloat(monto_solicitado).toFixed(2) == parseFloat(suma_final).toFixed(2)){
+          if(parseFloat(monto_solicitado).toFixed(2) == parseFloat(suma_final).toFixed(2) && monto_solicitado>0 ){
+            if(obra!="" && tipo_inversion!="" && tipo_expediente!="" && dimension_inversion!="" && dependencia_ejecutora!="" && dependencia_solicitante!="" && unidad_responsable!="" && etapa!="" && periodo_ejecucion!=""
+                  && propuesta_anual!="" && normativa_aplicar!="" && tipo_adj_solicitado!="" && partidas!="" && (programa_federal!="" || programa_estatal!="" || programa_municipal!="" ))
+                  {
 
-        $.ajax({
+                      $.ajax({
 
-            url: '../../../controladores/_S_actualizar_obra.php',
-            type: 'post',
-            data: {
-              id_obra:id_obra, no_obra:no_obra, obra:obra, no_autorizacion:no_autorizacion, fecha_autorizacion:fecha_autorizacion,
-              fecha_recibido_autorizacion:fecha_recibido_autorizacion, tipo_inversion:tipo_inversion,
-              tipo_expediente:tipo_expediente, monto_solicitado:monto_solicitado, dimension_inversion:dimension_inversion,
-              unidad_responsable:unidad_responsable,etapa:etapa,
-              periodo_ejecucion:periodo_ejecucion,propuesta_anual:propuesta_anual,normativa_aplicar:normativa_aplicar,
-              tipo_adj_solicitado:tipo_adj_solicitado,partidas:partidas,
-              municipio:municipio,localidad:localidad,beneficiarios_directos:beneficiarios_directos,
-              beneficiarios_indirectos:beneficiarios_indirectos,empleos_directos:empleos_directos,empleos_indirectos:empleos_indirectos,
-              programa_federal:programa_federal,aporte_federal:aporte_federal,programa_estatal:programa_estatal,
-              aporte_estatal:aporte_estatal,programa_municipal:programa_municipal,aporte_municipal:aporte_municipal,
-              aportacion_beneficiarios:aportacion_beneficiarios,aportacion_otros:aportacion_otros
+                        url: '../../../controladores/_S_actualizar_obra.php',
+                        type: 'post',
+                        data: {
+                          id_obra:id_obra, no_obra:no_obra, obra:obra, no_autorizacion:no_autorizacion, fecha_autorizacion:fecha_autorizacion,
+                          fecha_recibido_autorizacion:fecha_recibido_autorizacion, tipo_inversion:tipo_inversion,
+                          tipo_expediente:tipo_expediente, monto_solicitado:monto_solicitado, dimension_inversion:dimension_inversion,
+                          unidad_responsable:unidad_responsable,etapa:etapa,
+                          periodo_ejecucion:periodo_ejecucion,propuesta_anual:propuesta_anual,normativa_aplicar:normativa_aplicar,
+                          tipo_adj_solicitado:tipo_adj_solicitado,partidas:partidas,
+                          municipio:municipio,localidad:localidad,beneficiarios_directos:beneficiarios_directos,
+                          beneficiarios_indirectos:beneficiarios_indirectos,empleos_directos:empleos_directos,empleos_indirectos:empleos_indirectos,
+                          programa_federal:programa_federal,aporte_federal:aporte_federal,programa_estatal:programa_estatal,
+                          aporte_estatal:aporte_estatal,programa_municipal:programa_municipal,aporte_municipal:aporte_municipal,
+                          aportacion_beneficiarios:aportacion_beneficiarios,aportacion_otros:aportacion_otros
 
-            },
-            success: function (data) {
+                        },
+                        success: function (data) {
 
-                Command: toastr["success"]("Obra actualizada");
-                toastr.options = {
-                    "closeButton": false,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
-                mostrar.ajax.reload();
-                actualizar_datos();
+                          Command: toastr["success"]("Obra actualizada");
+                          toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                          }
+                          mostrar.ajax.reload();
+                          actualizar_datos();
+                        }
+                        ,
+
+                        error: function (jqXHR, textStatus, errorThrown) {
+                          alert(errorThrown);
+                        }
+                      });
+            }//endif campos vacios
+            else{
+
+                              Command: toastr["error"]("Campos obligatorios vacios");
+                              toastr.options = {
+                                  "closeButton": false,
+                                  "debug": false,
+                                  "newestOnTop": false,
+                                  "progressBar": false,
+                                  "positionClass": "toast-top-right",
+                                  "preventDuplicates": false,
+                                  "onclick": null,
+                                  "showDuration": "300",
+                                  "hideDuration": "1000",
+                                  "timeOut": "5000",
+                                  "extendedTimeOut": "1000",
+                                  "showEasing": "swing",
+                                  "hideEasing": "linear",
+                                  "showMethod": "fadeIn",
+                                  "hideMethod": "fadeOut"
+                                }
+
             }
-             ,
-
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert(errorThrown);
-            }
-            });
           }//endif montos
           else{
 
@@ -732,13 +902,21 @@ $(document).ready(function () {
 
 function actualizar_datos(){
   var valor;
+  var contenidoRecurso = "";
+
+  getFechaRecienteArea(act_id_obra,'NORMATIVA').success(function (data) {
+    valor = data.fecha;
+    contenidoRecurso = "<small>"+valor+"</small>";
+    $('#div_fecha_recibido').empty()
+        .append(contenidoRecurso);
 
 
+  });
 
   //estatus_recurso
   getValorObra(act_id_obra,'no_obra').success(function (data) {
       valor = data.no_obra;
-      if(valor!=null){
+      if(valor!=""){
         setValorObra(act_id_obra,'estatus_recurso','AUTORIZADO').success(function (data) {
                               getValorObra(act_id_obra,'estatus_recurso').success(function (data) {
                                 contenidoRecurso = "Estatus del Recurso: <strong>"+data.estatus_recurso+"</strong>";
@@ -797,6 +975,17 @@ getValorObra(act_id_obra,'estatus_general').success(function (data) {
 
 
 }
+
+
+
+  function getFechaRecienteArea(id_obra,area){
+    return $.ajax({
+      type: 'POST',
+      url: '../../../controladores/_S_get_fecha_area.php',
+      data: {id_obra:id_obra, area:area},
+      dataType: 'json',
+    });
+    }
 
 function obra_existe(){
   var obra = $("#obra").val();
@@ -891,7 +1080,9 @@ function m_getLocalidades(){
 
 
 
-
+$('#modificar_obra').click(function (event) {
+    cambiar_read(false);
+});
 
 $('#btn_nuevo_alcance').click(function (event) {
   $('#nuevo_alcance').removeClass("hidden").addClass("visible");
@@ -1016,7 +1207,7 @@ $('#enviar_normativa').click(function (event) {
           $("#mr_fecha_envio_n").val("");
           $("#mr_fecha_recibido_n").val("");
           $("#mr_observaciones_n").val("");
-
+          actualizar_datos();
           getRevisiones(id_obra,area).success(function (data) {
             $('#tabla_normativa').empty();
             var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";

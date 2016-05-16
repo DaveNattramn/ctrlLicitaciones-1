@@ -1,7 +1,8 @@
 <!-- ENCABEZADO DE LA FECHA DEL PROYECTO, DÍA EN QUE SE INGRESO--->
+
 <blockquote class="blockquote-reverse">
   <p>Fecha de Recibido el Proyecto.</p>
-  <small>Martes, 26 de Abril de 2016 </small>
+<div id="div_fecha_recibido">   </div>
 </blockquote>
 
 

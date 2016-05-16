@@ -1,6 +1,6 @@
 
 <blockquote>
-  <h4><small><div id="contenido"></div></small></h4>
+  <h4><div id="contenido_alcance"></div></h4>
 </blockquote>
 
 <br>

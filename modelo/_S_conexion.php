@@ -197,7 +197,7 @@ $sql.= " ORDER BY ".$req_o_c."   ".$req_o_d." ";
 
       public function validaCambioObra($obra, $id_obra){
         $sql = "SELECT COUNT(obra) AS obra FROM obra WHERE obra ='".$obra."'  AND NOT id_obra='".$id_obra."'   ";
-
+      
         $exec = odbc_exec($this->conexion, $sql);
             if ($exec) {
                 return $exec;
@@ -216,6 +216,14 @@ $sql.= " ORDER BY ".$req_o_c."   ".$req_o_d." ";
         return $exec;
       }
 
+
+      public function get_fecha_reciente_area($id_obra, $area){
+        $sql = "SELECT MIN(fecha_ingreso) As fecha from revisiones WHERE id_obra='".$id_obra."' AND area='".$area."' ";
+        $exec = odbc_exec($this->conexion, $sql);
+
+        return $exec;
+      }
+
 public function getAlcances($id_obra){
   $sql = "SELECT * FROM alcance WHERE id_obra ='".$id_obra."'";
   $exec = odbc_exec($this->conexion, $sql);
@@ -223,7 +231,7 @@ public function getAlcances($id_obra){
 }
 
 public function getRevisiones($id_obra,$area){
-  $sql = "SELECT * FROM revisiones WHERE id_obra ='".$id_obra."'  AND area='".$area."' ";
+  $sql = "SELECT * FROM revisiones WHERE id_obra ='".$id_obra."'  AND area='".$area."' ORDER BY fecha_ingreso ASC";
 
   $exec = odbc_exec($this->conexion, $sql);
   return $exec;

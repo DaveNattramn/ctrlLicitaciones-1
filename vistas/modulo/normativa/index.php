@@ -88,28 +88,28 @@
 
 											<div class="tab-pane active" id="1" > <!--TAB 1 TODAS LAS OBRAS-->
 
-												<div class="container"><!--div container-->
+											<!--<div class="container"><!--div container-->
 
-													<div class="col-lg-12"> <!--div col lg 12 tabla -->
-														<table class="table table-hover table-condensed" id="mostrar">
+												<div class="col-lg-12"> <!--div col lg 12 tabla -->
+														<table class="table table-hover table-condensed " id="mostrar">
 															     <thead>
 																    <tr>
-																	    <th>#</th>
-																			<th>No. de Obra</th>
-																			<th>Nombre de la Obra</th>
-																			<th>Municipio</th>
-																			<th>Localidad</th>
-																			<th>Monto</th>
-																			<th>Tipo de Procedimiento</th>
+																	    <th style="width: 4%">#</th>
+																			<th style="width: 7%">No. de Obra</th>
+																			<th style="width: 49%">Nombre de la Obra</th>
+																			<th style="width: 10%">Municipio</th>
+																			<th style="width: 10%">Localidad</th>
+																			<th style="width: 10%">Monto</th>
+																			<th style="width: 10%">Tipo de Procedimiento</th>
 																    </tr>
 															     </thead>
 
 														</table>
 
-													</div><!--fin div col lg 12 tabla-->
+												</div><!--fin div col lg 12 tabla-->
 
 
-												</div><!--fin div container-->
+											<!--</div><!--fin div container-->
 											</div> <!--FIN TAB1 DE TODAS LAS OBRAS-->
 
 
@@ -126,7 +126,7 @@
 														  </div>
 														  <div class="panel-body">
 
-																<div class="col-lg-12">
+																<div class="col-lg-12" id="d_obra">
 												            <label for="textArea" class="constrol-label">Descripción de la Obra</label>
 												            <textarea class="form-control" rows="3" id="obra" name="" required></textarea>
 												            <input type="hidden" class="form-control" name="" value="">
@@ -134,12 +134,12 @@
 												            <br>
 												        </div>
 
-																<div class="col-lg-3  col-sm-6">
+																<div class="col-lg-3  col-sm-6" id="d_tipo_inversion">
 	 														    <label for="">Tipo de Inversión</label>
 	 														    <input type="text" class="form-control" id="tipo_inversion">
  													      </div>
 
-																<div class="col-lg-3  col-sm-6">
+																<div class="col-lg-3  col-sm-6" id="d_tipo_expediente">
 																	<label>Tipo de Solicitud</label>
 											            <select class="form-control option" id="tipo_expediente" name="">
 																			<option></option>
@@ -153,7 +153,7 @@
 																		</select>
  													      </div>
 
-																<div class="col-lg-3  col-sm-6">
+																<div class="col-lg-3  col-sm-6" id="d_monto_solicitado">
 																	<label class="control-label">Monto Solicitado</label>
 																	  <div class="input-group">
 																	    <span class="input-group-addon">$</span>
@@ -161,13 +161,13 @@
 																	  </div>
  													      </div>
 
-																<div class="col-lg-3  col-sm-6">
+																<div class="col-lg-3  col-sm-6" id="d_dimension_inversion">
 	 														    <label for="">Dimensión de Inversión</label>
 	 														    <input type="text" class="form-control" id="dimension_inversion">
 																	<br>
  													      </div>
 
-																<div class="col-lg-3  col-sm-6">
+																<div class="col-lg-3  col-sm-6" id="d_dependencia_solicitante">
 																	<label>Dependencia Solicitante</label>
 											            <select class="form-control option" name="" id="dependencia_solicitante">
 											                <option></option>
@@ -175,7 +175,7 @@
 																		</select>
  													      </div>
 
-																<div class="col-lg-3  col-sm-6">
+																<div class="col-lg-3  col-sm-6" id="d_dependencia_ejecutora">
 																	<label>Dependencia Ejecutora</label>
 											            <select class="form-control option" name="" id="dependencia_ejecutora">
 											                <option></option>
@@ -183,7 +183,7 @@
 																		</select>
  													      </div>
 
-																<div class="col-lg-3  col-sm-6">
+																<div class="col-lg-3  col-sm-6" id="d_unidad_responsable">
 																	<label>Unidad Responsable (U.R.)</label>
 											            <select class="form-control option" name="" id="unidad_responsable">
 																		<option></option>
@@ -210,7 +210,7 @@
 																		</select>
  													      </div>
 
-																<div class="col-lg-3  col-sm-6">
+																<div class="col-lg-3  col-sm-6" id="d_etapa">
 	 														    <label for="">Etapa</label>
 																	<select class="form-control option" name="" id="etapa">
 								                      <option></option>
@@ -224,23 +224,23 @@
 								                    </select>
  													      </div>
 
-																<div class="col-lg-3  col-sm-6">
+																<div class="col-lg-3  col-sm-6" id="d_periodo_ejecucion">
 	 														    <label for="">Periodo de Ejecución</label>
 	 														    <input type="text" class="form-control" id="periodo_ejecucion" placeholder="Semanas">
  													      </div>
 
-																<div class="col-lg-3  col-sm-6">
+																<div class="col-lg-3  col-sm-6" id="d_propuesta_anual">
 	 														    <label for="">Propuesta Anual</label>
 	 														    <input type="text" class="form-control" id="propuesta_anual">
  													      </div>
 
-																<div class="col-lg-3  col-sm-6">
+																<div class="col-lg-3  col-sm-6" id="d_normativa_aplicar">
 	 														    <label for="">Normativa a Aplicar</label>
 	 														    <input type="text" class="form-control" id="normativa_aplicar">
 																	<br>
  													      </div>
 
-																<div class="col-lg-3  col-sm-6">
+																<div class="col-lg-3  col-sm-6" id="d_tipo_adj_solicitado">
 	 														    <label for="">Modalidad de Ejecución</label>
 	 														    <input type="text" class="form-control" id="tipo_adj_solicitado">
 																	<br>
@@ -248,7 +248,7 @@
 
 																<legend></legend>
 
-																<div class="col-lg-4">
+																<div class="col-lg-4" id="d_partidas">
 												            <label for="textArea" class="constrol-label">Partidas</label>
 												            <textarea class="form-control" rows="2" id="partidas" name=""></textarea>
 												            <input type="hidden" class="form-control" name="" value="">
@@ -319,25 +319,25 @@
 															</div>
 																<div class="panel-body">
 
-																		<div class="col-lg-4">
+																		<div class="col-lg-4" id="d_programa_federal">
 																			<label for="">Programa Federal</label>
 																			<input type="text" class="form-control" id="programa_federal">
 																			<br>
 																		</div>
 
-																		<div class="col-lg-4">
+																		<div class="col-lg-4" id="d_programa_estatal">
 																			<label for="">Programa Estatal</label>
 																			<input type="text" class="form-control" id="programa_estatal">
 																			<br>
 																		</div>
 
-																		<div class="col-lg-4">
+																		<div class="col-lg-4" id="d_programa_municipal">
 																			<label for="">Programa Municipal</label>
 																			<input type="text" class="form-control" id="programa_municipal">
 																			<br>
 																		</div>
 
-																		<div class="col-lg-4">
+																		<div class="col-lg-4" id="d_aporte_federal">
 																			  <div class="input-group">
 																			    <span class="input-group-addon">$</span>
 																			    <input type="text" class="form-control" placeholder="Aportación Federal" id="aporte_federal">
@@ -473,7 +473,7 @@
 
 		              <button id="cancelar_obra" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar Proyecto</button>
 
-									<button type="button" id="" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Modificar</button>
+									<button type="button" id="modificar_obra" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Modificar</button>
 									<button type="button" id="actualizar_obra" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar</button>
 		              <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-resize-small" aria-hidden="true"></span> Cerrar</button>
 		              <input type="hidden" id="" value="">
