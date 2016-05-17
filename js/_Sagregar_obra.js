@@ -42,7 +42,7 @@ $(document).ready(function () {
 
                                                                   act_id_obra = aData[0];
 
-                                                                  actualizar_datos();
+                                                                  actualizar_datos(act_id_obra);
 
                                                                   getObra(aData[0]).success(function (data) {
 
@@ -54,7 +54,11 @@ $(document).ready(function () {
                                                                     $('#m_no_obra').val(data.no_obra);
                                                                     $('#m_no_autorizacion').val(data.no_autorizacion);
                                                                     $('#m_fecha_autorizacion').val(data.fecha_autorizacion);
+                                                                    if(data.fecha_autorizacion!="")$('#m_fecha_autorizacion_v').val($.format.date(data.fecha_autorizacion+" 00:00:00", "dd MMMM yyyy"));
+                                                                    else $('#m_fecha_autorizacion_v').val("");
                                                                     $('#m_fecha_recibido_autorizacion').val(data.fecha_recibido_autorizacion);
+                                                                    if(data.fecha_recibido_autorizacion!="")$('#m_fecha_recibido_autorizacion_v').val($.format.date(data.fecha_recibido_autorizacion+" 00:00:00", "dd MMMM yyyy"));
+                                                                    else $('#m_fecha_recibido_autorizacion_v').val("");
                                                                     $('#m_tipo_inversion').val(data.tipo_inversion);
                                                                     $('#m_tipo_expediente').val(data.tipo_expediente);
                                                                     $('#m_dimension_inversion').val(data.dimension_inversion);
@@ -73,7 +77,11 @@ $(document).ready(function () {
                                                                     $('#m_municipio')
                                                                         .append($("<option></option>")
                                                                         .attr("value","")
-                                                                        .text(""));
+                                                                        .text(""))
+                                                                        .append($("<option></option>")
+                                                                        .attr("value","VARIOS")
+                                                                        .text("VARIOS"))
+                                                                        ;
                                                                    var municipio_d = data.municipio;
                                                                    var localidad_d = data.localidad;
                                                                     m_getMunicipios().success(function (data) {
@@ -85,13 +93,22 @@ $(document).ready(function () {
                                                                               .text(value));
                                                                             });
 
-                                                                    //  $('#m_municipio option[value='+municipio_d+']').attr('selected', 'selected');
-                                                                        $('#m_municipio').val(municipio_d);
+
+                                                                      $('#m_municipio').val(municipio_d);
                                                                       $('#m_localidad').empty();
                                                                       $('#m_localidad')
                                                                           .append($("<option></option>")
                                                                           .attr("value","")
                                                                           .text(""));
+
+                                                                    if($("#m_municipio").val() == 'VARIOS'){
+                                                                    $('#m_localidad')
+                                                                                .append($("<option></option>")
+                                                                                .attr("value","VARIOS")
+                                                                                .text("VARIOS"));
+                                                                        $('#m_localidad').val(localidad_d);
+                                                                      }
+                                                                      else{
                                                                       m_getLocalidades().success(function (data) {
                                                                           $.each(data, function(key, value) {
                                                                               $('#m_localidad')
@@ -104,13 +121,9 @@ $(document).ready(function () {
                                                                               $('#m_localidad').val(localidad_d);
 
                                                                             });
+                                                                        }
 
                                                                       });
-
-
-
-
-
 
 
 
@@ -133,7 +146,7 @@ $(document).ready(function () {
                                                                   });
                                                                     getAlcances(aData[0]).success(function (data) {
                                                                       $('#tabla_alc').empty();
-                                                                      var contentAlcance = "<table class='table table-hover'><thead><tr><th>Tipo de Obra</th><th>Num. Obj.</th><th>Objeto</th><th>Cantidad</th><th>U.M.</th></tr></thead><tbody>";
+                                                                      var contentAlcance = "<table id='tabla_alcance' class='table table-hover'><thead><tr><th>Tipo de Obra</th><th>Num. Obj.</th><th>Objeto</th><th>Cantidad</th><th>U.M.</th><th>Eliminar</th></tr></thead><tbody>";
                                                                       var len = 0;
                                                                       var i;
                                                                       for (i in data) {
@@ -147,7 +160,8 @@ $(document).ready(function () {
                                                                                             '<td>'+ data[i].num_obj+'</td>'+
                                                                                             '<td>'+ data[i].objeto+'</td>'+
                                                                                             '<td>'+ data[i].cantidad+'</td>'+
-                                                                                            '<td>'+ data[i].um+'</td>'+
+                                                                                            '<td>'+ data[i].um+'</td>'+//
+                                                                                            "<td><input id='boton' type='button' onclick='borrar_alcance("+data[i].id_alcance+")'></td>"+
                                                                                             '</tr>';
                                                                           }
                                                                           contentAlcance += "</tbody></table>";
@@ -277,102 +291,8 @@ $(document).ready(function () {
         });
 
 
-        function cambiar_read(valor){
 
-                                                                              $('#m_no_obra').prop('readonly', valor);
-                                                                              $('#m_obra').prop('readonly', valor);
-                                                                              $('#m_no_autorizacion').prop('readonly', valor);
-                                                                              $('#m_fecha_autorizacion').prop('readonly', valor);
-                                                                              $('#m_fecha_recibido_autorizacion').prop('readonly', valor);
-                                                                              $('#m_tipo_inversion').prop('readonly', valor);
-                                                                              $('#m_tipo_expediente').attr('disabled', valor);
-                                                                              $('#m_monto_solicitado').prop('readonly', valor);
-                                                                              $('#m_dimension_inversion').prop('readonly', valor);
-                                                                              $('#m_unidad_responsable').attr('disabled', valor);
-                                                                              $('#m_etapa').attr('disabled', valor);
-                                                                              $('#m_periodo_ejecucion').prop('readonly', valor);
-                                                                              $('#m_propuesta_anual').prop('readonly', valor);
-                                                                              $('#m_normativa_aplicar').prop('readonly', valor);
-                                                                              $('#m_tipo_adj_solicitado').prop('readonly', valor);
-                                                                              $('#m_partidas').prop('readonly', valor);
-                                                                              $('#m_municipio').attr('disabled', valor);
-                                                                              $('#m_localidad').attr('disabled', valor);
-                                                                              $('#m_programa_federal').prop('readonly', valor);
-                                                                              $('#m_programa_estatal').prop('readonly', valor);
-                                                                              $('#m_programa_municipal').prop('readonly', valor);
-                                                                              $('#m_aporte_federal').prop('readonly', valor);
-                                                                              $('#m_aporte_estatal').prop('readonly', valor);
-                                                                              $('#m_aporte_municipal').prop('readonly', valor);
-                                                                              $('#m_aportacion_beneficiarios').prop('readonly', valor);
-                                                                              $('#m_aportacion_otros').prop('readonly', valor);
-        }
 
-      function setValorObra(id_obra,columna,valor){
-         return  $.ajax({
-
-              url: '../../../controladores/_S_set_valor_obra.php',
-              type: 'post',
-              data: {
-                id_obra:id_obra,columna:columna,valor:valor
-              }
-            });
-      }
-
-      function getValorObra(idobra,columna){
-        return $.ajax({
-          type: 'POST',
-          url: '../../../controladores/_S_get_valor_obra.php',
-          data: {"id_obra" : idobra, "columna":columna},
-          dataType: 'json',
-        });
-        }
-
-        function getObra(idobra){
-          return $.ajax({
-            type: 'POST',
-            url: '../../../controladores/_S_get_obra.php',
-            data: {"id_obra" : idobra},
-            dataType: 'json',
-          });
-        }
-
-        function getUbicacion(idobra){
-          return $.ajax({
-            type: 'POST',
-            url: '../../../controladores/_S_get_ubicacion.php',
-            data: {"id_obra" : idobra},
-            dataType: 'json',
-          });
-
-        }
-
-        function getEstructuraF(idobra){
-          return $.ajax({
-            type: 'POST',
-            url: '../../../controladores/_S_get_estructuraF.php',
-            data: {"id_obra" : idobra},
-            dataType: 'json',
-          });
-
-        }
-
-        function getAlcances(id_obra){
-          return $.ajax({
-            type: 'POST',
-            url: '../../../controladores/_S_get_alcances.php',
-            data: {"id_obra" : id_obra},
-            dataType: 'json',
-          });
-        }
-
-        function getRevisiones(id_obra,area){
-          return $.ajax({
-            type: 'POST',
-            url: '../../../controladores/_S_get_revisiones.php',
-            data: {"id_obra" : id_obra, "area":area},
-            dataType: 'json',
-          });
-        }
 /*
         function getRevisiones(idobra){
           return $.ajax({
@@ -382,7 +302,9 @@ $(document).ready(function () {
             dataType: 'json',
           });
         }*/
-
+  $('#boton').click(function (event) {
+    alert($(this).data('id'));
+  });
     $('#guardar_obra').click(function (event) {
 
         var obra = $("#obra").val().trim();
@@ -637,8 +559,8 @@ $(document).ready(function () {
         var no_obra = $("#m_no_obra").val().trim();
         var obra = $("#m_obra").val().trim();
         var no_autorizacion = $("#m_no_autorizacion").val().trim();
-        var fecha_autorizacion = $("#m_fecha_autorizacion").val().trim();
-        var fecha_recibido_autorizacion = $("#m_fecha_recibido_autorizacion").val().trim();
+        var fecha_autorizacion = $("#m_fecha_autorizacion").val();
+        var fecha_recibido_autorizacion = $("#m_fecha_recibido_autorizacion").val();
         var tipo_inversion = $("#m_tipo_inversion").val().trim();
         var tipo_expediente = $("#m_tipo_expediente").val().trim();
         var monto_solicitado = $("#m_monto_solicitado").val().replace(/[^0-9\.]+/g,"");
@@ -768,7 +690,7 @@ $(document).ready(function () {
                             "hideMethod": "fadeOut"
                           }
                           mostrar.ajax.reload();
-                          actualizar_datos();
+                          actualizar_datos(act_id_obra);
                         }
                         ,
 
@@ -882,7 +804,7 @@ $(document).ready(function () {
                      "hideMethod": "fadeOut"
                  }
                  mostrar.ajax.reload();
-                 actualizar_datos();
+                 actualizar_datos(act_id_obra);
              }
               ,
 
@@ -899,143 +821,6 @@ $(document).ready(function () {
       alert("Hola");
     });
 */
-
-function actualizar_datos(){
-  var valor;
-  var contenidoRecurso = "";
-
-  getFechaRecienteArea(act_id_obra,'NORMATIVA').success(function (data) {
-    valor = data.fecha;
-    contenidoRecurso = "<small>"+valor+"</small>";
-    $('#div_fecha_recibido').empty()
-        .append(contenidoRecurso);
-
-
-  });
-
-  //estatus_recurso
-  getValorObra(act_id_obra,'no_obra').success(function (data) {
-      valor = data.no_obra;
-      if(valor!=""){
-        setValorObra(act_id_obra,'estatus_recurso','AUTORIZADO').success(function (data) {
-                              getValorObra(act_id_obra,'estatus_recurso').success(function (data) {
-                                contenidoRecurso = "Estatus del Recurso: <strong>"+data.estatus_recurso+"</strong>";
-                                $('#alerta_recurso').empty()
-                                  .append(contenidoRecurso);
-                              });
-        });
-      }
-      else{
-        getValorObra(act_id_obra,'obra').success(function (data) {
-          valor = data.obra;
-          if(valor!=null){
-            setValorObra(act_id_obra,'estatus_recurso','EN INTEGRACIÓN DE EXPEDIENTE').success(function (data) {
-                                  getValorObra(act_id_obra,'estatus_recurso').success(function (data) {
-                                    contenidoRecurso = "Estatus del Recurso: <strong>"+data.estatus_recurso+"</strong>";
-                                    $('#alerta_recurso').empty()
-                                      .append(contenidoRecurso);
-                                  });
-            });
-          }
-        });
-      }
-
-
-
-  });
-
-
-  //estatus_general
-
-getValorObra(act_id_obra,'estatus_general').success(function (data) {
-  valor = data.estatus_general;
-  if(valor=='CANCELADA'){
-    contenidoObra = "Estatus Obra: <strong>"+valor+"</strong>";
-    $('#alerta_obra').empty()
-      .append(contenidoObra);
-
-  }
-  else{
-    getValorObra(act_id_obra,'obra').success(function (data) {
-      valor = data.obra;
-      if(valor!=null){
-          setValorObra(act_id_obra,'estatus_general','AUN NO ENTREGADO').success(function (data) {
-                          getValorObra(act_id_obra,'estatus_general').success(function (data) {
-                            contenidoObra = "Estatus Obra: <strong>"+data.estatus_general+"</strong>";
-                            $('#alerta_obra').empty()
-                              .append(contenidoObra);
-
-                          });
-            });
-      }
-    });
-  }
-});
-
-
-
-}
-
-
-
-  function getFechaRecienteArea(id_obra,area){
-    return $.ajax({
-      type: 'POST',
-      url: '../../../controladores/_S_get_fecha_area.php',
-      data: {id_obra:id_obra, area:area},
-      dataType: 'json',
-    });
-    }
-
-function obra_existe(){
-  var obra = $("#obra").val();
-  return $.ajax({
-    type: 'POST',
-    url: '../../../controladores/_S_valida_obra.php',
-    data: {obra:obra},
-    dataType: 'json',
-  });
-  }
-
-  function obra_existe_id(id_obra){
-    var obra = $("#m_obra").val();
-
-    return $.ajax({
-      type: 'POST',
-      url: '../../../controladores/_S_valida_nombre_obra.php',
-      data: {obra:obra, id_obra:id_obra},
-      dataType: 'json',
-    });
-    }
-
-function m_getLocalidades(){
-  var municipio_nombre = $("#m_municipio").val();
-  return $.ajax({
-    type: 'POST',
-    url: '../../../controladores/_S_get_localidades.php',
-    data: {municipio_nombre:municipio_nombre},
-    dataType: 'json',
-  });
-  }
-  function m_getMunicipios(){
-    return $.ajax({
-      type: 'POST',
-      url: '../../../controladores/_S_get_municipios.php',
-      data: {},
-      dataType: 'json',
-    });
-    }
-    function m_getTotalUbicacion(){
-      var municipio_nombre = $("#m_municipio").val();
-      var localidad_nombre = $("#m_localidad").val();
-      return $.ajax({
-        type: 'POST',
-        url: '../../../controladores/_S_get_totalUbicacion.php',
-        data: {municipio_nombre:municipio_nombre, localidad_nombre:localidad_nombre},
-        dataType: 'json',
-      });
-    }
-
     $("#m_municipio").change(function() {
       $('#m_localidad').empty();
       $('#m_beneficiarios_directos').val("");
@@ -1045,16 +830,22 @@ function m_getLocalidades(){
           .append($("<option></option>")
           .attr("value","")
           .text(""));
-
-    m_getLocalidades().success(function (data) {
-    $.each(data, function(key, value) {
-        $('#m_localidad')
-            .append($("<option></option>")
-            .attr("value",value)
-            .text(value));
+      if($("#m_municipio").val() == 'VARIOS'){
+            $('#m_localidad')
+                .append($("<option></option>")
+                .attr("value","VARIOS")
+                .text("VARIOS"));
+          }
+      else{
+        m_getLocalidades().success(function (data) {
+          $.each(data, function(key, value) {
+            $('#m_localidad')
+              .append($("<option></option>")
+              .attr("value",value)
+              .text(value));
         });
       });
-
+    }
   });
 
 
@@ -1134,7 +925,7 @@ $('#guardar_alcance').click(function (event) {
           $('#nuevo_alcance').removeClass("visible").addClass("hidden");
           getAlcances(id_obra).success(function (data) {
             $('#tabla_alc').empty();
-            var contentAlcance = "<table class='table table-hover'><thead><tr><th>Tipo de Obra</th><th>Num. Obj.</th><th>Objeto</th><th>Cantidad</th><th>U.M.</th></tr></thead><tbody>";
+            var contentAlcance = "<table id='tabla_alcance' class='table table-hover'><thead><tr><th>Tipo de Obra</th><th>Num. Obj.</th><th>Objeto</th><th>Cantidad</th><th>U.M.</th><th>Eliminar</th></tr></thead><tbody>";
             var len = 0;
             var i;
             for (i in data) {
@@ -1149,6 +940,7 @@ $('#guardar_alcance').click(function (event) {
                                   '<td>'+ data[i].objeto+'</td>'+
                                   '<td>'+ data[i].cantidad+'</td>'+
                                   '<td>'+ data[i].um+'</td>'+
+                                  "<td><input id='boton' type='button' onclick='borrar_alcance("+data[i].id_alcance+")'></td>"+
                                   '</tr>';
                 }
                 contentAlcance += "</tbody></table>";
@@ -1207,7 +999,10 @@ $('#enviar_normativa').click(function (event) {
           $("#mr_fecha_envio_n").val("");
           $("#mr_fecha_recibido_n").val("");
           $("#mr_observaciones_n").val("");
-          actualizar_datos();
+          $("#mr_fecha_envio_n2").val("");
+          $("#mr_fecha_recibido_n2").val("");
+          $("#mr_observaciones_n2").val("");
+          actualizar_datos(act_id_obra);
           getRevisiones(id_obra,area).success(function (data) {
             $('#tabla_normativa').empty();
             var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";
@@ -1285,7 +1080,9 @@ $('#enviar_normativa').click(function (event) {
             $("#mr_fecha_envio_d").val("");
             $("#mr_fecha_recibido_d").val("");
             $("#mr_observaciones_d").val("");
-
+            $("#mr_fecha_envio_d2").val("");
+            $("#mr_fecha_recibido_d2").val("");
+            $("#mr_observaciones_d2").val("");
             getRevisiones(id_obra,area).success(function (data) {
               $('#tabla_direccion').empty();
               var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";
@@ -1362,6 +1159,9 @@ $('#enviar_seguimiento').click(function (event) {
           $("#mr_fecha_envio_s").val("");
           $("#mr_fecha_recibido_s").val("");
           $("#mr_observaciones_s").val("");
+          $("#mr_fecha_envio_s2").val("");
+          $("#mr_fecha_recibido_s2").val("");
+          $("#mr_observaciones_s2").val("");
 
           getRevisiones(id_obra,area).success(function (data) {
             $('#tabla_seguimiento').empty();
@@ -1440,6 +1240,10 @@ $('#enviar_licitaciones').click(function (event) {
           $("#mr_fecha_envio_l").val("");
           $("#mr_fecha_recibido_l").val("");
           $("#mr_observaciones_l").val("");
+          $("#mr_fecha_envio_l2").val("");
+          $("#mr_fecha_recibido_l2").val("");
+          $("#mr_observaciones_l2").val("");
+
 
           getRevisiones(id_obra,area).success(function (data) {
             $('#tabla_licitaciones').empty();
@@ -1482,3 +1286,264 @@ $('#enviar_licitaciones').click(function (event) {
 
 
 });
+
+
+/*///////////////////////////////////////////
+            FUNCIONES
+////////////////////////////////////////////*/
+
+function setValorObra(id_obra,columna,valor){
+   return  $.ajax({
+
+        url: '../../../controladores/_S_set_valor_obra.php',
+        type: 'post',
+        data: {
+          id_obra:id_obra,columna:columna,valor:valor
+        }
+      });
+}
+
+
+
+function getValorObra(idobra,columna){
+  return $.ajax({
+    type: 'POST',
+    url: '../../../controladores/_S_get_valor_obra.php',
+    data: {"id_obra" : idobra, "columna":columna},
+    dataType: 'json',
+  });
+  }
+
+function getObra(idobra){
+    return $.ajax({
+      type: 'POST',
+      url: '../../../controladores/_S_get_obra.php',
+      data: {"id_obra" : idobra},
+      dataType: 'json',
+    });
+}
+
+function getUbicacion(idobra){
+    return $.ajax({
+      type: 'POST',
+      url: '../../../controladores/_S_get_ubicacion.php',
+      data: {"id_obra" : idobra},
+      dataType: 'json',
+    });
+
+}
+
+function getEstructuraF(idobra){
+    return $.ajax({
+      type: 'POST',
+      url: '../../../controladores/_S_get_estructuraF.php',
+      data: {"id_obra" : idobra},
+      dataType: 'json',
+    });
+}
+
+function getAlcances(id_obra){
+    return $.ajax({
+      type: 'POST',
+      url: '../../../controladores/_S_get_alcances.php',
+      data: {"id_obra" : id_obra},
+      dataType: 'json',
+    });
+}
+
+function getRevisiones(id_obra,area){
+    return $.ajax({
+      type: 'POST',
+      url: '../../../controladores/_S_get_revisiones.php',
+      data: {"id_obra" : id_obra, "area":area},
+      dataType: 'json',
+    });
+}
+
+function borrar_alcance(id_alcance){
+   return  $.ajax({
+        url: '../../../controladores/_S_borrar_alcance.php',
+        type: 'post',
+        data: {
+          id_alcance:id_alcance
+        }
+      });
+}
+
+function borrar_revision(id_revision){
+   return  $.ajax({
+        url: '../../../controladores/_S_borrar_revision.php',
+        type: 'post',
+        data: {
+          id_revision:id_revision
+        }
+      });
+}
+
+  function getFechaRecienteArea(id_obra,area){
+    return $.ajax({
+      type: 'POST',
+      url: '../../../controladores/_S_get_fecha_area.php',
+      data: {id_obra:id_obra, area:area},
+      dataType: 'json',
+    });
+    }
+
+function obra_existe(){
+  var obra = $("#obra").val();
+  return $.ajax({
+    type: 'POST',
+    url: '../../../controladores/_S_valida_obra.php',
+    data: {obra:obra},
+    dataType: 'json',
+  });
+  }
+
+  function obra_existe_id(id_obra){
+    var obra = $("#m_obra").val();
+
+    return $.ajax({
+      type: 'POST',
+      url: '../../../controladores/_S_valida_nombre_obra.php',
+      data: {obra:obra, id_obra:id_obra},
+      dataType: 'json',
+    });
+    }
+
+function m_getLocalidades(){
+  var municipio_nombre = $("#m_municipio").val();
+  return $.ajax({
+    type: 'POST',
+    url: '../../../controladores/_S_get_localidades.php',
+    data: {municipio_nombre:municipio_nombre},
+    dataType: 'json',
+  });
+}
+
+function m_getMunicipios(){
+    return $.ajax({
+      type: 'POST',
+      url: '../../../controladores/_S_get_municipios.php',
+      data: {},
+      dataType: 'json',
+    });
+}
+
+function m_getTotalUbicacion(){
+      var municipio_nombre = $("#m_municipio").val();
+      var localidad_nombre = $("#m_localidad").val();
+      return $.ajax({
+        type: 'POST',
+        url: '../../../controladores/_S_get_totalUbicacion.php',
+        data: {municipio_nombre:municipio_nombre, localidad_nombre:localidad_nombre},
+        dataType: 'json',
+      });
+  }
+
+  function cambiar_read(valor){
+
+                                                                        $('#m_no_obra').prop('readonly', valor);
+                                                                        $('#m_obra').prop('readonly', valor);
+                                                                        $('#m_no_autorizacion').prop('readonly', valor);
+                                                                        if(valor){
+                                                                          $('#span_fecha_autorizacion1').hide();
+                                                                          $('#span_fecha_autorizacion2').hide();
+                                                                          $('#span_fecha_recibido_autorizacion1').hide();
+                                                                          $('#span_fecha_recibido_autorizacion2').hide();
+                                                                        }
+                                                                        else{
+                                                                          $('#span_fecha_autorizacion1').show();
+                                                                          $('#span_fecha_autorizacion2').show();
+                                                                          $('#span_fecha_recibido_autorizacion1').show();
+                                                                          $('#span_fecha_recibido_autorizacion2').show();
+                                                                        }
+                                                                        //$('#m_fecha_autorizacion').prop('readonly', valor);
+                                                                        //$('#m_fecha_recibido_autorizacion').prop('readonly', valor);
+
+                                                                        $('#m_tipo_inversion').prop('readonly', valor);
+                                                                        $('#m_tipo_expediente').attr('disabled', valor);
+                                                                        $('#m_monto_solicitado').prop('readonly', valor);
+                                                                        $('#m_dimension_inversion').prop('readonly', valor);
+                                                                        $('#m_unidad_responsable').attr('disabled', valor);
+                                                                        $('#m_etapa').attr('disabled', valor);
+                                                                        $('#m_periodo_ejecucion').prop('readonly', valor);
+                                                                        $('#m_propuesta_anual').prop('readonly', valor);
+                                                                        $('#m_normativa_aplicar').prop('readonly', valor);
+                                                                        $('#m_tipo_adj_solicitado').prop('readonly', valor);
+                                                                        $('#m_partidas').prop('readonly', valor);
+                                                                        $('#m_municipio').attr('disabled', valor);
+                                                                        $('#m_localidad').attr('disabled', valor);
+                                                                        $('#m_programa_federal').prop('readonly', valor);
+                                                                        $('#m_programa_estatal').prop('readonly', valor);
+                                                                        $('#m_programa_municipal').prop('readonly', valor);
+                                                                        $('#m_aporte_federal').prop('readonly', valor);
+                                                                        $('#m_aporte_estatal').prop('readonly', valor);
+                                                                        $('#m_aporte_municipal').prop('readonly', valor);
+                                                                        $('#m_aportacion_beneficiarios').prop('readonly', valor);
+                                                                        $('#m_aportacion_otros').prop('readonly', valor);
+  }
+
+function actualizar_datos(act_id_obra){
+  var valor;
+  var contenidoRecurso = "";
+  //fecga de ingreso del proyecto más reciente
+  getFechaRecienteArea(act_id_obra,'NORMATIVA').success(function (data) {
+    valor = data.fecha;
+    contenidoRecurso = "<small>"+valor+"</small>";
+    $('#div_fecha_recibido').empty()
+        .append(contenidoRecurso);
+  });
+  //estatus_recurso
+  getValorObra(act_id_obra,'no_obra').success(function (data) {
+      valor = data.no_obra;
+      if(valor!=""){
+        setValorObra(act_id_obra,'estatus_recurso','AUTORIZADO').success(function (data) {
+                              getValorObra(act_id_obra,'estatus_recurso').success(function (data) {
+                                contenidoRecurso = "Estatus del Recurso: <strong>"+data.estatus_recurso+"</strong>";
+                                $('#alerta_recurso').empty()
+                                  .append(contenidoRecurso);
+                              });
+        });
+      }
+      else{
+        getValorObra(act_id_obra,'obra').success(function (data) {
+          valor = data.obra;
+          if(valor!=null){
+            setValorObra(act_id_obra,'estatus_recurso','EN INTEGRACIÓN DE EXPEDIENTE').success(function (data) {
+                                  getValorObra(act_id_obra,'estatus_recurso').success(function (data) {
+                                    contenidoRecurso = "Estatus del Recurso: <strong>"+data.estatus_recurso+"</strong>";
+                                    $('#alerta_recurso').empty()
+                                      .append(contenidoRecurso);
+                                  });
+            });
+          }
+        });
+      }
+  });
+  //estatus_general
+getValorObra(act_id_obra,'estatus_general').success(function (data) {
+  valor = data.estatus_general;
+  if(valor=='CANCELADA'){
+    contenidoObra = "Estatus Obra: <strong>"+valor+"</strong>";
+    $('#alerta_obra').empty()
+      .append(contenidoObra);
+
+  }
+  else{
+    getValorObra(act_id_obra,'obra').success(function (data) {
+      valor = data.obra;
+      if(valor!=null){
+          setValorObra(act_id_obra,'estatus_general','AUN NO ENTREGADO').success(function (data) {
+                          getValorObra(act_id_obra,'estatus_general').success(function (data) {
+                            contenidoObra = "Estatus Obra: <strong>"+data.estatus_general+"</strong>";
+                            $('#alerta_obra').empty()
+                              .append(contenidoObra);
+
+                          });
+            });
+      }
+    });
+  }
+});
+
+}

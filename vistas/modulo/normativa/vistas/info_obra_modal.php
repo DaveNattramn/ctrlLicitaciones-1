@@ -28,12 +28,23 @@
 
                 <div class="col-lg-4"  id="dm_fecha_autorizacion">
                     <label for="">Fecha del Oficio Autorización</label>
-                    <input type="date" class="form-control" id="m_fecha_autorizacion">
+                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="m_fecha_autorizacion" data-link-format="yyyy-mm-dd">
+                          <input id="m_fecha_autorizacion_v" class="form-control" size="25" type="text" value=""  readonly="" disabled>
+                          <span id="span_fecha_autorizacion1" class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                          <span id="span_fecha_autorizacion2" class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                      </div>
+                    <input id="m_fecha_autorizacion" type="hidden" value="" /><br/>
+                    <br>
                 </div>
 
                 <div class="col-lg-4" id="dm_fecha_recibido_autorizacion">
                     <label for="">Fecha de Recibido el Oficio</label>
-                    <input type="date" class="form-control" id="m_fecha_recibido_autorizacion">
+                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="m_fecha_recibido_autorizacion" data-link-format="yyyy-mm-dd">
+                          <input class="form-control" size="25" type="text" value="" id="m_fecha_recibido_autorizacion_v" disabled>
+                          <span id="span_fecha_recibido_autorizacion1" class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                          <span id="span_fecha_recibido_autorizacion2" class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                      </div>
+                    <input id="m_fecha_recibido_autorizacion"  type="hidden" value="" /><br/>
                     <br>
                 </div>
 

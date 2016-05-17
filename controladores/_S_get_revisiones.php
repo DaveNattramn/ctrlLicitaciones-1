@@ -12,8 +12,11 @@
   {
     $nestedData=array();
   	$nestedData['id_obra']=utf8_encode($row['id_obra']);
-    $nestedData['fecha_ingreso']=utf8_encode($row['fecha_ingreso']);
-    $nestedData['fecha_entrega']=utf8_encode($row['fecha_entrega']);
+
+
+    $nestedData['fecha_ingreso']=DateTime::createFromFormat('Y-m-d H:i:s.u',utf8_encode($row['fecha_ingreso']))->format('d/m/Y - h:i A');
+    $nestedData['fecha_entrega']=DateTime::createFromFormat('Y-m-d H:i:s.u',utf8_encode($row['fecha_entrega']))->format('d/m/Y - h:i A');
+
     $nestedData['observaciones']=utf8_encode($row['observaciones']);
     $nestedData['area']=utf8_encode($row['area']);
     $j_revision[] = $nestedData;

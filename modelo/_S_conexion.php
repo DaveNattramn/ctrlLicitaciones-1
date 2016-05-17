@@ -197,7 +197,7 @@ $sql.= " ORDER BY ".$req_o_c."   ".$req_o_d." ";
 
       public function validaCambioObra($obra, $id_obra){
         $sql = "SELECT COUNT(obra) AS obra FROM obra WHERE obra ='".$obra."'  AND NOT id_obra='".$id_obra."'   ";
-      
+
         $exec = odbc_exec($this->conexion, $sql);
             if ($exec) {
                 return $exec;
@@ -236,6 +236,21 @@ public function getRevisiones($id_obra,$area){
   $exec = odbc_exec($this->conexion, $sql);
   return $exec;
 }
+
+public function borrar_alcance($id_alcance){
+  $sql = "DELETE from alcance WHERE id_alcance='".$id_alcance."' ";
+
+  $exec = odbc_exec($this->conexion, $sql);
+  return $exec;
+}
+
+public function borrar_revision($id_revision){
+  $sql = "DELETE from revisiones WHERE id_revision='".$id_revision."' ";
+
+  $exec = odbc_exec($this->conexion, $sql);
+  return $exec;
+}
+
 
 public function set_valor_obra($id_obra,$columna,$valor){
   $sql= "UPDATE obra SET ".$columna."='".$valor."' WHERE id_obra='".$id_obra."'   ";
@@ -351,14 +366,15 @@ public function agregar_alcance($id_obra,$tipo_obra,$num_obj,$objeto,$cantidad,$
 public function agregar_revision($id_obra,$fecha_ingreso,$fecha_entrega,$observaciones,$area){
   $sql = "INSERT INTO revisiones(id_obra,area,fecha_ingreso,fecha_entrega,observaciones)
          VALUES ('".$id_obra."', '".$area."', ";
-         if(validaDate($fecha_ingreso,'Y-m-d')){$sql.="'".$fecha_ingreso."' ,";}
+         if(validaDate($fecha_ingreso,'d-m-Y H:i:s')){$sql.="'".$fecha_ingreso."' ,";}
          else { $sql.= "NULL ,";}
-         if(validaDate($fecha_entrega,'Y-m-d')){$sql.="'".$fecha_entrega."' ,";}
+         if(validaDate($fecha_entrega,'d-m-Y H:i:s')){$sql.="'".$fecha_entrega."' ,";}
          else { $sql.= "NULL ,";}
+         //$sql.="  '".$fecha_ingreso."' , '".$fecha_entrega."' ";
   $sql.= " '".$observaciones."')";
 
 
-
+echo $sql;
 
       $exec = odbc_exec($this->conexion, $sql);
       if ($exec) {

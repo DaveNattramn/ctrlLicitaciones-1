@@ -8,7 +8,12 @@
   $observaciones = utf8_decode($_POST['observaciones']);
   $area = utf8_decode($_POST['area']);
 
-  $resultado=$bd->agregar_revision($id_obra,$fecha_ingreso,$fecha_entrega,$observaciones,$area);
+
+
+  $fecha_ingreso_convertida = DateTime::createFromFormat('Y-m-d H:i:s',$fecha_ingreso);
+
+  $fecha_entrega_convertida = DateTime::createFromFormat('Y-m-d H:i:s',$fecha_entrega);
+  $resultado=$bd->agregar_revision($id_obra,$fecha_ingreso_convertida->format('d-m-Y H:i:s'),$fecha_entrega_convertida->format('d-m-Y H:i:s'),$observaciones,$area);
 
   $bd->cerrar();
 ?>

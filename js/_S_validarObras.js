@@ -3,13 +3,18 @@ $(document).ready(function(){
   $('#municipio')
       .append($("<option></option>")
       .attr("value","")
-      .text(""));
+      .text(""))
+      .append($("<option></option>")
+      .attr("value","VARIOS")
+      .text("VARIOS"))      
+      ;
   getMunicipios().success(function (data) {
     $.each(data, function(key, value) {
         $('#municipio')
             .append($("<option></option>")
             .attr("value",value)
-            .text(value));
+            .text(value))
+            ;
           });
     });
 
@@ -30,7 +35,13 @@ $(document).ready(function(){
               .append($("<option></option>")
               .attr("value","")
               .text(""));
-
+        if($("#municipio").val() == 'VARIOS'){
+          $('#localidad')
+              .append($("<option></option>")
+              .attr("value","VARIOS")
+              .text("VARIOS"));
+        }
+        else{
         getLocalidades().success(function (data) {
         $.each(data, function(key, value) {
             $('#localidad')
@@ -39,6 +50,7 @@ $(document).ready(function(){
                 .text(value));
             });
           });
+        }
             function getLocalidades(){
               var municipio_nombre = $("#municipio").val();
               return $.ajax({

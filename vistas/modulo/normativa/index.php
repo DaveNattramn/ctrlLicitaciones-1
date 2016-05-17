@@ -18,8 +18,8 @@
 		<link rel="stylesheet" href="../../../css/font-awesome.css">
 		<link rel="stylesheet" href="../../../css/navbar.css">
 	    <link rel="stylesheet" href="../../../css/side-menu.css">
-
 	    <link rel="shortcut icon" href="../../../favicon.ico" />
+			<link href="../../../css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 
 
             <script src="../../../js/jquery21.js"></script>
@@ -27,9 +27,14 @@
             <script src="../../../js/scripts_generales.js"></script>
 						<script src="../../../js/_Sagregar_obra.js"></script>
 					  <script src="../../../js/_S_validarObras.js"></script>
+						<script src="../../../js/jquery-dateFormat.js"></script>
 
 						<script src="js/nvo_alcance.js"></script>
 						<script src="js/effects.js"></script>
+
+						<script src="js/datetimepicker.js"></script>
+						<script type="text/javascript" src="../../../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+						<script type="text/javascript" src="../../../js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 
 		<title>S.I.T. | NORMATIVA </title>
 
