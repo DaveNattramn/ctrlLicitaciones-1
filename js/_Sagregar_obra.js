@@ -145,144 +145,29 @@ $(document).ready(function () {
 
                                                                   });
                                                                     getAlcances(aData[0]).success(function (data) {
-                                                                      $('#tabla_alc').empty();
-                                                                      var contentAlcance = "<table id='tabla_alcance' class='table table-hover'><thead><tr><th>Tipo de Obra</th><th>Num. Obj.</th><th>Objeto</th><th>Cantidad</th><th>U.M.</th><th>Eliminar</th></tr></thead><tbody>";
-                                                                      var len = 0;
-                                                                      var i;
-                                                                      for (i in data) {
-                                                                          if (data.hasOwnProperty(i)) {
-                                                                            len++;
-                                                                            }
-                                                                      }
-                                                                        for(i=0; i<len; i++){
-                                                                          contentAlcance += '<tr>' +
-                                                                                            '<td>'+ data[i].tipo_obra+'</td>'+
-                                                                                            '<td>'+ data[i].num_obj+'</td>'+
-                                                                                            '<td>'+ data[i].objeto+'</td>'+
-                                                                                            '<td>'+ data[i].cantidad+'</td>'+
-                                                                                            '<td>'+ data[i].um+'</td>'+//
-                                                                                            "<td><input id='boton' type='button' onclick='borrar_alcance("+data[i].id_alcance+")'></td>"+
-                                                                                            '</tr>';
-                                                                          }
-                                                                          contentAlcance += "</tbody></table>";
-                                                                          $('#tabla_alc').append(contentAlcance);
+                                                                      actualizar_alcance(data);
                                                                   });
                                                                     getRevisiones(aData[0],"NORMATIVA").success(function (data) {
-                                                                      $('#tabla_normativa').empty();
-                                                                      var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";
-                                                                      var len = 0;
-                                                                      var i;
-                                                                      for(i in data){
-                                                                        if (data.hasOwnProperty(i)) {
-                                                                          len++;
-                                                                          }
-                                                                      }
-                                                                      if(len>0){
-                                                                      for(i=0; i<len; i++){
-                                                                         contentRevision += '<tr>' +
-                                                                                           '<td>'+ (i+1)+'</td>'+
-                                                                                           '<td>'+ data[i].observaciones+'</td>'+
-                                                                                           '<td>'+ data[i].fecha_ingreso+'</td>'+
-                                                                                           '<td>'+ data[i].fecha_entrega+'</td>'+
-                                                                                           '</tr>';
-                                                                         }
-                                                                      contentRevision += "</tbody></table>";
-                                                                      $('#tabla_normativa').append(contentRevision);
-                                                                    }
-                                                                    else {
-                                                                      contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
-                                                                      $('#tabla_normativa').append(contentRevision);
-                                                                    }
+                                                                      actualizar_revision_normativa(data);
                                                                     });
 
                                                                     getRevisiones(aData[0],"DIRECCION").success(function (data) {
-                                                                      $('#tabla_direccion').empty();
-                                                                      var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";
-                                                                      var len = 0;
-                                                                      var i;
-                                                                      for(i in data){
-                                                                        if (data.hasOwnProperty(i)) {
-                                                                          len++;
-                                                                          }
-                                                                      }
-                                                                      if(len>0){
-                                                                      for(i=0; i<len; i++){
-                                                                         contentRevision += '<tr>' +
-                                                                                           '<td>'+ (i+1)+'</td>'+
-                                                                                           '<td>'+ data[i].observaciones+'</td>'+
-                                                                                           '<td>'+ data[i].fecha_ingreso+'</td>'+
-                                                                                           '<td>'+ data[i].fecha_entrega+'</td>'+
-                                                                                           '</tr>';
-                                                                         }
-                                                                      contentRevision += "</tbody></table>";
-                                                                      $('#tabla_direccion').append(contentRevision);
-                                                                    }
-                                                                    else {
-                                                                      contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
-                                                                      $('#tabla_direccion').append(contentRevision);
-                                                                    }
+                                                                      actualizar_revision_direccion(data);
                                                                     });
 
                                                                     getRevisiones(aData[0],"SEGUIMIENTO A LA INVERSIÓN").success(function (data) {
-                                                                      $('#tabla_seguimiento').empty();
-                                                                      var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";
-                                                                      var len = 0;
-                                                                      var i;
-                                                                      for(i in data){
-                                                                        if (data.hasOwnProperty(i)) {
-                                                                          len++;
-                                                                          }
-                                                                      }
-                                                                      if(len>0){
-                                                                      for(i=0; i<len; i++){
-                                                                         contentRevision += '<tr>' +
-                                                                                           '<td>'+ (i+1)+'</td>'+
-                                                                                           '<td>'+ data[i].observaciones+'</td>'+
-                                                                                           '<td>'+ data[i].fecha_ingreso+'</td>'+
-                                                                                           '<td>'+ data[i].fecha_entrega+'</td>'+
-                                                                                           '</tr>';
-                                                                         }
-                                                                      contentRevision += "</tbody></table>";
-                                                                      $('#tabla_seguimiento').append(contentRevision);
-                                                                    }
-                                                                    else {
-                                                                      contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
-                                                                      $('#tabla_seguimiento').append(contentRevision);
-                                                                    }
+                                                                      actualizar_revision_seguimiento(data);
                                                                     });
 
                                                                     getRevisiones(aData[0],"LICITACIONES").success(function (data) {
-                                                                      $('#tabla_licitaciones').empty();
-                                                                      var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";
-                                                                      var len = 0;
-                                                                      var i;
-                                                                      for(i in data){
-                                                                        if (data.hasOwnProperty(i)) {
-                                                                          len++;
-                                                                          }
-                                                                      }
-                                                                      if(len>0){
-                                                                      for(i=0; i<len; i++){
-                                                                         contentRevision += '<tr>' +
-                                                                                           '<td>'+ (i+1)+'</td>'+
-                                                                                           '<td>'+ data[i].observaciones+'</td>'+
-                                                                                           '<td>'+ data[i].fecha_ingreso+'</td>'+
-                                                                                           '<td>'+ data[i].fecha_entrega+'</td>'+
-                                                                                           '</tr>';
-                                                                         }
-                                                                      contentRevision += "</tbody></table>";
-                                                                      $('#tabla_licitaciones').append(contentRevision);
-                                                                    }
-                                                                    else {
-                                                                      contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
-                                                                      $('#tabla_licitaciones').append(contentRevision);
-                                                                    }
+                                                                      actualizar_revision_licitaciones(data);
                                                                     });
 
 
                                                                     cambiar_read(true);
 
-                                                                    myModal.modal({ show: true });
+                                                                    setTimeout(function(){ myModal.modal({ show: true }); }, 300);
+
 
 
                                                                });
@@ -290,21 +175,6 @@ $(document).ready(function () {
 
         });
 
-
-
-
-/*
-        function getRevisiones(idobra){
-          return $.ajax({
-            type: 'POST',
-            url: '../../../controladores/_S_get_revisiones.php',
-            data: {"id_obra" : idobra},
-            dataType: 'json',
-          });
-        }*/
-  $('#boton').click(function (event) {
-    alert($(this).data('id'));
-  });
     $('#guardar_obra').click(function (event) {
 
         var obra = $("#obra").val().trim();
@@ -452,24 +322,8 @@ $(document).ready(function () {
                         $("#aportacion_otros").val("");
                         $('#suma_total').empty();
 
-                        Command: toastr["success"]("Obra agregada con Éxito");
-                        toastr.options = {
-                          "closeButton": false,
-                          "debug": false,
-                          "newestOnTop": false,
-                          "progressBar": false,
-                          "positionClass": "toast-top-right",
-                          "preventDuplicates": false,
-                          "onclick": null,
-                          "showDuration": "300",
-                          "hideDuration": "1000",
-                          "timeOut": "5000",
-                          "extendedTimeOut": "1000",
-                          "showEasing": "swing",
-                          "hideEasing": "linear",
-                          "showMethod": "fadeIn",
-                          "hideMethod": "fadeOut"
-                        }
+                        funcion_toastr("success","Obra agregada con Éxito");
+
                         mostrar.ajax.reload();
                       }
                       ,
@@ -483,72 +337,16 @@ $(document).ready(function () {
 
               }//endif campos vacios
               else{
-
-                Command: toastr["error"]("Campos obligatorios vacios");
-                toastr.options = {
-                    "closeButton": false,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                  }
-
+                funcion_toastr("error","Campos obligatorios vacios");
               }
         }//endif montos
         else{
-
-          Command: toastr["error"]("Montos incorrectos");
-          toastr.options = {
-              "closeButton": false,
-              "debug": false,
-              "newestOnTop": false,
-              "progressBar": false,
-              "positionClass": "toast-top-right",
-              "preventDuplicates": false,
-              "onclick": null,
-              "showDuration": "300",
-              "hideDuration": "1000",
-              "timeOut": "5000",
-              "extendedTimeOut": "1000",
-              "showEasing": "swing",
-              "hideEasing": "linear",
-              "showMethod": "fadeIn",
-              "hideMethod": "fadeOut"
-            }
-
+            funcion_toastr("error","Montos incorrectos");
         } //endelse montos
 
         }//endif existe obra
         else{
-          Command: toastr["error"]("La obra ya existe");
-          toastr.options = {
-              "closeButton": false,
-              "debug": false,
-              "newestOnTop": false,
-              "progressBar": false,
-              "positionClass": "toast-top-right",
-              "preventDuplicates": false,
-              "onclick": null,
-              "showDuration": "300",
-              "hideDuration": "1000",
-              "timeOut": "5000",
-              "extendedTimeOut": "1000",
-              "showEasing": "swing",
-              "hideEasing": "linear",
-              "showMethod": "fadeIn",
-              "hideMethod": "fadeOut"
-            }
-
+            funcion_toastr("error","La obra ya existe");
       }//end else existe obra
       });
     });
@@ -670,25 +468,7 @@ $(document).ready(function () {
 
                         },
                         success: function (data) {
-
-                          Command: toastr["success"]("Obra actualizada");
-                          toastr.options = {
-                            "closeButton": false,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": false,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                          }
+                          funcion_toastr("success","Obra actualizada");
                           mostrar.ajax.reload();
                           actualizar_datos(act_id_obra);
                         }
@@ -700,77 +480,20 @@ $(document).ready(function () {
                       });
             }//endif campos vacios
             else{
-
-                              Command: toastr["error"]("Campos obligatorios vacios");
-                              toastr.options = {
-                                  "closeButton": false,
-                                  "debug": false,
-                                  "newestOnTop": false,
-                                  "progressBar": false,
-                                  "positionClass": "toast-top-right",
-                                  "preventDuplicates": false,
-                                  "onclick": null,
-                                  "showDuration": "300",
-                                  "hideDuration": "1000",
-                                  "timeOut": "5000",
-                                  "extendedTimeOut": "1000",
-                                  "showEasing": "swing",
-                                  "hideEasing": "linear",
-                                  "showMethod": "fadeIn",
-                                  "hideMethod": "fadeOut"
-                                }
-
+                    funcion_toastr("error","Campos obligatorios vacios");
             }
           }//endif montos
           else{
-
-            Command: toastr["error"]("Montos incorrectos");
-            toastr.options = {
-                "closeButton": false,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-              }
-
+              funcion_toastr("error","Montos incorrectos");
           } //endelse montos
 
           }//endif existe obra
           else{
-            Command: toastr["error"]("Nombre de la obra en uso");
-            toastr.options = {
-                "closeButton": false,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-              }
-
+              funcion_toastr("error","Nombre de la obra en uso");
           }//end else existe obra
 
         });
     });
-
 
     $('#cancelar_obra').click(function (event) {
          var valor = 'CANCELADA';
@@ -784,25 +507,7 @@ $(document).ready(function () {
                id_obra:id_obra,columna:columna,valor:valor
              },
              success: function (data) {
-
-                 Command: toastr["success"]("Obra cancelada");
-                 toastr.options = {
-                     "closeButton": false,
-                     "debug": false,
-                     "newestOnTop": false,
-                     "progressBar": false,
-                     "positionClass": "toast-top-right",
-                     "preventDuplicates": false,
-                     "onclick": null,
-                     "showDuration": "300",
-                     "hideDuration": "1000",
-                     "timeOut": "5000",
-                     "extendedTimeOut": "1000",
-                     "showEasing": "swing",
-                     "hideEasing": "linear",
-                     "showMethod": "fadeIn",
-                     "hideMethod": "fadeOut"
-                 }
+                funcion_toastr("success","Obra cancelada");
                  mostrar.ajax.reload();
                  actualizar_datos(act_id_obra);
              }
@@ -817,10 +522,6 @@ $(document).ready(function () {
 
     });
 
-/*    $('#mostrar').on('dblclick', 'td', function(event) {
-      alert("Hola");
-    });
-*/
     $("#m_municipio").change(function() {
       $('#m_localidad').empty();
       $('#m_beneficiarios_directos').val("");
@@ -897,25 +598,7 @@ $('#guardar_alcance').click(function (event) {
         id_obra:id_obra, tipo_obra:tipo_obra, num_obj:num_obj, objeto:objeto, cantidad:cantidad, um:um
       },
       success: function (data) {
-
-          Command: toastr["success"]("Alcance agregado");
-          toastr.options = {
-              "closeButton": false,
-              "debug": false,
-              "newestOnTop": false,
-              "progressBar": false,
-              "positionClass": "toast-top-right",
-              "preventDuplicates": false,
-              "onclick": null,
-              "showDuration": "300",
-              "hideDuration": "1000",
-              "timeOut": "5000",
-              "extendedTimeOut": "1000",
-              "showEasing": "swing",
-              "hideEasing": "linear",
-              "showMethod": "fadeIn",
-              "hideMethod": "fadeOut"
-          }
+          funcion_toastr("success","Alcance agregado");
           mostrar.ajax.reload();
           $("#ma_tipo_obra").val("");
           $("#ma_num_obj").val("");
@@ -924,28 +607,8 @@ $('#guardar_alcance').click(function (event) {
           $("#ma_um").val("");
           $('#nuevo_alcance').removeClass("visible").addClass("hidden");
           getAlcances(id_obra).success(function (data) {
-            $('#tabla_alc').empty();
-            var contentAlcance = "<table id='tabla_alcance' class='table table-hover'><thead><tr><th>Tipo de Obra</th><th>Num. Obj.</th><th>Objeto</th><th>Cantidad</th><th>U.M.</th><th>Eliminar</th></tr></thead><tbody>";
-            var len = 0;
-            var i;
-            for (i in data) {
-                if (data.hasOwnProperty(i)) {
-                  len++;
-                  }
-            }
-              for(i=0; i<len; i++){
-                contentAlcance += '<tr>' +
-                                  '<td>'+ data[i].tipo_obra+'</td>'+
-                                  '<td>'+ data[i].num_obj+'</td>'+
-                                  '<td>'+ data[i].objeto+'</td>'+
-                                  '<td>'+ data[i].cantidad+'</td>'+
-                                  '<td>'+ data[i].um+'</td>'+
-                                  "<td><input id='boton' type='button' onclick='borrar_alcance("+data[i].id_alcance+")'></td>"+
-                                  '</tr>';
-                }
-                contentAlcance += "</tbody></table>";
-                $('#tabla_alc').append(contentAlcance);
-        });
+            actualizar_alcance(data);
+          });
       }
        ,
 
@@ -976,25 +639,7 @@ $('#enviar_normativa').click(function (event) {
         id_obra:id_obra, r_fecha_recibido:r_fecha_recibido,r_fecha_envio:r_fecha_envio, observaciones:observaciones, area:area
       },
       success: function (data) {
-
-          Command: toastr["success"]("Revisión agregada");
-          toastr.options = {
-              "closeButton": false,
-              "debug": false,
-              "newestOnTop": false,
-              "progressBar": false,
-              "positionClass": "toast-top-right",
-              "preventDuplicates": false,
-              "onclick": null,
-              "showDuration": "300",
-              "hideDuration": "1000",
-              "timeOut": "5000",
-              "extendedTimeOut": "1000",
-              "showEasing": "swing",
-              "hideEasing": "linear",
-              "showMethod": "fadeIn",
-              "hideMethod": "fadeOut"
-          }
+          funcion_toastr("success","Revisión agregada");
           mostrar.ajax.reload();
           $("#mr_fecha_envio_n").val("");
           $("#mr_fecha_recibido_n").val("");
@@ -1004,31 +649,7 @@ $('#enviar_normativa').click(function (event) {
           $("#mr_observaciones_n2").val("");
           actualizar_datos(act_id_obra);
           getRevisiones(id_obra,area).success(function (data) {
-            $('#tabla_normativa').empty();
-            var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";
-            var len = 0;
-            var i;
-            for(i in data){
-              if (data.hasOwnProperty(i)) {
-                len++;
-                }
-            }
-            if(len>0){
-            for(i=0; i<len; i++){
-               contentRevision += '<tr>' +
-                                 '<td>'+ (i+1)+'</td>'+
-                                 '<td>'+ data[i].observaciones+'</td>'+
-                                 '<td>'+ data[i].fecha_ingreso+'</td>'+
-                                 '<td>'+ data[i].fecha_entrega+'</td>'+
-                                 '</tr>';
-               }
-            contentRevision += "</tbody></table>";
-            $('#tabla_normativa').append(contentRevision);
-            }
-            else {
-              contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
-              $('#tabla_normativa').append(contentRevision);
-            }
+            actualizar_revision_normativa(data);
         });
       }
        ,
@@ -1057,25 +678,7 @@ $('#enviar_normativa').click(function (event) {
           id_obra:id_obra, r_fecha_recibido:r_fecha_recibido,r_fecha_envio:r_fecha_envio, observaciones:observaciones, area:area
         },
         success: function (data) {
-
-            Command: toastr["success"]("Revisión agregada");
-            toastr.options = {
-                "closeButton": false,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            }
+            funcion_toastr("success","Revisión agregada");
             mostrar.ajax.reload();
             $("#mr_fecha_envio_d").val("");
             $("#mr_fecha_recibido_d").val("");
@@ -1084,31 +687,7 @@ $('#enviar_normativa').click(function (event) {
             $("#mr_fecha_recibido_d2").val("");
             $("#mr_observaciones_d2").val("");
             getRevisiones(id_obra,area).success(function (data) {
-              $('#tabla_direccion').empty();
-              var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";
-              var len = 0;
-              var i;
-              for(i in data){
-                if (data.hasOwnProperty(i)) {
-                  len++;
-                  }
-              }
-              if(len>0){
-              for(i=0; i<len; i++){
-                 contentRevision += '<tr>' +
-                                   '<td>'+ (i+1)+'</td>'+
-                                   '<td>'+ data[i].observaciones+'</td>'+
-                                   '<td>'+ data[i].fecha_ingreso+'</td>'+
-                                   '<td>'+ data[i].fecha_entrega+'</td>'+
-                                   '</tr>';
-                 }
-              contentRevision += "</tbody></table>";
-              $('#tabla_direccion').append(contentRevision);
-              }
-              else {
-                contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
-                $('#tabla_direccion').append(contentRevision);
-              }
+              actualizar_revision_direccion(data);
           });
         }
          ,
@@ -1136,25 +715,7 @@ $('#enviar_seguimiento').click(function (event) {
         id_obra:id_obra, r_fecha_recibido:r_fecha_recibido,r_fecha_envio:r_fecha_envio, observaciones:observaciones, area:area
       },
       success: function (data) {
-
-          Command: toastr["success"]("Revisión agregada");
-          toastr.options = {
-              "closeButton": false,
-              "debug": false,
-              "newestOnTop": false,
-              "progressBar": false,
-              "positionClass": "toast-top-right",
-              "preventDuplicates": false,
-              "onclick": null,
-              "showDuration": "300",
-              "hideDuration": "1000",
-              "timeOut": "5000",
-              "extendedTimeOut": "1000",
-              "showEasing": "swing",
-              "hideEasing": "linear",
-              "showMethod": "fadeIn",
-              "hideMethod": "fadeOut"
-          }
+          funcion_toastr("success","Revisión agregada");
           mostrar.ajax.reload();
           $("#mr_fecha_envio_s").val("");
           $("#mr_fecha_recibido_s").val("");
@@ -1164,31 +725,7 @@ $('#enviar_seguimiento').click(function (event) {
           $("#mr_observaciones_s2").val("");
 
           getRevisiones(id_obra,area).success(function (data) {
-            $('#tabla_seguimiento').empty();
-            var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";
-            var len = 0;
-            var i;
-            for(i in data){
-              if (data.hasOwnProperty(i)) {
-                len++;
-                }
-            }
-            if(len>0){
-            for(i=0; i<len; i++){
-               contentRevision += '<tr>' +
-                                 '<td>'+ (i+1)+'</td>'+
-                                 '<td>'+ data[i].observaciones+'</td>'+
-                                 '<td>'+ data[i].fecha_ingreso+'</td>'+
-                                 '<td>'+ data[i].fecha_entrega+'</td>'+
-                                 '</tr>';
-               }
-            contentRevision += "</tbody></table>";
-            $('#tabla_seguimiento').append(contentRevision);
-            }
-            else {
-              contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
-              $('#tabla_seguimiento').append(contentRevision);
-            }
+            actualizar_revision_seguimiento(data);
         });
       }
        ,
@@ -1217,25 +754,7 @@ $('#enviar_licitaciones').click(function (event) {
         id_obra:id_obra, r_fecha_recibido:r_fecha_recibido,r_fecha_envio:r_fecha_envio, observaciones:observaciones, area:area
       },
       success: function (data) {
-
-          Command: toastr["success"]("Revisión agregada");
-          toastr.options = {
-              "closeButton": false,
-              "debug": false,
-              "newestOnTop": false,
-              "progressBar": false,
-              "positionClass": "toast-top-right",
-              "preventDuplicates": false,
-              "onclick": null,
-              "showDuration": "300",
-              "hideDuration": "1000",
-              "timeOut": "5000",
-              "extendedTimeOut": "1000",
-              "showEasing": "swing",
-              "hideEasing": "linear",
-              "showMethod": "fadeIn",
-              "hideMethod": "fadeOut"
-          }
+          funcion_toastr("success","Revisión agregada");
           mostrar.ajax.reload();
           $("#mr_fecha_envio_l").val("");
           $("#mr_fecha_recibido_l").val("");
@@ -1246,31 +765,7 @@ $('#enviar_licitaciones').click(function (event) {
 
 
           getRevisiones(id_obra,area).success(function (data) {
-            $('#tabla_licitaciones').empty();
-            var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th></tr></thead><tbody>";
-            var len = 0;
-            var i;
-            for(i in data){
-              if (data.hasOwnProperty(i)) {
-                len++;
-                }
-            }
-            if(len>0){
-            for(i=0; i<len; i++){
-               contentRevision += '<tr>' +
-                                 '<td>'+ (i+1)+'</td>'+
-                                 '<td>'+ data[i].observaciones+'</td>'+
-                                 '<td>'+ data[i].fecha_ingreso+'</td>'+
-                                 '<td>'+ data[i].fecha_entrega+'</td>'+
-                                 '</tr>';
-               }
-            contentRevision += "</tbody></table>";
-            $('#tabla_licitaciones').append(contentRevision);
-            }
-            else {
-              contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
-              $('#tabla_licitaciones').append(contentRevision);
-            }
+            actualizar_revision_licitaciones(data);
         });
       }
        ,
@@ -1302,8 +797,6 @@ function setValorObra(id_obra,columna,valor){
         }
       });
 }
-
-
 
 function getValorObra(idobra,columna){
   return $.ajax({
@@ -1360,22 +853,37 @@ function getRevisiones(id_obra,area){
     });
 }
 
-function borrar_alcance(id_alcance){
-   return  $.ajax({
+function borrar_alcance(id_alcance,id_obra){
+    $.ajax({
         url: '../../../controladores/_S_borrar_alcance.php',
         type: 'post',
         data: {
           id_alcance:id_alcance
+        },
+        success: function (data) {
+           getAlcances(id_obra).success(function (data) {
+             actualizar_alcance(data);
+             funcion_toastr("error","Alcance eliminiado");
+           });
         }
       });
 }
 
-function borrar_revision(id_revision){
+function borrar_revision(id_revisiones,id_obra,area){
    return  $.ajax({
         url: '../../../controladores/_S_borrar_revision.php',
         type: 'post',
         data: {
-          id_revision:id_revision
+          id_revisiones:id_revisiones
+        },
+        success: function (data) {
+           getRevisiones(id_obra,area).success(function (data) {
+             if(area=="NORMATIVA"){actualizar_revision_normativa(data); actualizar_datos(id_obra);}
+             if(area=="DIRECCION")actualizar_revision_direccion(data);
+             if(area=="SEGUIMIENTO A LA INVERSIÓN")actualizar_revision_seguimiento(data);
+             if(area=="LICITACIONES")actualizar_revision_licitaciones(data);
+             funcion_toastr("error","Revisión eliminada");
+           });
         }
       });
 }
@@ -1482,6 +990,167 @@ function m_getTotalUbicacion(){
                                                                         $('#m_aportacion_beneficiarios').prop('readonly', valor);
                                                                         $('#m_aportacion_otros').prop('readonly', valor);
   }
+
+function funcion_toastr(atributo,mensaje){
+  Command: toastr[atributo](mensaje);
+  toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
+}
+
+function actualizar_revision_normativa(data){
+  $('#tabla_normativa').empty();
+  var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th><th>Eliminar</th></tr></thead><tbody>";
+  var len = 0;
+  var i;
+  for(i in data){
+    if (data.hasOwnProperty(i)) {
+      len++;
+      }
+  }
+  if(len>0){
+  for(i=0; i<len; i++){
+     contentRevision += '<tr>' +
+                       '<td>'+ (i+1)+'</td>'+
+                       '<td>'+ data[i].observaciones+'</td>'+
+                       '<td>'+ data[i].fecha_ingreso+'</td>'+
+                       '<td>'+ data[i].fecha_entrega+'</td>'+
+                       "<td><button type='button' class='btn btn-default'  onclick='borrar_revision("+data[i].id_revisiones+","+data[i].id_obra+",\""+data[i].area+"\")'><span class='glyphicon glyphicon-remove-circle' style='color:red' aria-hidden='true'></span></button></td>"+
+                       '</tr>';
+     }
+  contentRevision += "</tbody></table>";
+  $('#tabla_normativa').append(contentRevision);
+}
+else {
+  contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
+  $('#tabla_normativa').append(contentRevision);
+  }
+}
+
+function actualizar_revision_direccion(data){
+  $('#tabla_direccion').empty();
+  var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th><th>Eliminar</th></tr></thead><tbody>";
+  var len = 0;
+  var i;
+  for(i in data){
+    if (data.hasOwnProperty(i)) {
+      len++;
+      }
+  }
+  if(len>0){
+  for(i=0; i<len; i++){
+     contentRevision += '<tr>' +
+                       '<td>'+ (i+1)+'</td>'+
+                       '<td>'+ data[i].observaciones+'</td>'+
+                       '<td>'+ data[i].fecha_ingreso+'</td>'+
+                       '<td>'+ data[i].fecha_entrega+'</td>'+
+                       "<td><button type='button' class='btn btn-default'  onclick='borrar_revision("+data[i].id_revisiones+","+data[i].id_obra+",\""+data[i].area+"\")'><span class='glyphicon glyphicon-remove-circle' style='color:red' aria-hidden='true'></span></button></td>"+
+                       '</tr>';
+     }
+  contentRevision += "</tbody></table>";
+  $('#tabla_direccion').append(contentRevision);
+}
+else {
+  contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
+  $('#tabla_direccion').append(contentRevision);
+}
+}
+
+function actualizar_revision_seguimiento(data){
+  $('#tabla_seguimiento').empty();
+  var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th><th>Eliminar</th></tr></thead><tbody>";
+  var len = 0;
+  var i;
+  for(i in data){
+    if (data.hasOwnProperty(i)) {
+      len++;
+      }
+  }
+  if(len>0){
+  for(i=0; i<len; i++){
+     contentRevision += '<tr>' +
+                       '<td>'+ (i+1)+'</td>'+
+                       '<td>'+ data[i].observaciones+'</td>'+
+                       '<td>'+ data[i].fecha_ingreso+'</td>'+
+                       '<td>'+ data[i].fecha_entrega+'</td>'+
+                       "<td><button type='button' class='btn btn-default'  onclick='borrar_revision("+data[i].id_revisiones+","+data[i].id_obra+",\""+data[i].area+"\")'><span class='glyphicon glyphicon-remove-circle' style='color:red' aria-hidden='true'></span></button></td>"+
+                       '</tr>';
+     }
+  contentRevision += "</tbody></table>";
+  $('#tabla_seguimiento').append(contentRevision);
+  }
+  else {
+  contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
+  $('#tabla_seguimiento').append(contentRevision);
+  }
+}
+
+function actualizar_revision_licitaciones(data){
+  $('#tabla_licitaciones').empty();
+  var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th><th>Eliminar</th></tr></thead><tbody>";
+  var len = 0;
+  var i;
+  for(i in data){
+    if (data.hasOwnProperty(i)) {
+      len++;
+      }
+  }
+  if(len>0){
+  for(i=0; i<len; i++){
+     contentRevision += '<tr>' +
+                       '<td>'+ (i+1)+'</td>'+
+                       '<td>'+ data[i].observaciones+'</td>'+
+                       '<td>'+ data[i].fecha_ingreso+'</td>'+
+                       '<td>'+ data[i].fecha_entrega+'</td>'+
+                       "<td><button type='button' class='btn btn-default'  onclick='borrar_revision("+data[i].id_revisiones+","+data[i].id_obra+",\""+data[i].area+"\")'><span class='glyphicon glyphicon-remove-circle' style='color:red' aria-hidden='true'></span></button></td>"+
+                       '</tr>';
+     }
+  contentRevision += "</tbody></table>";
+  $('#tabla_licitaciones').append(contentRevision);
+}
+else {
+  contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
+  $('#tabla_licitaciones').append(contentRevision);
+}
+}
+
+function actualizar_alcance(data){
+  $('#tabla_alc').empty();
+  var contentAlcance = "<table id='tabla_alcance' class='table table-hover'><thead><tr><th>Tipo de Obra</th><th>Num. Obj.</th><th>Objeto</th><th>Cantidad</th><th>U.M.</th><th>Eliminar</th></tr></thead><tbody>";
+  var len = 0;
+  var i;
+  for (i in data) {
+      if (data.hasOwnProperty(i)) {
+        len++;
+        }
+  }
+    for(i=0; i<len; i++){
+      contentAlcance += '<tr>' +
+                        '<td>'+ data[i].tipo_obra+'</td>'+
+                        '<td>'+ data[i].num_obj+'</td>'+
+                        '<td>'+ data[i].objeto+'</td>'+
+                        '<td>'+ data[i].cantidad+'</td>'+
+                        '<td>'+ data[i].um+'</td>'+
+                        "<td><button type='button' class='btn btn-default'  onclick='borrar_alcance("+data[i].id_alcance+","+data[i].id_obra+")'><span class='glyphicon glyphicon-remove-circle' style='color:red' aria-hidden='true'></span></button></td>"+
+                        '</tr>';
+      }
+      contentAlcance += "</tbody></table>";
+      $('#tabla_alc').append(contentAlcance);
+}
 
 function actualizar_datos(act_id_obra){
   var valor;

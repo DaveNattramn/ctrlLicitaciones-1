@@ -1,9 +1,9 @@
 <?php
   include('../modelo/_S_conexion.php');
   $bd = new ADMIN();
-  $id_revision = utf8_decode($_POST['id_revision']);
-
-  $result = $bd->borrar_revision($id_revision);
+  $id_revisiones = utf8_decode($_POST['id_revisiones']);
+  echo $id_revisiones;
+  $result = $bd->borrar_revision($id_revisiones);
 
   $bd->cerrar();
 ?>

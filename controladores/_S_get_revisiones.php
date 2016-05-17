@@ -12,7 +12,7 @@
   {
     $nestedData=array();
   	$nestedData['id_obra']=utf8_encode($row['id_obra']);
-
+  	$nestedData['id_revisiones']=utf8_encode($row['id_revisiones']);
 
     $nestedData['fecha_ingreso']=DateTime::createFromFormat('Y-m-d H:i:s.u',utf8_encode($row['fecha_ingreso']))->format('d/m/Y - h:i A');
     $nestedData['fecha_entrega']=DateTime::createFromFormat('Y-m-d H:i:s.u',utf8_encode($row['fecha_entrega']))->format('d/m/Y - h:i A');

@@ -232,21 +232,19 @@ public function getAlcances($id_obra){
 
 public function getRevisiones($id_obra,$area){
   $sql = "SELECT * FROM revisiones WHERE id_obra ='".$id_obra."'  AND area='".$area."' ORDER BY fecha_ingreso ASC";
-
   $exec = odbc_exec($this->conexion, $sql);
   return $exec;
 }
 
 public function borrar_alcance($id_alcance){
   $sql = "DELETE from alcance WHERE id_alcance='".$id_alcance."' ";
-
   $exec = odbc_exec($this->conexion, $sql);
   return $exec;
 }
 
-public function borrar_revision($id_revision){
-  $sql = "DELETE from revisiones WHERE id_revision='".$id_revision."' ";
-
+public function borrar_revision($id_revisiones){
+  $sql = "DELETE from revisiones WHERE id_revisiones='".$id_revisiones."' ";
+  echo $sql;
   $exec = odbc_exec($this->conexion, $sql);
   return $exec;
 }
