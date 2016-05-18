@@ -217,8 +217,8 @@ $sql.= " ORDER BY ".$req_o_c."   ".$req_o_d." ";
       }
 
 
-      public function get_fecha_reciente_area($id_obra, $area){
-        $sql = "SELECT MIN(fecha_ingreso) As fecha from revisiones WHERE id_obra='".$id_obra."' AND area='".$area."' ";
+      public function get_fecha_reciente_Dir($id_obra){
+        $sql = "SELECT MIN(fecha_ingreso) As fecha from revisiones WHERE id_obra='".$id_obra."' AND (area='1' OR area='2' OR area='3')";
         $exec = odbc_exec($this->conexion, $sql);
 
         return $exec;
@@ -230,8 +230,20 @@ public function getAlcances($id_obra){
   return $exec;
 }
 
+public function getRevision($id_revisiones){
+  $sql = "SELECT * FROM revisiones WHERE id_revisiones ='".$id_revisiones."' ";
+  $exec = odbc_exec($this->conexion, $sql);
+  return $exec;
+}
+
 public function getRevisiones($id_obra,$area){
   $sql = "SELECT * FROM revisiones WHERE id_obra ='".$id_obra."'  AND area='".$area."' ORDER BY fecha_ingreso ASC";
+  $exec = odbc_exec($this->conexion, $sql);
+  return $exec;
+}
+
+public function getRevisionesDir($id_obra){
+  $sql = "SELECT * FROM revisiones WHERE id_obra ='".$id_obra."'  AND (area='1' OR area='2' OR area='3') ORDER BY fecha_ingreso ASC";
   $exec = odbc_exec($this->conexion, $sql);
   return $exec;
 }
@@ -270,7 +282,6 @@ public function set_valor_obra($id_obra,$columna,$valor){
 
       public function actualizar_obra($id_obra,$no_obra,$obra,$no_autorizacion,$fecha_autorizacion,$fecha_recibido_autorizacion,$tipo_inversion,$tipo_expediente,$monto_solicitado,$dimension_inversion,$unidad_responsable,$etapa,$periodo_ejecucion,$propuesta_anual,$normativa_aplicar,$tipo_adj_solicitado,$partidas,$municipio,$localidad,$beneficiarios_directos,$beneficiarios_indirectos,$empleos_directos,$empleos_indirectos,$programa_federal,$aporte_federal,$programa_estatal,$aporte_estatal,$programa_municipal,$aporte_municipal,$aportacion_beneficiarios,$aportacion_otros)
         {
-
         $sql = "BEGIN TRANSACTION _tr
                 BEGIN TRY
                 UPDATE obra
@@ -389,6 +400,29 @@ echo $sql;
       }
 }
 
+public function actualizar_revision($id_revisiones,$id_obra,$fecha_ingreso,$fecha_entrega,$observaciones,$area){
+  $sql= " UPDATE revisiones SET fecha_ingreso=";
+  if(validaDate($fecha_ingreso,'d-m-Y H:i:s')){$sql.="'".$fecha_ingreso."' ,";}
+  else { $sql.= "NULL ,";}
+  $sql.=" fecha_entrega=";
+  if(validaDate($fecha_entrega,'d-m-Y H:i:s')){$sql.="'".$fecha_entrega."' ,";}
+  else { $sql.= "NULL ,";}
+  $sql.=" observaciones='".$observaciones."' ,area='".$area."'  WHERE id_revisiones='".$id_revisiones."' ";
+
+      $exec = odbc_exec($this->conexion, $sql);
+      if ($exec) {
+        $message = $sql;
+
+          return true;
+
+      }
+      else
+      {
+        $message = $sql;
+
+          return false;
+      }
+}
 
 
     }

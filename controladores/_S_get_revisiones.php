@@ -4,8 +4,12 @@
   $id = utf8_decode($_POST['id_obra']);
   $area = utf8_decode($_POST['area']);
 
-  $result = $bd->getRevisiones($id,$area);
-
+  if($area=='DIRECCION'){
+    $result = $bd->getRevisionesDir($id);
+  }
+  else{
+    $result = $bd->getRevisiones($id,$area);
+  }
   $j_revision = array();
 
   while($row = odbc_fetch_array($result))

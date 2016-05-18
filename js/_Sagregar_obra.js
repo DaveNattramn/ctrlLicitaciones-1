@@ -147,9 +147,9 @@ $(document).ready(function () {
                                                                     getAlcances(aData[0]).success(function (data) {
                                                                       actualizar_alcance(data);
                                                                   });
-                                                                    getRevisiones(aData[0],"NORMATIVA").success(function (data) {
+                                                          /*          getRevisiones(aData[0],"NORMATIVA").success(function (data) {
                                                                       actualizar_revision_normativa(data);
-                                                                    });
+                                                                    });*/
 
                                                                     getRevisiones(aData[0],"DIRECCION").success(function (data) {
                                                                       actualizar_revision_direccion(data);
@@ -580,6 +580,20 @@ $('#btn_nuevo_alcance').click(function (event) {
   $('#nuevo_alcance').removeClass("hidden").addClass("visible");
 });
 
+$('#btn_nueva_revision_direccion').click(function (event) {
+  $('#modificar_revision_direccion').removeClass("visible").addClass("hidden");
+  $('#nueva_revision_direccion').removeClass("hidden").addClass("visible");
+
+});
+
+$('#btn_nueva_revision_seguimiento').click(function (event) {
+  $('#nueva_revision_seguimiento').removeClass("hidden").addClass("visible");
+});
+
+$('#btn_nueva_revision_licitaciones').click(function (event) {
+  $('#nueva_revision_licitaciones').removeClass("hidden").addClass("visible");
+});
+
 $('#guardar_alcance').click(function (event) {
   var id_obra = act_id_obra;
   var tipo_obra = $("#ma_tipo_obra").val();
@@ -624,7 +638,7 @@ $('#guardar_alcance').click(function (event) {
 
 
 
-$('#enviar_normativa').click(function (event) {
+/*$('#enviar_normativa').click(function (event) {
   var id_obra = act_id_obra;
   var area = "NORMATIVA";
   var r_fecha_recibido = $("#mr_fecha_recibido_n").val();
@@ -661,11 +675,11 @@ $('#enviar_normativa').click(function (event) {
 
   });
 });
-
+*/
 
   $('#enviar_direccion').click(function (event) {
     var id_obra = act_id_obra;
-    var area = "DIRECCION";
+    var area = $("#mr_area_d").val();
     var r_fecha_recibido = $("#mr_fecha_recibido_d").val();
     var r_fecha_envio = $("#mr_fecha_envio_d").val();
     var observaciones = $("#mr_observaciones_d").val();
@@ -686,7 +700,8 @@ $('#enviar_normativa').click(function (event) {
             $("#mr_fecha_envio_d2").val("");
             $("#mr_fecha_recibido_d2").val("");
             $("#mr_observaciones_d2").val("");
-            getRevisiones(id_obra,area).success(function (data) {
+            actualizar_datos(id_obra);
+            getRevisiones(id_obra,"DIRECCION").success(function (data) {
               actualizar_revision_direccion(data);
           });
         }
@@ -699,6 +714,40 @@ $('#enviar_normativa').click(function (event) {
 
     });
 });
+
+$('#edt_enviar_direccion').click(function (event) {
+  var id_obra = act_id_obra;
+  var id_revisiones = $("#edt_mr_id_revisiones_d").val();
+  var area = $("#edt_mr_area_d").val();
+  var r_fecha_recibido = $("#edt_mr_fecha_recibido_d").val();
+  var r_fecha_envio = $("#edt_mr_fecha_envio_d").val();
+  var observaciones = $("#edt_mr_observaciones_d").val();
+
+  $.ajax({
+
+      url: '../../../controladores/_S_editar_revision.php',
+      type: 'post',
+      data: {
+        id_revisiones, id_obra:id_obra, r_fecha_recibido:r_fecha_recibido,r_fecha_envio:r_fecha_envio, observaciones:observaciones, area:area
+      },
+      success: function (data) {
+          $('#modificar_revision_direccion').removeClass("visible").addClass("hidden");
+          funcion_toastr("success","Revisión modificada");
+          mostrar.ajax.reload();
+
+          actualizar_datos(id_obra);
+          getRevisiones(id_obra,"DIRECCION").success(function (data) {
+            actualizar_revision_direccion(data);
+        });
+      }
+       ,
+
+      error: function (jqXHR, textStatus, errorThrown) {
+          alert(errorThrown);
+      }
+  });
+});
+
 
 $('#enviar_seguimiento').click(function (event) {
   var id_obra = act_id_obra;
@@ -735,6 +784,37 @@ $('#enviar_seguimiento').click(function (event) {
       }
 
 
+  });
+});
+
+
+$('#edt_enviar_seguimiento').click(function (event) {
+  var id_obra = act_id_obra;
+  var id_revisiones = $("#edt_mr_id_revisiones_s").val();
+  var r_fecha_recibido = $("#edt_mr_fecha_recibido_s").val();
+  var r_fecha_envio = $("#edt_mr_fecha_envio_s").val();
+  var observaciones = $("#edt_mr_observaciones_s").val();
+  var area = "SEGUIMIENTO A LA INVERSIÓN";
+  $.ajax({
+
+      url: '../../../controladores/_S_editar_revision.php',
+      type: 'post',
+      data: {
+        id_revisiones, id_obra:id_obra, r_fecha_recibido:r_fecha_recibido,r_fecha_envio:r_fecha_envio, observaciones:observaciones, area:area
+      },
+      success: function (data) {
+          $('#modificar_revision_seguimiento').removeClass("visible").addClass("hidden");
+          funcion_toastr("success","Revisión modificada");
+          mostrar.ajax.reload();
+          getRevisiones(id_obra,area).success(function (data) {
+            actualizar_revision_seguimiento(data);
+        });
+      }
+       ,
+
+      error: function (jqXHR, textStatus, errorThrown) {
+          alert(errorThrown);
+      }
   });
 });
 
@@ -778,6 +858,37 @@ $('#enviar_licitaciones').click(function (event) {
   });
 });
 
+
+
+$('#edt_enviar_licitaciones').click(function (event) {
+  var id_obra = act_id_obra;
+  var id_revisiones = $("#edt_mr_id_revisiones_l").val();
+  var r_fecha_recibido = $("#edt_mr_fecha_recibido_l").val();
+  var r_fecha_envio = $("#edt_mr_fecha_envio_l").val();
+  var observaciones = $("#edt_mr_observaciones_l").val();
+  var area = "LICITACIONES";
+  $.ajax({
+
+      url: '../../../controladores/_S_editar_revision.php',
+      type: 'post',
+      data: {
+        id_revisiones, id_obra:id_obra, r_fecha_recibido:r_fecha_recibido,r_fecha_envio:r_fecha_envio, observaciones:observaciones, area:area
+      },
+      success: function (data) {
+          $('#modificar_revision_licitaciones').removeClass("visible").addClass("hidden");
+          funcion_toastr("success","Revisión modificada");
+          mostrar.ajax.reload();
+          getRevisiones(id_obra,area).success(function (data) {
+            actualizar_revision_licitaciones(data);
+        });
+      }
+       ,
+
+      error: function (jqXHR, textStatus, errorThrown) {
+          alert(errorThrown);
+      }
+  });
+});
 
 
 });
@@ -878,21 +989,115 @@ function borrar_revision(id_revisiones,id_obra,area){
         },
         success: function (data) {
            getRevisiones(id_obra,area).success(function (data) {
-             if(area=="NORMATIVA"){actualizar_revision_normativa(data); actualizar_datos(id_obra);}
-             if(area=="DIRECCION")actualizar_revision_direccion(data);
+            // if(area=="NORMATIVA"){actualizar_revision_normativa(data); actualizar_datos(id_obra);}
+
              if(area=="SEGUIMIENTO A LA INVERSIÓN")actualizar_revision_seguimiento(data);
-             if(area=="LICITACIONES")actualizar_revision_licitaciones(data);
+             else if(area=="LICITACIONES")actualizar_revision_licitaciones(data);
+             else {
+               actualizar_revision_direccion(data);
+               actualizar_datos(id_obra);
+             }
              funcion_toastr("error","Revisión eliminada");
            });
         }
       });
 }
 
-  function getFechaRecienteArea(id_obra,area){
+function editar_revision_direccion(id_revisiones,id_obra){
+    $('#nueva_revision_direccion').removeClass("visible").addClass("hidden");
+    $('#modificar_revision_direccion').removeClass("hidden").addClass("visible");
+    $("#edt_mr_area_d").val("");
+    $("#edt_mr_observaciones_d").val("");
+    $("#edt_mr_fecha_recibido_d").val("");
+    $("#edt_mr_fecha_recibido_d2").val("");
+    $("#edt_mr_fecha_envio_d").val("");
+    $("#edt_mr_fecha_envio_d2").val("");
+    $("#edt_mr_id_revisiones_d").val();
+    $.ajax({
+         url: '../../../controladores/_S_get_revision.php',
+         type: 'post',
+         data: {
+           id_revisiones:id_revisiones, id_obra:id_obra
+         },
+         dataType: 'json'
+         ,
+         success: function (data) {
+              $("#edt_mr_area_d").val(data.area);
+              $("#edt_mr_observaciones_d").val(data.observaciones);
+              $("#edt_mr_fecha_recibido_d").val(data.fecha_ingreso_d);
+              $("#edt_mr_fecha_recibido_d2").val(data.fecha_ingreso_d2);
+              $("#edt_mr_fecha_envio_d").val(data.fecha_entrega_d);
+              $("#edt_mr_fecha_envio_d2").val(data.fecha_entrega_d2);
+              $("#edt_mr_id_revisiones_d").val(data.id_revisiones);
+         }
+       });
+}
+
+
+function editar_revision_licitaciones(id_revisiones,id_obra){
+    $('#nueva_revision_licitaciones').removeClass("visible").addClass("hidden");
+    $('#modificar_revision_licitaciones').removeClass("hidden").addClass("visible");
+    $("#edt_mr_observaciones_l").val("");
+    $("#edt_mr_fecha_recibido_l").val("");
+    $("#edt_mr_fecha_recibido_l2").val("");
+    $("#edt_mr_fecha_envio_l").val("");
+    $("#edt_mr_fecha_envio_l2").val("");
+    $("#edt_mr_id_revisiones_l").val();
+    $.ajax({
+         url: '../../../controladores/_S_get_revision.php',
+         type: 'post',
+         data: {
+           id_revisiones:id_revisiones, id_obra:id_obra
+         },
+         dataType: 'json'
+         ,
+         success: function (data) {
+              $("#edt_mr_observaciones_l").val(data.observaciones);
+              $("#edt_mr_fecha_recibido_l").val(data.fecha_ingreso_d);
+              $("#edt_mr_fecha_recibido_l2").val(data.fecha_ingreso_d2);
+              $("#edt_mr_fecha_envio_l").val(data.fecha_entrega_d);
+              $("#edt_mr_fecha_envio_l2").val(data.fecha_entrega_d2);
+              $("#edt_mr_id_revisiones_l").val(data.id_revisiones);
+         }
+       });
+}
+
+
+function editar_revision_seguimiento(id_revisiones,id_obra){
+    $('#nueva_revision_seguimiento').removeClass("visible").addClass("hidden");
+    $('#modificar_revision_seguimiento').removeClass("hidden").addClass("visible");
+    $("#edt_mr_observaciones_s").val("");
+    $("#edt_mr_fecha_recibido_s").val("");
+    $("#edt_mr_fecha_recibido_s2").val("");
+    $("#edt_mr_fecha_envio_s").val("");
+    $("#edt_mr_fecha_envio_s2").val("");
+    $("#edt_mr_id_revisiones_s").val();
+    $.ajax({
+         url: '../../../controladores/_S_get_revision.php',
+         type: 'post',
+         data: {
+           id_revisiones:id_revisiones, id_obra:id_obra
+         },
+         dataType: 'json'
+         ,
+         success: function (data) {
+              $("#edt_mr_observaciones_s").val(data.observaciones);
+              $("#edt_mr_fecha_recibido_s").val(data.fecha_ingreso_d);
+              $("#edt_mr_fecha_recibido_s2").val(data.fecha_ingreso_d2);
+              $("#edt_mr_fecha_envio_s").val(data.fecha_entrega_d);
+              $("#edt_mr_fecha_envio_s2").val(data.fecha_entrega_d2);
+              $("#edt_mr_id_revisiones_s").val(data.id_revisiones);
+         }
+       });
+}
+
+
+
+  function getFechaRecienteArea(id_obra){
     return $.ajax({
       type: 'POST',
       url: '../../../controladores/_S_get_fecha_area.php',
-      data: {id_obra:id_obra, area:area},
+      data: {id_obra:id_obra},
       dataType: 'json',
     });
     }
@@ -1012,7 +1217,7 @@ function funcion_toastr(atributo,mensaje){
   }
 }
 
-function actualizar_revision_normativa(data){
+/*function actualizar_revision_normativa(data){
   $('#tabla_normativa').empty();
   var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th><th>Eliminar</th></tr></thead><tbody>";
   var len = 0;
@@ -1040,10 +1245,10 @@ else {
   $('#tabla_normativa').append(contentRevision);
   }
 }
-
+*/
 function actualizar_revision_direccion(data){
   $('#tabla_direccion').empty();
-  var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th><th>Eliminar</th></tr></thead><tbody>";
+  var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Area</th><th>Fecha de recibido</th><th>Fecha de envio</th><th>Eliminar</th></tr></thead><tbody>";
   var len = 0;
   var i;
   for(i in data){
@@ -1056,9 +1261,10 @@ function actualizar_revision_direccion(data){
      contentRevision += '<tr>' +
                        '<td>'+ (i+1)+'</td>'+
                        '<td>'+ data[i].observaciones+'</td>'+
+                       '<td>'+ data[i].area+'</td>'+
                        '<td>'+ data[i].fecha_ingreso+'</td>'+
                        '<td>'+ data[i].fecha_entrega+'</td>'+
-                       "<td><button type='button' class='btn btn-default'  onclick='borrar_revision("+data[i].id_revisiones+","+data[i].id_obra+",\""+data[i].area+"\")'><span class='glyphicon glyphicon-remove-circle' style='color:red' aria-hidden='true'></span></button></td>"+
+                       "<td><button type='button' class='btn btn-default'  onclick='borrar_revision("+data[i].id_revisiones+","+data[i].id_obra+",\"DIRECCION\")'><span class='glyphicon glyphicon-remove-circle' style='color:red' aria-hidden='true'></span></button><button type='button' class='btn btn-default'  onclick='editar_revision_direccion("+data[i].id_revisiones+","+data[i].id_obra+")'><span class='glyphicon glyphicon-pencil' style='color:blue' aria-hidden='true'></span></button></td>"+
                        '</tr>';
      }
   contentRevision += "</tbody></table>";
@@ -1087,7 +1293,7 @@ function actualizar_revision_seguimiento(data){
                        '<td>'+ data[i].observaciones+'</td>'+
                        '<td>'+ data[i].fecha_ingreso+'</td>'+
                        '<td>'+ data[i].fecha_entrega+'</td>'+
-                       "<td><button type='button' class='btn btn-default'  onclick='borrar_revision("+data[i].id_revisiones+","+data[i].id_obra+",\""+data[i].area+"\")'><span class='glyphicon glyphicon-remove-circle' style='color:red' aria-hidden='true'></span></button></td>"+
+                       "<td><button type='button' class='btn btn-default'  onclick='borrar_revision("+data[i].id_revisiones+","+data[i].id_obra+",\""+data[i].area+"\")'><span class='glyphicon glyphicon-remove-circle' style='color:red' aria-hidden='true'></span></button><button type='button' class='btn btn-default'  onclick='editar_revision_seguimiento("+data[i].id_revisiones+","+data[i].id_obra+")'><span class='glyphicon glyphicon-pencil' style='color:blue' aria-hidden='true'></span></button></td>"+
                        '</tr>';
      }
   contentRevision += "</tbody></table>";
@@ -1116,7 +1322,7 @@ function actualizar_revision_licitaciones(data){
                        '<td>'+ data[i].observaciones+'</td>'+
                        '<td>'+ data[i].fecha_ingreso+'</td>'+
                        '<td>'+ data[i].fecha_entrega+'</td>'+
-                       "<td><button type='button' class='btn btn-default'  onclick='borrar_revision("+data[i].id_revisiones+","+data[i].id_obra+",\""+data[i].area+"\")'><span class='glyphicon glyphicon-remove-circle' style='color:red' aria-hidden='true'></span></button></td>"+
+                       "<td><button type='button' class='btn btn-default'  onclick='borrar_revision("+data[i].id_revisiones+","+data[i].id_obra+",\""+data[i].area+"\")'><span class='glyphicon glyphicon-remove-circle' style='color:red' aria-hidden='true'></span></button><button type='button' class='btn btn-default'  onclick='editar_revision_licitaciones("+data[i].id_revisiones+","+data[i].id_obra+")'><span class='glyphicon glyphicon-pencil' style='color:blue' aria-hidden='true'></span></button></td>"+
                        '</tr>';
      }
   contentRevision += "</tbody></table>";
@@ -1156,7 +1362,7 @@ function actualizar_datos(act_id_obra){
   var valor;
   var contenidoRecurso = "";
   //fecga de ingreso del proyecto más reciente
-  getFechaRecienteArea(act_id_obra,'NORMATIVA').success(function (data) {
+  getFechaRecienteArea(act_id_obra).success(function (data) {
     valor = data.fecha;
     contenidoRecurso = "<small>"+valor+"</small>";
     $('#div_fecha_recibido').empty()

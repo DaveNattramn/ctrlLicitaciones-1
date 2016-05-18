@@ -2,10 +2,10 @@
   include('../modelo/_S_conexion.php');
   $bd = new ADMIN();
   $id_obra = utf8_decode($_POST['id_obra']);
-  $area = utf8_decode($_POST['area']);
+//  $area = utf8_decode($_POST['area']);
 
 
-  $result = $bd->get_fecha_reciente_area($id_obra,$area);
+  $result = $bd->get_fecha_reciente_Dir($id_obra);
 
 
   $j_fecha = array();
