@@ -6,7 +6,7 @@ $(document).ready(function(){
       .text(""))
       .append($("<option></option>")
       .attr("value","VARIOS")
-      .text("VARIOS"))      
+      .text("VARIOS"))
       ;
   getMunicipios().success(function (data) {
     $.each(data, function(key, value) {
@@ -134,7 +134,7 @@ $(document).ready(function(){
                                                         sumaAportes();
                                                         $('#empleos_directos').val("");
                                                         $('#empleos_indirectos').val("");
-                                                        var monto_solicitado = $("#monto_solicitado").val();
+                                                        var monto_solicitado = $("#monto_solicitado").val().replace(/[^0-9\.]+/g,"");
 
                                                         if($.isNumeric(monto_solicitado)){
 
@@ -209,7 +209,7 @@ $(document).ready(function(){
                                                     m_sumaAportes();
                                                     $('#m_empleos_directos').val("");
                                                     $('#m_empleos_indirectos').val("");
-                                                    var monto_solicitado = $("#m_monto_solicitado").val();
+                                                    var monto_solicitado = $("#m_monto_solicitado").val().replace(/[^0-9\.]+/g,"");
 
                                                     if($.isNumeric(monto_solicitado)){
 

@@ -27,6 +27,10 @@
     $j_obra['normativa_aplicar']=utf8_encode($row['normativa_aplicar']);
     $j_obra['tipo_adj_solicitado']=utf8_encode($row['tipo_adj_solicitado']);
     $j_obra['partidas']=utf8_encode($row['partidas']);
+    $j_obra['beneficiarios_directos']=utf8_encode($row['beneficiarios_directos']);
+    $j_obra['beneficiarios_indirectos']=utf8_encode($row['beneficiarios_indirectos']);
+    $j_obra['empleos_directos']=utf8_encode($row['empleos_directos']);
+    $j_obra['empleos_indirectos']=utf8_encode($row['empleos_indirectos']);
   }
 
 

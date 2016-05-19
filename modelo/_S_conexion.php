@@ -154,12 +154,12 @@ $sql.= " ORDER BY ".$req_o_c."   ".$req_o_d." ";
 
       $sql = "BEGIN TRANSACTION _tr
               BEGIN TRY
-              INSERT INTO obra(obra,tipo_inversion,tipo_expediente,dimension_inversion,dependencia_solicitante,dependencia_ejecutora,unidad_responsable,etapa,periodo_ejecucion,propuesta_anual,normativa_aplicar,tipo_adj_solicitado,partidas)
+              INSERT INTO obra(obra,tipo_inversion,tipo_expediente,dimension_inversion,dependencia_solicitante,dependencia_ejecutora,unidad_responsable,etapa,periodo_ejecucion,propuesta_anual,normativa_aplicar,tipo_adj_solicitado,partidas,beneficiarios_directos,beneficiarios_indirectos,empleos_directos,empleos_indirectos)
                     VALUES ('".$obra."', '".$tipo_inversion."', '".$tipo_expediente."', '".$dimension_inversion."', '".$dependencia_solicitante."', '".$dependencia_ejecutora."', '".$unidad_responsable."', '".$etapa."', '".$periodo_ejecucion."', '".$propuesta_anual."', '".$normativa_aplicar."',
-                            '".$tipo_adj_solicitado."', '".$partidas."')
+                            '".$tipo_adj_solicitado."', '".$partidas."','".$beneficiarios_directos."','".$beneficiarios_indirectos."','".$empleos_directos."','".$empleos_indirectos."')
               DECLARE @ID INT
           		SET @ID = SCOPE_IDENTITY()
-              INSERT INTO ubicacion(id_obra,municipio,localidad,beneficiarios_directos,beneficiarios_indirectos,empleos_directos,empleos_indirectos) VALUES (@ID,'".$municipio."', '".$localidad."','".$beneficiarios_directos."','".$beneficiarios_indirectos."','".$empleos_directos."','".$empleos_indirectos."')
+              INSERT INTO ubicacion(id_obra,municipio,localidad) VALUES (@ID,'".$municipio."', '".$localidad."')
               INSERT INTO estructura_financiera(id_obra,total,programa_federal,aporte_federal,programa_estatal,aporte_estatal,programa_municipal,aporte_municipal,aportacion_beneficiarios,aportacion_otros) VALUES (@ID,'".$monto_solicitado."', '".$programa_federal."', '".$aporte_federal."', '".$programa_estatal."', '".$aporte_estatal."', '".$programa_municipal."', '".$aporte_municipal."', '".$aportacion_beneficiarios."', '".$aportacion_otros."')
               COMMIT TRANSACTION _tr
               END TRY
@@ -300,10 +300,10 @@ public function set_valor_obra($id_obra,$columna,$valor){
 
          $sql.=",tipo_inversion='".$tipo_inversion."',
         tipo_expediente='".$tipo_expediente."', dimension_inversion='".$dimension_inversion."',  unidad_responsable='".$unidad_responsable."', etapa='".$etapa."', periodo_ejecucion='".$periodo_ejecucion."', propuesta_anual='".$propuesta_anual."', normativa_aplicar='".$normativa_aplicar."',
-                              tipo_adj_solicitado='".$tipo_adj_solicitado."', partidas='".$partidas."'
+                              tipo_adj_solicitado='".$tipo_adj_solicitado."', partidas='".$partidas."', beneficiarios_directos='".$beneficiarios_directos."',beneficiarios_indirectos='".$beneficiarios_indirectos."',empleos_directos='".$empleos_directos."',empleos_indirectos='".$empleos_indirectos."'
                       WHERE id_obra=".$id_obra."
                 UPDATE ubicacion
-                      SET municipio='".$municipio."', localidad='".$localidad."',beneficiarios_directos='".$beneficiarios_directos."',beneficiarios_indirectos='".$beneficiarios_indirectos."',empleos_directos='".$empleos_directos."',empleos_indirectos='".$empleos_indirectos."'
+                      SET municipio='".$municipio."', localidad='".$localidad."'
                       WHERE id_obra=".$id_obra."
                 UPDATE estructura_financiera
                       SET total='".$monto_solicitado."', programa_federal='".$programa_federal."', aporte_federal='".$aporte_federal."', programa_estatal='".$programa_estatal."', aporte_estatal='".$aporte_estatal."',

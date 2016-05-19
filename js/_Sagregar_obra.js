@@ -71,6 +71,10 @@ $(document).ready(function () {
                                                                     $('#m_normativa_aplicar').val(data.normativa_aplicar);
                                                                     $('#m_tipo_adj_solicitado').val(data.tipo_adj_solicitado);
                                                                     $('#m_partidas').val(data.partidas);
+                                                                    $('#m_beneficiarios_directos').val(data.beneficiarios_directos);
+                                                                    $('#m_beneficiarios_indirectos').val(data.beneficiarios_indirectos);
+                                                                    $('#m_empleos_indirectos').val(data.empleos_indirectos);
+                                                                    $('#m_empleos_directos').val(data.empleos_directos);
                                                                   });
                                                                   getUbicacion(aData[0]).success(function (data) {
                                                                     $('#m_municipio').empty();
@@ -127,10 +131,7 @@ $(document).ready(function () {
 
 
 
-                                                                    $('#m_beneficiarios_directos').val(data.beneficiarios_directos);
-                                                                    $('#m_beneficiarios_indirectos').val(data.beneficiarios_indirectos);
-                                                                    $('#m_empleos_indirectos').val(data.empleos_indirectos);
-                                                                    $('#m_empleos_directos').val(data.empleos_directos);
+
                                                                   });
                                                                   getEstructuraF(aData[0]).success(function (data) {
                                                                     $('#m_monto_solicitado').val(data.total);
