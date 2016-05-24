@@ -1,3 +1,5 @@
+var glb_m_ubicacion = [];
+
 $(document).ready(function () {
       var act_id_obra;
       var myModal;
@@ -39,12 +41,14 @@ $(document).ready(function () {
                                                               // Cell click
                                                                $('td', nRow).on('click', function() {
                                                                   myModal = $('#myModal');
-
+                                                                  $('#dm_panel_ubicacion_app').empty();
+                                                                  $('#m_suma_total').empty();
                                                                   act_id_obra = aData[0];
-
+                                                                  glb_m_ubicacion = [];
+                                                                  $('#m_total_ubicacion_campos').val("1");
                                                                   actualizar_datos(act_id_obra);
 
-                                                                  getObra(aData[0]).success(function (data) {
+                                                                  setTimeout(function(){getObra(aData[0]).success(function (data) {
 
 
                                                                     $('#contenido_alcance').empty();
@@ -75,8 +79,9 @@ $(document).ready(function () {
                                                                     $('#m_beneficiarios_indirectos').val(data.beneficiarios_indirectos);
                                                                     $('#m_empleos_indirectos').val(data.empleos_indirectos);
                                                                     $('#m_empleos_directos').val(data.empleos_directos);
-                                                                  });
-                                                                  getUbicacion(aData[0]).success(function (data) {
+                                                                  });},10);
+                                                                  setTimeout(function(){getUbicacion(aData[0]).success(function (data) {
+
                                                                     $('#m_municipio').empty();
                                                                     $('#m_municipio')
                                                                         .append($("<option></option>")
@@ -86,8 +91,31 @@ $(document).ready(function () {
                                                                         .attr("value","VARIOS")
                                                                         .text("VARIOS"))
                                                                         ;
-                                                                   var municipio_d = data.municipio;
-                                                                   var localidad_d = data.localidad;
+
+                                                                   var municipio_d = data[0].municipio;
+                                                                   var localidad_d = data[0].localidad;
+                                                                   getTotalUbicacion(municipio_d,localidad_d).success(function (data) {
+                                                                     m_agregar_ubicacionGLB(data,1);
+
+                                                                   });
+                                                                   var len = 0;
+                                                                   var i;
+                                                                   for(i in data){
+                                                                     if (data.hasOwnProperty(i)) {
+                                                                       len++;
+                                                                       }
+                                                                   }
+                                                                   if(len>0){
+                                                                     var x;
+                                                                     var xx = 1;
+                                                                     for(x=1;x<len;x++){
+                                                                       addUbicacionGet(data[x].municipio, data[x].localidad);
+                                                                       getTotalUbicacion(data[x].municipio, data[x].localidad).success(function (data) {
+                                                                         //CORREGIR, TOMA EL VALOR DEL ULTIMO X SIEMPRE
+                                                                          m_agregar_ubicacionGLB(data,++xx);
+                                                                       });
+                                                                     }
+                                                                   }
                                                                     m_getMunicipios().success(function (data) {
 
                                                                       $.each(data, function(key, value) {
@@ -113,7 +141,7 @@ $(document).ready(function () {
                                                                         $('#m_localidad').val(localidad_d);
                                                                       }
                                                                       else{
-                                                                      m_getLocalidades().success(function (data) {
+                                                                      m_getLocalidades(municipio_d).success(function (data) {
                                                                           $.each(data, function(key, value) {
                                                                               $('#m_localidad')
                                                                                   .append($("<option></option>")
@@ -127,13 +155,15 @@ $(document).ready(function () {
                                                                             });
                                                                         }
 
+
+
                                                                       });
 
 
 
 
-                                                                  });
-                                                                  getEstructuraF(aData[0]).success(function (data) {
+                                                                  });},110);
+                                                                  setTimeout(function(){getEstructuraF(aData[0]).success(function (data) {
                                                                     $('#m_monto_solicitado').val(data.total);
                                                                     $('#m_programa_federal').val(data.programa_federal);
                                                                     $('#m_programa_estatal').val(data.programa_estatal);
@@ -144,30 +174,30 @@ $(document).ready(function () {
                                                                     $('#m_aportacion_otros').val(data.aportacion_otros);
                                                                     $('#m_aportacion_beneficiarios').val(data.aportacion_beneficiarios);
 
-                                                                  });
-                                                                    getAlcances(aData[0]).success(function (data) {
+                                                                  });},210);
+                                                                    setTimeout(function(){getAlcances(aData[0]).success(function (data) {
                                                                       actualizar_alcance(data);
-                                                                  });
+                                                                  });},310);
                                                           /*          getRevisiones(aData[0],"NORMATIVA").success(function (data) {
                                                                       actualizar_revision_normativa(data);
                                                                     });*/
 
-                                                                    getRevisiones(aData[0],"DIRECCION").success(function (data) {
+                                                                    setTimeout(function(){getRevisiones(aData[0],"DIRECCION").success(function (data) {
                                                                       actualizar_revision_direccion(data);
-                                                                    });
+                                                                    });},360);
 
-                                                                    getRevisiones(aData[0],"SEGUIMIENTO A LA INVERSIÓN").success(function (data) {
+                                                                    setTimeout(function(){getRevisiones(aData[0],"SEGUIMIENTO A LA INVERSIÓN").success(function (data) {
                                                                       actualizar_revision_seguimiento(data);
-                                                                    });
+                                                                    });},410);
 
-                                                                    getRevisiones(aData[0],"LICITACIONES").success(function (data) {
+                                                                    setTimeout(function(){getRevisiones(aData[0],"LICITACIONES").success(function (data) {
                                                                       actualizar_revision_licitaciones(data);
-                                                                    });
+                                                                    });},460);
 
 
-                                                                    cambiar_read(true);
+                                                                    setTimeout(function(){cambiar_read(true)},520);
 
-                                                                    setTimeout(function(){ myModal.modal({ show: true }); }, 300);
+                                                                    setTimeout(function(){ myModal.modal({ show: true }); }, 1000);
 
 
 
@@ -176,181 +206,6 @@ $(document).ready(function () {
 
         });
 
-    $('#guardar_obra').click(function (event) {
-
-        var obra = $("#obra").val().trim();
-        var tipo_inversion = $("#tipo_inversion").val().trim();
-        var tipo_expediente = $("#tipo_expediente").val().trim();
-        var monto_solicitado = $("#monto_solicitado").val().replace(/[^0-9\.]+/g,"");
-        var dimension_inversion = $("#dimension_inversion").val().trim();
-        var dependencia_solicitante = $("#dependencia_solicitante").val().trim();
-        var dependencia_ejecutora = $("#dependencia_ejecutora").val().trim();
-        var unidad_responsable = $("#unidad_responsable").val().trim();
-        var etapa = $("#etapa").val().trim();
-        var periodo_ejecucion = $("#periodo_ejecucion").val().trim();
-        var propuesta_anual = $("#propuesta_anual").val().trim();
-        var normativa_aplicar = $("#normativa_aplicar").val().trim();
-        var tipo_adj_solicitado = $("#tipo_adj_solicitado").val().trim();
-        var partidas = $("#partidas").val().trim();
-        var municipio = $("#municipio").val();
-        var localidad = $("#localidad").val();
-        var beneficiarios_directos = $("#beneficiarios_directos").val();
-        var beneficiarios_indirectos = $("#beneficiarios_indirectos").val();
-        var empleos_directos = $("#empleos_directos").val();
-        var empleos_indirectos = $("#empleos_indirectos").val();
-        var programa_federal = $("#programa_federal").val().trim();
-        var aporte_federal = $("#aporte_federal").val().replace(/[^0-9\.]+/g,"");
-        var programa_estatal = $("#programa_estatal").val().trim();
-        var aporte_estatal = $("#aporte_estatal").val().replace(/[^0-9\.]+/g,"");
-        var programa_municipal = $("#programa_municipal").val().trim();
-        var aporte_municipal = $("#aporte_municipal").val().replace(/[^0-9\.]+/g,"");
-        var aportacion_beneficiarios = $("#aportacion_beneficiarios").val().replace(/[^0-9\.]+/g,"");
-        var aportacion_otros = $("#aportacion_otros").val().replace(/[^0-9\.]+/g,"");
-
-        if(!($.isNumeric(monto_solicitado))) monto_solicitado = 0;
-        if(!($.isNumeric(periodo_ejecucion))) periodo_ejecucion = 0;
-        if(!($.isNumeric(beneficiarios_directos))) beneficiarios_directos = 0;
-        if(!($.isNumeric(beneficiarios_indirectos))) beneficiarios_indirectos = 0;
-        if(!($.isNumeric(empleos_directos))) empleos_directos = 0;
-        if(!($.isNumeric(empleos_indirectos))) empleos_indirectos = 0;
-        if(!($.isNumeric(aporte_federal))) aporte_federal = 0;
-        if(!($.isNumeric(aporte_estatal))) aporte_estatal = 0;
-        if(!($.isNumeric(aporte_municipal))) aporte_municipal = 0;
-        if(!($.isNumeric(aportacion_otros))) aportacion_otros = 0;
-        if(!($.isNumeric(aportacion_beneficiarios))) aportacion_beneficiarios = 0;
-
-
-
-
-              $("#d_obra").removeClass('col-lg-12 has-error').addClass('col-lg-12');
-              $("#d_tipo_inversion").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
-              $("#d_tipo_expediente").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
-              $("#d_dimension_inversion").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
-              $("#d_dependencia_solicitante").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
-              $("#d_dependencia_ejecutora").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
-              $("#d_unidad_responsable").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
-              $("#d_etapa").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
-              $("#d_periodo_ejecucion").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
-              $("#d_propuesta_anual").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
-              $("#d_normativa_aplicar").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
-              $("#d_tipo_adj_solicitado").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
-              $("#d_partidas").removeClass('col-lg-4 has-error').addClass('col-lg-4');
-              $("#d_programa_federal").removeClass('col-lg-4 has-error').addClass('col-lg-4');
-              $("#d_programa_estatal").removeClass('col-lg-4 has-error').addClass('col-lg-4');
-              $("#d_programa_municipal").removeClass('col-lg-4 has-error').addClass('col-lg-4');
-
-              $("#d_monto_solicitado").removeClass('col-lg-4 has-error').addClass('col-lg-4');
-
-              if(monto_solicitado==0)$("#d_monto_solicitado").removeClass('col-lg-12').addClass('col-lg-12 has-error');
-
-                if(obra=="")$("#d_obra").removeClass('col-lg-12').addClass('col-lg-12 has-error');
-                if(tipo_inversion=="")$("#d_tipo_inversion").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
-                if(tipo_expediente=="")$("#d_tipo_expediente").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
-                if(dimension_inversion=="")$("#d_dimension_inversion").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
-                if(dependencia_solicitante=="")$("#d_dependencia_solicitante").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
-                if(dependencia_ejecutora=="")$("#d_dependencia_ejecutora").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
-                if(unidad_responsable=="")$("#d_unidad_responsable").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
-                if(etapa=="")$("#d_etapa").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
-                if(periodo_ejecucion=="")$("#d_periodo_ejecucion").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
-                if(propuesta_anual=="")$("#d_propuesta_anual").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
-                if(normativa_aplicar=="")$("#d_normativa_aplicar").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
-                if(tipo_adj_solicitado=="")$("#d_tipo_adj_solicitado").removeClass('col-lg-3  col-sm-6 ').addClass('col-lg-3  col-sm-6 has-error');
-                if(partidas=="")$("#d_partidas").removeClass('col-lg-4 ').addClass('col-lg-4 has-error');
-                if(programa_federal=="" && programa_estatal=="" && programa_municipal==""){
-                  $("#d_programa_federal").removeClass('col-lg-4 ').addClass('col-lg-4 has-error');
-                  $("#d_programa_estatal").removeClass('col-lg-4 ').addClass('col-lg-4 has-error');
-                  $("#d_programa_municipal").removeClass('col-lg-4 ').addClass('col-lg-4 has-error');
-                }
-
-
-
-        var condicion_obra;
-        obra_existe().success(function (data) {condicion_obra = data.obra;
-        if(Number(condicion_obra) == 0 ){
-          var suma_final = parseFloat(aporte_federal)+parseFloat(aporte_estatal)+parseFloat(aporte_municipal)+parseFloat(aportacion_otros)+parseFloat(aportacion_beneficiarios);
-          if(parseFloat(monto_solicitado).toFixed(2) == parseFloat(suma_final).toFixed(2)   && monto_solicitado>0 ){
-            if(obra!="" && tipo_inversion!="" && tipo_expediente!="" && dimension_inversion!="" && dependencia_ejecutora!="" && dependencia_solicitante!="" && unidad_responsable!="" && etapa!="" && periodo_ejecucion!=""
-                  && propuesta_anual!="" && normativa_aplicar!="" && tipo_adj_solicitado!="" && partidas!="" && (programa_federal!="" || programa_estatal!="" || programa_municipal!="" ))
-                  {
-
-                      $.ajax({
-
-                      url: '../../../controladores/_S_agregar_obra.php',
-                      type: 'post',
-                      data: {
-                        obra:obra,tipo_inversion:tipo_inversion,tipo_expediente:tipo_expediente,monto_solicitado:monto_solicitado,
-                        dimension_inversion:dimension_inversion,dependencia_solicitante:dependencia_solicitante,
-                        dependencia_ejecutora:dependencia_ejecutora,unidad_responsable:unidad_responsable,etapa:etapa,
-                        periodo_ejecucion:periodo_ejecucion,propuesta_anual:propuesta_anual,normativa_aplicar:normativa_aplicar,
-                        tipo_adj_solicitado:tipo_adj_solicitado,partidas:partidas,
-                        municipio:municipio,localidad:localidad,beneficiarios_directos:beneficiarios_directos,
-                        beneficiarios_indirectos:beneficiarios_indirectos,empleos_directos:empleos_directos,empleos_indirectos:empleos_indirectos,
-                        programa_federal:programa_federal,aporte_federal:aporte_federal,programa_estatal:programa_estatal,
-                        aporte_estatal:aporte_estatal,programa_municipal:programa_municipal,aporte_municipal:aporte_municipal,
-                        aportacion_beneficiarios:aportacion_beneficiarios,aportacion_otros:aportacion_otros
-
-                      },
-                      success: function (data) {
-
-
-                        $("#obra").val("");
-                        $("#tipo_inversion").val("");
-                        $("#tipo_expediente").val("");
-                        $("#monto_solicitado").val("");
-                        $("#dimension_inversion").val("") ;
-                        $("#dependencia_solicitante").val("") ;
-                        $("#dependencia_ejecutora").val("");
-                        $("#unidad_responsable").val("");
-                        $("#etapa").val("") ;
-                        $("#periodo_ejecucion").val("") ;
-                        $("#propuesta_anual").val("");
-                        $("#normativa_aplicar").val("");
-                        $("#tipo_adj_solicitado").val("");
-                        $("#partidas").val("");
-                        $("#municipio").val("");
-                        $("#localidad").val("");
-                        $("#beneficiarios_directos").val("");
-                        $("#beneficiarios_indirectos").val("");
-                        $("#empleos_directos").val("");
-                        $("#empleos_indirectos").val("");
-                        $("#programa_federal").val("");
-                        $("#aporte_federal").val("");
-                        $("#programa_estatal").val("");
-                        $("#aporte_estatal").val("");
-                        $("#programa_municipal").val("");
-                        $("#aporte_municipal").val("");
-                        $("#aportacion_beneficiarios").val("");
-                        $("#aportacion_otros").val("");
-                        $('#suma_total').empty();
-
-                        funcion_toastr("success","Obra agregada con Éxito");
-
-                        mostrar.ajax.reload();
-                      }
-                      ,
-
-                      error: function (jqXHR, textStatus, errorThrown) {
-                        alert(errorThrown);
-                      }
-
-
-                    }); //end ajax agregar obra
-
-              }//endif campos vacios
-              else{
-                funcion_toastr("error","Campos obligatorios vacios");
-              }
-        }//endif montos
-        else{
-            funcion_toastr("error","Montos incorrectos");
-        } //endelse montos
-
-        }//endif existe obra
-        else{
-            funcion_toastr("error","La obra ya existe");
-      }//end else existe obra
-      });
-    });
 
     $('#actualizar_obra').click(function (event) {
 
@@ -371,8 +226,21 @@ $(document).ready(function () {
         var normativa_aplicar = $("#m_normativa_aplicar").val().trim();
         var tipo_adj_solicitado = $("#m_tipo_adj_solicitado").val().trim();
         var partidas = $("#m_partidas").val().trim();
-        var municipio = $("#m_municipio").val();
-        var localidad = $("#m_localidad").val();
+        var total_ubicaciones = $('#m_total_ubicacion_campos').val();
+        var ubicacion  = [];
+
+        for(x=0;x<total_ubicaciones;x++){
+          if(glb_m_ubicacion[x][0]!=""){
+            if(glb_m_ubicacion[x][1]!=""){
+                                ubicacion.push({
+                                  'municipio':glb_m_ubicacion[x][0],
+                                  'localidad':glb_m_ubicacion[x][1]
+                                });
+            }
+          }
+        }
+        ubicacion = JSON.stringify(ubicacion);
+
         var beneficiarios_directos = $("#m_beneficiarios_directos").val();
         var beneficiarios_indirectos = $("#m_beneficiarios_indirectos").val();
         var empleos_directos = $("#m_empleos_directos").val();
@@ -461,7 +329,7 @@ $(document).ready(function () {
                           unidad_responsable:unidad_responsable,etapa:etapa,
                           periodo_ejecucion:periodo_ejecucion,propuesta_anual:propuesta_anual,normativa_aplicar:normativa_aplicar,
                           tipo_adj_solicitado:tipo_adj_solicitado,partidas:partidas,
-                          municipio:municipio,localidad:localidad,beneficiarios_directos:beneficiarios_directos,
+                          ubicacion:ubicacion,beneficiarios_directos:beneficiarios_directos,
                           beneficiarios_indirectos:beneficiarios_indirectos,empleos_directos:empleos_directos,empleos_indirectos:empleos_indirectos,
                           programa_federal:programa_federal,aporte_federal:aporte_federal,programa_estatal:programa_estatal,
                           aporte_estatal:aporte_estatal,programa_municipal:programa_municipal,aporte_municipal:aporte_municipal,
@@ -496,6 +364,10 @@ $(document).ready(function () {
         });
     });
 
+    $('#btn_resumen').click(function (event) {
+      window.open("/ctrlLicitaciones/vistas/modulo/normativa/vistas/tabla.html");
+    });
+
     $('#cancelar_obra').click(function (event) {
          var valor = 'CANCELADA';
          var columna = "estatus_general"
@@ -525,8 +397,12 @@ $(document).ready(function () {
 
     $("#m_municipio").change(function() {
       $('#m_localidad').empty();
-      $('#m_beneficiarios_directos').val("");
-      $('#m_beneficiarios_indirectos').val("");
+      glb_m_ubicacion[0] = new Array(5);
+      glb_m_ubicacion[0][0]="";
+      glb_m_ubicacion[0][1]="";
+      var resultado = m_actualizar_beneficiarios($('#m_total_ubicacion_campos').val());
+      $("#m_beneficiarios_directos").val(resultado[0]);
+      $("#m_beneficiarios_indirectos").val(resultado[1]);
       $('#m_localidad').empty();
       $('#m_localidad')
           .append($("<option></option>")
@@ -539,7 +415,7 @@ $(document).ready(function () {
                 .text("VARIOS"));
           }
       else{
-        m_getLocalidades().success(function (data) {
+        m_getLocalidades($("#m_municipio").val()).success(function (data) {
           $.each(data, function(key, value) {
             $('#m_localidad')
               .append($("<option></option>")
@@ -554,17 +430,11 @@ $(document).ready(function () {
 
 
                                                 $("#m_localidad").change(function() {
-                                                m_getTotalUbicacion().success(function (data) {
-                                                //$.each(data, function(key, value) {
-                                                    var poblacion_total = data.poblacion_total;
-                                                    var poblacion_directa = data.poblacion_localidad;
-                                                    if(!($.isNumeric(poblacion_total))) poblacion_total = 0;
-                                                    if(!($.isNumeric(poblacion_directa))) poblacion_directa = 0;
-                                                    var poblacion_indirecta = Number(poblacion_total) - Number(poblacion_directa);
-
-                                                    $("#m_beneficiarios_directos").val(poblacion_directa);
-                                                    $("#m_beneficiarios_indirectos").val(poblacion_indirecta);
-                                                  //});
+                                                getTotalUbicacion($("#m_municipio").val(),$("#m_localidad").val()).success(function (data) {
+                                                  m_agregar_ubicacionGLB(data,1);
+                                                  var resultado = m_actualizar_beneficiarios($('#m_total_ubicacion_campos').val());
+                                                  $("#m_beneficiarios_directos").val(resultado[0]);
+                                                  $("#m_beneficiarios_indirectos").val(resultado[1]);
                                                 });
                                               });
 
@@ -787,6 +657,12 @@ $('#enviar_seguimiento').click(function (event) {
 
   });
 });
+
+
+$('#m_btn_agregar_ubicacion').click(function (event) {
+  addUbicacion();
+});
+
 
 
 $('#edt_enviar_seguimiento').click(function (event) {
@@ -1124,8 +1000,7 @@ function obra_existe(){
     });
     }
 
-function m_getLocalidades(){
-  var municipio_nombre = $("#m_municipio").val();
+function m_getLocalidades(municipio_nombre){
   return $.ajax({
     type: 'POST',
     url: '../../../controladores/_S_get_localidades.php',
@@ -1143,16 +1018,222 @@ function m_getMunicipios(){
     });
 }
 
-function m_getTotalUbicacion(){
-      var municipio_nombre = $("#m_municipio").val();
-      var localidad_nombre = $("#m_localidad").val();
-      return $.ajax({
-        type: 'POST',
-        url: '../../../controladores/_S_get_totalUbicacion.php',
-        data: {municipio_nombre:municipio_nombre, localidad_nombre:localidad_nombre},
-        dataType: 'json',
+function addUbicacion(){
+  var num_var_id = $('#m_total_ubicacion_campos').val();
+  num_var_id = Number(num_var_id) + 1;
+
+  glb_m_ubicacion[num_var_id] = new Array(5);
+  glb_m_ubicacion[num_var_id][0]="";
+  glb_m_ubicacion[num_var_id][1]="";
+  glb_m_ubicacion[num_var_id][2]=0;
+  glb_m_ubicacion[num_var_id][3]=0;
+  glb_m_ubicacion[num_var_id][4]=0;
+
+  $('#m_total_ubicacion_campos').val(num_var_id);
+  var append_ubicacion="<div class='col-lg-12  col-sm-6' >"+
+                    "<div class='col-lg-3  col-sm-6'><label for=''>Municipio</label>"+
+                    "<select  onchange='municipio_mi("+num_var_id+")' class='form-control option' id='m_municipio"+num_var_id+"'>"+
+                    "</select><br></div><div class='col-lg-3  col-sm-6'><label for=''>Localidad</label>"+
+                    "<select onchange='localidad_mi("+num_var_id+")' class='form-control option' id='m_localidad"+num_var_id+"'>"+
+                    "</select><br></div>";
+
+
+  $('#dm_panel_ubicacion_app').append(append_ubicacion);
+
+
+  $('#m_municipio'+num_var_id)
+      .append($("<option></option>")
+      .attr("value","")
+      .text(""))
+      .append($("<option></option>")
+      .attr("value","VARIOS")
+      .text("VARIOS"))
+      ;
+  m_getMunicipios().success(function (data) {
+    $.each(data, function(key, value) {
+        $('#m_municipio'+num_var_id)
+            .append($("<option></option>")
+            .attr("value",value)
+            .text(value))
+            ;
+          });
+    });
+
+}
+
+function addUbicacionGet(data_municipio,data_localidad){
+  var num_var_id = $('#m_total_ubicacion_campos').val();
+  num_var_id = Number(num_var_id) + 1;
+
+  glb_m_ubicacion[num_var_id] = new Array(5);
+  glb_m_ubicacion[num_var_id][0]="";
+  glb_m_ubicacion[num_var_id][1]="";
+  glb_m_ubicacion[num_var_id][2]=0;
+  glb_m_ubicacion[num_var_id][3]=0;
+  glb_m_ubicacion[num_var_id][4]=0;
+  $('#m_total_ubicacion_campos').val(num_var_id);
+
+  var append_ubicacion="<div class='col-lg-12  col-sm-6' >"+
+                    "<div class='col-lg-3  col-sm-6'><label for=''>Municipio</label>"+
+                    "<select  onchange='municipio_mi("+num_var_id+")' class='form-control option' id='m_municipio"+num_var_id+"' disabled>"+
+                    "</select><br></div><div class='col-lg-3  col-sm-6'><label for=''>Localidad</label>"+
+                    "<select onchange='localidad_mi("+num_var_id+")' class='form-control option' id='m_localidad"+num_var_id+"' disabled>"+
+                    "</select><br></div>";
+
+
+  $('#dm_panel_ubicacion_app').append(append_ubicacion);
+
+  $('#m_municipio'+num_var_id)
+      .append($("<option></option>")
+      .attr("value","")
+      .text(""))
+      .append($("<option></option>")
+      .attr("value","VARIOS")
+      .text("VARIOS"))
+      ;
+  m_getMunicipios().success(function (data) {
+    $.each(data, function(key, value) {
+        $('#m_municipio'+num_var_id)
+            .append($("<option></option>")
+            .attr("value",value)
+            .text(value))
+            ;
       });
+          $('#m_municipio'+num_var_id).val(data_municipio);
+
+          $('#m_localidad'+num_var_id).empty();
+          $('#m_localidad'+num_var_id)
+              .append($("<option></option>")
+              .attr("value","")
+              .text(""));
+
+        if($("#m_municipio"+num_var_id).val() == 'VARIOS'){
+        $('#m_localidad'+num_var_id)
+                    .append($("<option></option>")
+                    .attr("value","VARIOS")
+                    .text("VARIOS"));
+            $('#m_localidad'+num_var_id).val(data_localidad);
+          }
+          else{
+
+          m_getLocalidades(data_municipio).success(function (data) {
+              $.each(data, function(key, value) {
+                  $('#m_localidad'+num_var_id)
+                      .append($("<option></option>")
+                      .attr("value",value)
+                      .text(value));
+                  });
+
+                  $('#m_localidad'+num_var_id).val(data_localidad);
+
+                });
+            }
+
+    });
+
+}
+
+
+
+function municipio_mi(i){
+  glb_m_ubicacion[i-1] = new Array(5);
+  glb_m_ubicacion[i-1][0]="";
+  glb_m_ubicacion[i-1][1]="";
+  $('#m_localidad'+i).empty();
+  var resultado = m_actualizar_beneficiarios($('#m_total_ubicacion_campos').val());
+  $("#m_beneficiarios_directos").val(resultado[0]);
+  $("#m_beneficiarios_indirectos").val(resultado[1]);
+  $('#m_localidad'+i)
+      .append($("<option></option>")
+      .attr("value","")
+      .text(""));
+if($("#m_municipio"+i).val() == 'VARIOS'){
+  $('#m_localidad'+i)
+      .append($("<option></option>")
+      .attr("value","VARIOS")
+      .text("VARIOS"));
+}
+else{
+getLocalidades($("#m_municipio"+i).val()).success(function (data) {
+$.each(data, function(key, value) {
+    $('#m_localidad'+i)
+        .append($("<option></option>")
+        .attr("value",value)
+        .text(value));
+    });
+  });
+}
+
+}
+
+function m_actualizar_beneficiarios(total_num){
+  var y=0;
+  var municipios_agregados = [];
+  var son_iguales = 0;
+  var total_poblacion_areglos = 0;
+  var total_directa = 0;
+  var total_indirecta = 0;
+
+  for(var x=0;x<total_num;x++){
+
+    if(glb_m_ubicacion[x][1]!=""){
+      total_directa = Number(total_directa) + Number(glb_m_ubicacion[x][2]);
+      if(y==0){
+        municipios_agregados[y] = glb_m_ubicacion[x][0];
+        total_poblacion_areglos = Number(total_poblacion_areglos) + Number(glb_m_ubicacion[x][4]);
+        y++;
+      }
+      else{
+        for(var z=0;z<y;z++){
+          if(municipios_agregados[z]==glb_m_ubicacion[x][0]){
+            son_iguales = 1;
+          }
+        }
+        if(son_iguales=='1'){
+          son_iguales = 0;
+        }
+        else{
+          municipios_agregados[y] = glb_m_ubicacion[x][0];
+          total_poblacion_areglos = Number(total_poblacion_areglos) + Number(glb_m_ubicacion[x][4]);
+          y++;
+        }
+      }
+    }
   }
+  total_indirecta =  Number(total_poblacion_areglos) - Number(total_directa);
+
+  var resultado = new Array(2);
+  resultado[0] = total_directa;
+  resultado[1] = total_indirecta;
+  return resultado;
+}
+
+
+function m_agregar_ubicacionGLB(data,i){
+  var poblacion_total = data.poblacion_total;
+  var poblacion_directa = data.poblacion_localidad;
+
+  if(!($.isNumeric(poblacion_total))) poblacion_total = 0;
+  if(!($.isNumeric(poblacion_directa))) poblacion_directa = 0;
+  var poblacion_indirecta = parseFloat(poblacion_total) - parseFloat(poblacion_directa);
+
+  glb_m_ubicacion[i-1] = new Array(5);
+  glb_m_ubicacion[i-1][0]=data.municipio;
+  glb_m_ubicacion[i-1][1]=data.localidad;
+  glb_m_ubicacion[i-1][2]=poblacion_directa;
+  glb_m_ubicacion[i-1][3]=poblacion_indirecta;
+  glb_m_ubicacion[i-1][4]=poblacion_total;
+
+}
+
+function localidad_mi(i){
+  getTotalUbicacion($("#m_municipio"+i).val(),$("#m_localidad"+i).val()).success(function (data) {
+      m_agregar_ubicacionGLB(data,i);
+      var resultado = m_actualizar_beneficiarios($('#m_total_ubicacion_campos').val());
+      $("#m_beneficiarios_directos").val(resultado[0]);
+      $("#m_beneficiarios_indirectos").val(resultado[1]);
+  });
+}
 
   function cambiar_read(valor){
 
@@ -1195,6 +1276,14 @@ function m_getTotalUbicacion(){
                                                                         $('#m_aporte_municipal').prop('readonly', valor);
                                                                         $('#m_aportacion_beneficiarios').prop('readonly', valor);
                                                                         $('#m_aportacion_otros').prop('readonly', valor);
+                                                                        $('#m_btn_agregar_ubicacion').attr('disabled', valor);
+                                                                        if(valor==false){
+                                                                          var x;
+                                                                          for(x=2;x<=Number($('#m_total_ubicacion_campos').val());x++){
+                                                                            $('#m_municipio'+x).attr('disabled',valor);
+                                                                            $('#m_localidad'+x).attr('disabled',valor);
+                                                                          }
+                                                                        }
   }
 
 function funcion_toastr(atributo,mensaje){
@@ -1218,35 +1307,6 @@ function funcion_toastr(atributo,mensaje){
   }
 }
 
-/*function actualizar_revision_normativa(data){
-  $('#tabla_normativa').empty();
-  var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th><th>Eliminar</th></tr></thead><tbody>";
-  var len = 0;
-  var i;
-  for(i in data){
-    if (data.hasOwnProperty(i)) {
-      len++;
-      }
-  }
-  if(len>0){
-  for(i=0; i<len; i++){
-     contentRevision += '<tr>' +
-                       '<td>'+ (i+1)+'</td>'+
-                       '<td>'+ data[i].observaciones+'</td>'+
-                       '<td>'+ data[i].fecha_ingreso+'</td>'+
-                       '<td>'+ data[i].fecha_entrega+'</td>'+
-                       "<td><button type='button' class='btn btn-default'  onclick='borrar_revision("+data[i].id_revisiones+","+data[i].id_obra+",\""+data[i].area+"\")'><span class='glyphicon glyphicon-remove-circle' style='color:red' aria-hidden='true'></span></button></td>"+
-                       '</tr>';
-     }
-  contentRevision += "</tbody></table>";
-  $('#tabla_normativa').append(contentRevision);
-}
-else {
-  contentRevision = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin Observaciones</strong></div>"
-  $('#tabla_normativa').append(contentRevision);
-  }
-}
-*/
 function actualizar_revision_direccion(data){
   $('#tabla_direccion').empty();
   var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Area</th><th>Fecha de recibido</th><th>Fecha de envio</th><th>Eliminar</th></tr></thead><tbody>";

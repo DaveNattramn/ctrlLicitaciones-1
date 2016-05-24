@@ -36,9 +36,9 @@ $bd = new ADMIN();
               $nestedData[] = utf8_encode($row["municipio"]);
               $nestedData[] = utf8_encode($row["localidad"]);
               $nestedData[] = '$' . number_format(utf8_encode($row["total"]),2);
-	             $nestedData[] = utf8_encode($row["tipo_adj_solicitado"]);
-               $nestedData[] = utf8_encode($row["estatus_general"]);
-	              $data[] = $nestedData;
+	          $nestedData[] = utf8_encode($row["tipo_adj_solicitado"]);
+            $nestedData[] = utf8_encode($row["estatus_general"]);
+	          $data[] = $nestedData;
               }
 
 $json_data = array(

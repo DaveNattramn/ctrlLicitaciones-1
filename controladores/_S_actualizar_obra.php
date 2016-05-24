@@ -19,8 +19,9 @@
   $normativa_aplicar = utf8_decode($_POST['normativa_aplicar']);
   $tipo_adj_solicitado = utf8_decode($_POST['tipo_adj_solicitado']);
   $partidas = utf8_decode($_POST['partidas']);
-  $municipio = utf8_decode($_POST['municipio']);
-  $localidad = utf8_decode($_POST['localidad']);
+
+  $ubicacion = $_POST['ubicacion'];  //UTF8 se usara en la conexión, tiene problemas con JSON
+
   $beneficiarios_directos = utf8_decode($_POST['beneficiarios_directos']);
   $beneficiarios_indirectos = utf8_decode($_POST['beneficiarios_indirectos']);
   $empleos_directos = utf8_decode($_POST['empleos_directos']);
@@ -42,7 +43,7 @@
     $estatus_recurso='AUTORIZADO';
   }*/
 
-  $resultado=$bd->actualizar_obra($id_obra,$no_obra,$obra,$no_autorizacion,$fecha_autorizacion,$fecha_recibido_autorizacion,$tipo_inversion,$tipo_expediente,$monto_solicitado,$dimension_inversion,$unidad_responsable,$etapa,$periodo_ejecucion,$propuesta_anual,$normativa_aplicar,$tipo_adj_solicitado,$partidas,$municipio,$localidad,$beneficiarios_directos,$beneficiarios_indirectos,$empleos_directos,$empleos_indirectos,$programa_federal,$aporte_federal,$programa_estatal,$aporte_estatal,$programa_municipal,$aporte_municipal,$aportacion_beneficiarios,
+  $resultado=$bd->actualizar_obra($id_obra,$no_obra,$obra,$no_autorizacion,$fecha_autorizacion,$fecha_recibido_autorizacion,$tipo_inversion,$tipo_expediente,$monto_solicitado,$dimension_inversion,$unidad_responsable,$etapa,$periodo_ejecucion,$propuesta_anual,$normativa_aplicar,$tipo_adj_solicitado,$partidas,$ubicacion,$beneficiarios_directos,$beneficiarios_indirectos,$empleos_directos,$empleos_indirectos,$programa_federal,$aporte_federal,$programa_estatal,$aporte_estatal,$programa_municipal,$aporte_municipal,$aportacion_beneficiarios,
                                     $aportacion_otros);
 
   $bd->cerrar();

@@ -25,8 +25,8 @@
             <script src="../../../js/jquery21.js"></script>
             <script src="../../../js/bootstrap.js"></script>
             <script src="../../../js/scripts_generales.js"></script>
-						<script src="../../../js/_Sagregar_obra.js"></script>
-					  <script src="../../../js/_S_validarObras.js"></script>
+						<script src="../../../js/_S_agregar_obra.js"></script>
+					  <script src="../../../js/_S_tabla_obra.js"></script>
 						<script src="../../../js/jquery-dateFormat.js"></script>
 
 						<script src="js/nvo_alcance.js"></script>
@@ -271,6 +271,11 @@
 															<h3 class="panel-title">Ubicación</h3>
 														</div>
 														<div class="panel-body">
+
+															<div class="col-lg-12  col-sm-6" id="panel_ubicacion">
+
+															<div class='col-lg-12  col-sm-6' >
+
 																<div class="col-lg-3  col-sm-6">
 																	<label for="">Municipio</label>
 																	<select  class="form-control option" id="municipio">
@@ -286,6 +291,21 @@
 																	</select>
 																	<br>
 																</div>
+
+
+														<div class="col-lg-3  col-sm-6">
+															<br>
+															<button type="button" id="btn_agregar_ubicacion" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+														</div>
+
+															<div class="col-lg-3  col-sm-6">
+															<input type="hidden" class="form-control" id="total_ubicacion_campos" value="1" readonly>
+														</div>
+													</div>
+
+														<div id="panel_ubicacion_app">
+														</div>
+													</div>
 
 																<div class="col-lg-3  col-sm-6">
 																	<label for="">Beneficiarios Directos</label>
@@ -476,8 +496,8 @@
 									<legend></legend>
 		            <div class="modal-footer">
 
+											              <button id="btn_resumen" type="button" class="btn btn-warning pull-left"><i class="fa fa-external-link" aria-hidden="true"></i> Resumen</button>
 		              <button id="cancelar_obra" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar Proyecto</button>
-
 									<button type="button" id="modificar_obra" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Modificar</button>
 									<button type="button" id="actualizar_obra" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar</button>
 		              <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-resize-small" aria-hidden="true"></span> Cerrar</button>

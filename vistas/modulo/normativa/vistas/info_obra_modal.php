@@ -162,21 +162,40 @@
               <h3 class="panel-title">Ubicación</h3>
             </div>
             <div class="panel-body">
-                <div class="col-lg-3  col-sm-6" id="dm_municipio">
-                  <label for="">Municipio</label>
-                  <select  class="form-control option" id="m_municipio">
 
-                    </select>
-                  <br>
-                </div>
+      <div class="col-lg-12  col-sm-6" id="panel_ubicacion">
 
-                <div class="col-lg-3  col-sm-6" id="dm_localidad">
-                  <label for="">Localidad</label>
-                  <select class="form-control option" id="m_localidad">
+        <div class='col-lg-12  col-sm-6' >
 
-                  </select>
-                  <br>
-                </div>
+            <div class="col-lg-3  col-sm-6" id="dm_municipio">
+              <label for="">Municipio</label>
+              <select  class="form-control option" id="m_municipio">
+
+                </select>
+              <br>
+            </div>
+
+            <div class="col-lg-3  col-sm-6" id="dm_localidad">
+              <label for="">Localidad</label>
+              <select class="form-control option" id="m_localidad">
+              </select>
+              <br>
+            </div>
+
+            <div class="col-lg-3  col-sm-6">
+              <br>
+              <button type="button" id="m_btn_agregar_ubicacion" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+            </div>
+
+              <div class="col-lg-3  col-sm-6">
+              <input type="hidden" class="form-control" id="m_total_ubicacion_campos" value="1" readonly >
+            </div>
+        </div>
+
+            <div id="dm_panel_ubicacion_app">
+            </div>
+
+      </div>
 
                 <div class="col-lg-3  col-sm-6" id="dm_beneficiarios_directos">
                   <label for="">Beneficiarios Directos</label>
@@ -189,7 +208,6 @@
                   <input type="text" class="form-control" id="m_beneficiarios_indirectos" readonly>
                   <br>
                 </div>
-
 
 
                 																<div class="col-lg-3  col-sm-6" id="dm_empleos_directos">

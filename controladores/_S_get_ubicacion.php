@@ -9,9 +9,11 @@
 
   while($row = odbc_fetch_array($result))
   {
-  	$j_obra['id_obra']=utf8_encode($row['id_obra']);
-  	$j_obra['municipio']=utf8_encode($row['municipio']);
-    $j_obra['localidad']=utf8_encode($row['localidad']);    
+    $nestedData=array();
+  	$nestedData['id_obra']=utf8_encode($row['id_obra']);
+  	$nestedData['municipio']=utf8_encode($row['municipio']);
+    $nestedData['localidad']=utf8_encode($row['localidad']);
+    $j_obra[]=$nestedData;
   }
 
 
