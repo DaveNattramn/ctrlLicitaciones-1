@@ -258,7 +258,7 @@ public function ordenaSelectObraNormativa($req,$req_o_c,$req_o_d,$req_s,$req_l){
 
 
       public function get_fecha_reciente_Dir($id_obra){
-        $sql = "SELECT MIN(fecha_ingreso) As fecha from revisiones WHERE id_obra='".$id_obra."' AND (area='1' OR area='2' OR area='3')";
+        $sql = "SELECT MIN(fecha_ingreso) As fecha from revisiones WHERE id_obra='".$id_obra."' AND (area!='LICITACIONES' AND area!='SEGUIMIENTO A LA INVERSIÓN')";
         $exec = odbc_exec($this->conexion, $sql);
 
         return $exec;
@@ -283,7 +283,7 @@ public function getRevisiones($id_obra,$area){
 }
 
 public function getRevisionesDir($id_obra){
-  $sql = "SELECT * FROM revisiones WHERE id_obra ='".$id_obra."'  AND (area='1' OR area='2' OR area='3') ORDER BY fecha_ingreso ASC";
+  $sql = "SELECT * FROM revisiones WHERE id_obra ='".$id_obra."'  AND (area!='LICITACIONES' AND area!='SEGUIMIENTO A LA INVERSIÓN') ORDER BY fecha_ingreso ASC";
   $exec = odbc_exec($this->conexion, $sql);
   return $exec;
 }

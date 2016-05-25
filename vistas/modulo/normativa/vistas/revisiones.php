@@ -61,9 +61,9 @@
   <div class="col-lg-3  col-sm-6" id="mr_area_d2">
     <label for="">Dirección</label>
     <select  class="form-control option" id="mr_area_d">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
+      <option>DIRECCIÓN DE</option>
+      <option>DIRECCIÓN DE</option>
+      <option>DIRECCIÓN DE</option>
       </select>
     <br>
   </div>
@@ -117,9 +117,9 @@
     <div class="col-lg-3  col-sm-6" id="edt_mr_area_d2">
       <label for="">Dirección</label>
       <select  class="form-control option" id="edt_mr_area_d">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
+        <option>DIRECCIÓN DE</option>
+        <option>DIRECCIÓN DE</option>
+        <option>DIRECCIÓN DE</option>
       </select>
       <br>
     </div>

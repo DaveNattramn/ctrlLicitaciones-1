@@ -147,14 +147,15 @@
 																<div class="col-lg-3  col-sm-6" id="d_tipo_expediente">
 																	<label>Tipo de Solicitud</label>
 											            <select class="form-control option" id="tipo_expediente" name="">
-																			<option></option>
-								                      <option>COSTO-BENEFICIO</option>
-								                      <option>ESTUDIOS Y PROYECTOS</option>
-								                      <option>OBRA</option>
-								                      <option>PROYECTO INTEGRAL</option>
-								                      <option>SUPERVISIÓN</option>
-								                      <option>MOBILIARIO Y EQUIPAMIENTO DE OBRA</option>
-								                      <option>AFECTACIONES Y COMPRA DE TERRENOS</option>
+																		<option></option>
+																		<option>AFECTACIONES Y COMPRA DE TERRENOS</option>
+																		<option>COSTO-BENEFICIO</option>
+																		<option>ESTUDIOS Y PROYECTOS</option>
+																		<option>MOBILIARIO Y EQUIPAMIENTO DE OBRA</option>
+																		<option>OBRA</option>
+																		<option>PPS</option>
+																		<option>PROYECTO INTEGRAL</option>
+																		<option>SUPERVISIÓN</option>
 																		</select>
  													      </div>
 
@@ -175,16 +176,16 @@
 																<div class="col-lg-3  col-sm-6" id="d_dependencia_solicitante">
 																	<label>Dependencia Solicitante</label>
 											            <select class="form-control option" name="" id="dependencia_solicitante">
-											                <option></option>
-																			<option>Secretaría de Infraestructura</option>
+
+																			<option>SECRETARÍA DE INFRAESTRUCTURA</option>
 																		</select>
  													      </div>
 
 																<div class="col-lg-3  col-sm-6" id="d_dependencia_ejecutora">
 																	<label>Dependencia Ejecutora</label>
 											            <select class="form-control option" name="" id="dependencia_ejecutora">
-											                <option></option>
-																			<option>Secretaría de Infraestructura y Transportes</option>
+
+																			<option>SECRETARÍA DE INFRAESTRUCTURA Y TRANSPORTES</option>
 																		</select>
  													      </div>
 
@@ -192,26 +193,25 @@
 																	<label>Unidad Responsable (U.R.)</label>
 											            <select class="form-control option" name="" id="unidad_responsable">
 																		<option></option>
-																		<option>DIRECCIÓN DE ALCANTARILLADO</option>
-																		<option>DIRECCIÓN DE CARRETERAS Y CAMINOS ESTATALES</option>
-																		<option>DIRECCION DE PROYECTOS</option>
-																		<option>DIRECCIÓN DE AGUA</option>
-																		<option>DIRECCIÓN DE SANEAMIENTO</option>
-																		<option>DIRECCIÓN DE ALCANTARILLADO</option>
-																		<option>OFICINA DEL C. SECRETARIO</option>
-																		<option>SUBSECRETARIA DE INFRAESTRUCTURA</option>
-																		<option>DIRECCIÓN DE OBRA PUBLICA</option>
-																		<option>DIRECCIÓN DE INFRAESTRUCTURA ESTRATEGICA</option>
-																		<option>SUBSECRETARIA DE COMUNICACIONES</option>
-																		<option>DIRECCIÓN DE INFRAESTRUCTURA DE COMUNICACIONES</option>
-																		<option>DIRECCIÓN DE CONSERVACION Y MANTENIMIENTO</option>
-																		<option>DIRECCIÓN DE NORMATIVIDAD Y GESTION CIUDADANA</option>
-																		<option>DIRECCIÓN TECNICA</option>
 																		<option>COORDINACIÓN GENERAL ADMINISTRATIVA</option>
+																		<option>DIRECCIÓN DE AGUA</option>
+																		<option>DIRECCIÓN DE ALCANTARILLADO</option>
+																		<option>DIRECCIÓN DE ASUNTOS JURIDICOS</option>
+																		<option>DIRECCIÓN DE CARRETERAS Y CAMINOS ESTATALES</option>
+																		<option>DIRECCIÓN DE CONSERVACION Y MANTENIMIENTO</option>
+																		<option>DIRECCIÓN DE INFRAESTRUCTURA DE COMUNICACIONES</option>
+																		<option>DIRECCIÓN DE INFRAESTRUCTURA ESTRATEGICA</option>
+																		<option>DIRECCIÓN DE NORMATIVIDAD Y GESTION CIUDADANA</option>
+																		<option>DIRECCIÓN DE OBRA PUBLICA</option>
+																		<option>DIRECCION DE PROYECTOS</option>
 																		<option>DIRECCIÓN DE RECURSOS FINANCIEROS</option>
 																		<option>DIRECCIÓN DE RECURSOS HUMANOS</option>
 																		<option>DIRECCIÓN DE RECURSOS MATERIALES Y SERVICIOS GENERALES</option>
-																		<option>DIRECCIÓN DE ASUNTOS JURIDICOS</option>
+																		<option>DIRECCIÓN DE SANEAMIENTO</option>
+																		<option>DIRECCIÓN TECNICA</option>
+																		<option>OFICINA DEL C. SECRETARIO</option>
+																		<option>SUBSECRETARIA DE COMUNICACIONES</option>
+																		<option>SUBSECRETARIA DE INFRAESTRUCTURA</option>
 																		</select>
  													      </div>
 
@@ -295,7 +295,7 @@
 
 														<div class="col-lg-3  col-sm-6">
 															<br>
-															<button type="button" id="btn_agregar_ubicacion" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+															<button type="button" id="btn_agregar_ubicacion" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
 														</div>
 
 															<div class="col-lg-3  col-sm-6">
@@ -444,19 +444,19 @@
 										</div>
 
 										<div class="col-lg-4 col-sm-4">
-											<div class="alert alert-dismissible alert-success" id="alerta_recurso">
+											<div class="alert alert-dismissible alert-success" align="center" id="alerta_recurso">
 
 											</div>
 										</div>
 
 										<div class="col-lg-4 col-sm-4">
-											<div class="alert alert-dismissible alert-info" id="alerta_obra">
+											<div class="alert alert-dismissible alert-info" align="center" id="alerta_obra">
 
 											</div>
 										</div>
 
 									</div>
-									<br><br><br><br>
+									<br><br><br><br><br>
 
 		            </div>
 

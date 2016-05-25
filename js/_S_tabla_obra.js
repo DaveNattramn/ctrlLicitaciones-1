@@ -45,7 +45,30 @@ $(document).ready(function () {
                                                                   $('#m_suma_total').empty();
                                                                   act_id_obra = aData[0];
                                                                   glb_m_ubicacion = [];
+                                                                  glb_m_ubicacion[0] = new Array(5);
+                                                                  glb_m_ubicacion[0][0]="";
+                                                                  glb_m_ubicacion[0][1]="";
+                                                                  $('#m_id_obra').val(act_id_obra);
+                                                                  
                                                                   $('#m_total_ubicacion_campos').val("1");
+                                                                  $("#dm_obra").removeClass('col-lg-12 has-error').addClass('col-lg-12');
+                                                                  $("#dm_tipo_inversion").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                                                                  $("#dm_tipo_expediente").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                                                                  $("#dm_dimension_inversion").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                                                                  $("#dm_dependencia_solicitante").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                                                                  $("#dm_dependencia_ejecutora").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                                                                  $("#dm_unidad_responsable").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                                                                  $("#dm_etapa").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                                                                  $("#dm_periodo_ejecucion").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                                                                  $("#dm_propuesta_anual").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                                                                  $("#dm_normativa_aplicar").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                                                                  $("#dm_tipo_adj_solicitado").removeClass('col-lg-3  col-sm-6 has-error').addClass('col-lg-3  col-sm-6');
+                                                                  $("#dm_partidas").removeClass('col-lg-4 has-error').addClass('col-lg-4');
+                                                                  $("#dm_programa_federal").removeClass('col-lg-4 has-error').addClass('col-lg-4');
+                                                                  $("#dm_programa_estatal").removeClass('col-lg-4 has-error').addClass('col-lg-4');
+                                                                  $("#dm_programa_municipal").removeClass('col-lg-4 has-error').addClass('col-lg-4');
+                                                                  $("#dm_monto_solicitado").removeClass('col-lg-4 has-error').addClass('col-lg-4');
+
                                                                   actualizar_datos(act_id_obra);
 
                                                                   setTimeout(function(){getObra(aData[0]).success(function (data) {
@@ -79,7 +102,11 @@ $(document).ready(function () {
                                                                     $('#m_beneficiarios_indirectos').val(data.beneficiarios_indirectos);
                                                                     $('#m_empleos_indirectos').val(data.empleos_indirectos);
                                                                     $('#m_empleos_directos').val(data.empleos_directos);
-                                                                  });},10);
+                                                                  })
+                                                                  .error(function(data){
+                                                                      funcion_toastr("error","Error de conexión / Obra");
+                                                                  })
+                                                                  ;},10);
                                                                   setTimeout(function(){getUbicacion(aData[0]).success(function (data) {
 
                                                                     $('#m_municipio').empty();
@@ -91,31 +118,45 @@ $(document).ready(function () {
                                                                         .attr("value","VARIOS")
                                                                         .text("VARIOS"))
                                                                         ;
+                                                                   if(data[0].municipio){
 
-                                                                   var municipio_d = data[0].municipio;
-                                                                   var localidad_d = data[0].localidad;
-                                                                   getTotalUbicacion(municipio_d,localidad_d).success(function (data) {
-                                                                     m_agregar_ubicacionGLB(data,1);
-
-                                                                   });
-                                                                   var len = 0;
-                                                                   var i;
-                                                                   for(i in data){
-                                                                     if (data.hasOwnProperty(i)) {
-                                                                       len++;
-                                                                       }
-                                                                   }
-                                                                   if(len>0){
-                                                                     var x;
-                                                                     var xx = 1;
-                                                                     for(x=1;x<len;x++){
-                                                                       addUbicacionGet(data[x].municipio, data[x].localidad);
-                                                                       getTotalUbicacion(data[x].municipio, data[x].localidad).success(function (data) {
-                                                                         //CORREGIR, TOMA EL VALOR DEL ULTIMO X SIEMPRE
+                                                                      var municipio_d = data[0].municipio;
+                                                                      var localidad_d = data[0].localidad;
+                                                                      getTotalUbicacion(municipio_d,localidad_d).success(function (data) {
+                                                                          m_agregar_ubicacionGLB(data,1);
+                                                                      })
+                                                                      .error(function(data){
+                                                                          funcion_toastr("error","Error de conexión / Municipio");
+                                                                      })
+                                                                      ;
+                                                                      var len = 0;
+                                                                      var i;
+                                                                      for(i in data){
+                                                                        if (data.hasOwnProperty(i)) {
+                                                                          len++;
+                                                                        }
+                                                                      }
+                                                                      if(len>0){
+                                                                        var x;
+                                                                        var xx = 1;
+                                                                        for(x=1;x<len;x++){
+                                                                          addUbicacionGet(data[x].municipio, data[x].localidad);
+                                                                          getTotalUbicacion(data[x].municipio, data[x].localidad).success(function (data) {
+                                                                            //CORREGIR, TOMA EL VALOR DEL ULTIMO X SIEMPRE
                                                                           m_agregar_ubicacionGLB(data,++xx);
-                                                                       });
-                                                                     }
-                                                                   }
+                                                                          })
+                                                                          .error(function(data){
+                                                                              funcion_toastr("error","Error de conexión / Total ubicación");
+                                                                          })
+                                                                          ;
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                    else{
+                                                                      var municipio_d = "";
+                                                                      var localidad_d = "";
+
+                                                                    }
                                                                     m_getMunicipios().success(function (data) {
 
                                                                       $.each(data, function(key, value) {
@@ -152,17 +193,28 @@ $(document).ready(function () {
 
                                                                               $('#m_localidad').val(localidad_d);
 
-                                                                            });
+                                                                            })
+                                                                            .error(function(data){
+                                                                                funcion_toastr("error","Error de conexión / Localidades");
+                                                                            })
+                                                                            ;
                                                                         }
 
 
 
+                                                                      })
+                                                                      .error(function(data){
+                                                                          funcion_toastr("error","Error de conexión / Municipios 2");
                                                                       });
 
 
 
 
-                                                                  });},110);
+                                                                  })
+                                                                  .error(function(data){
+                                                                      funcion_toastr("error","Error de conexión  /Ubicación");
+                                                                  })
+                                                                  ;},110);
                                                                   setTimeout(function(){getEstructuraF(aData[0]).success(function (data) {
                                                                     $('#m_monto_solicitado').val(data.total);
                                                                     $('#m_programa_federal').val(data.programa_federal);
@@ -174,25 +226,45 @@ $(document).ready(function () {
                                                                     $('#m_aportacion_otros').val(data.aportacion_otros);
                                                                     $('#m_aportacion_beneficiarios').val(data.aportacion_beneficiarios);
 
-                                                                  });},210);
+                                                                  })
+                                                                  .error(function(data){
+                                                                      funcion_toastr("error","Error de conexión / EF");
+                                                                  })
+                                                                  ;},210);
                                                                     setTimeout(function(){getAlcances(aData[0]).success(function (data) {
                                                                       actualizar_alcance(data);
-                                                                  });},310);
+                                                                  })
+                                                                  .error(function(data){
+                                                                      funcion_toastr("error","Error de conexión  / Alcances");
+                                                                  })
+                                                                  ;},310);
                                                           /*          getRevisiones(aData[0],"NORMATIVA").success(function (data) {
                                                                       actualizar_revision_normativa(data);
                                                                     });*/
 
                                                                     setTimeout(function(){getRevisiones(aData[0],"DIRECCION").success(function (data) {
                                                                       actualizar_revision_direccion(data);
-                                                                    });},360);
+                                                                    })
+                                                                    .error(function(data){
+                                                                        funcion_toastr("error","Error de conexión  / D");
+                                                                    })
+                                                                    ;},360);
 
                                                                     setTimeout(function(){getRevisiones(aData[0],"SEGUIMIENTO A LA INVERSIÓN").success(function (data) {
                                                                       actualizar_revision_seguimiento(data);
-                                                                    });},410);
+                                                                    })
+                                                                    .error(function(data){
+                                                                        funcion_toastr("error","Error de conexión  / S");
+                                                                    })
+                                                                    ;},410);
 
                                                                     setTimeout(function(){getRevisiones(aData[0],"LICITACIONES").success(function (data) {
                                                                       actualizar_revision_licitaciones(data);
-                                                                    });},460);
+                                                                    })
+                                                                    .error(function(data){
+                                                                        funcion_toastr("error","Error de conexión   / L");
+                                                                    })
+                                                                    ;},460);
 
 
                                                                     setTimeout(function(){cambiar_read(true)},520);
@@ -364,9 +436,14 @@ $(document).ready(function () {
         });
     });
 
-    $('#btn_resumen').click(function (event) {
-      window.open("/ctrlLicitaciones/vistas/modulo/normativa/vistas/tabla.html");
+
+    $('#btn_resumen').bind("click", function () {
+                window.open("/ctrlLicitaciones/vistas/modulo/normativa/vistas/tabla3.php");
     });
+
+    //$('#btn_resumen').click(function (event) {
+//      window.open("/ctrlLicitaciones/vistas/modulo/normativa/vistas/tabla.php");
+    //});
 
     $('#cancelar_obra').click(function (event) {
          var valor = 'CANCELADA';
@@ -507,47 +584,6 @@ $('#guardar_alcance').click(function (event) {
 
 });
 
-
-
-/*$('#enviar_normativa').click(function (event) {
-  var id_obra = act_id_obra;
-  var area = "NORMATIVA";
-  var r_fecha_recibido = $("#mr_fecha_recibido_n").val();
-  var r_fecha_envio = $("#mr_fecha_envio_n").val();
-  var observaciones = $("#mr_observaciones_n").val();
-
-  $.ajax({
-
-      url: '../../../controladores/_S_agregar_revision.php',
-      type: 'post',
-      data: {
-        id_obra:id_obra, r_fecha_recibido:r_fecha_recibido,r_fecha_envio:r_fecha_envio, observaciones:observaciones, area:area
-      },
-      success: function (data) {
-          funcion_toastr("success","Revisión agregada");
-          mostrar.ajax.reload();
-          $("#mr_fecha_envio_n").val("");
-          $("#mr_fecha_recibido_n").val("");
-          $("#mr_observaciones_n").val("");
-          $("#mr_fecha_envio_n2").val("");
-          $("#mr_fecha_recibido_n2").val("");
-          $("#mr_observaciones_n2").val("");
-          actualizar_datos(act_id_obra);
-          getRevisiones(id_obra,area).success(function (data) {
-            actualizar_revision_normativa(data);
-        });
-      }
-       ,
-
-      error: function (jqXHR, textStatus, errorThrown) {
-          alert(errorThrown);
-      }
-
-
-  });
-});
-*/
-
   $('#enviar_direccion').click(function (event) {
     var id_obra = act_id_obra;
     var area = $("#mr_area_d").val();
@@ -599,7 +635,7 @@ $('#edt_enviar_direccion').click(function (event) {
       url: '../../../controladores/_S_editar_revision.php',
       type: 'post',
       data: {
-        id_revisiones, id_obra:id_obra, r_fecha_recibido:r_fecha_recibido,r_fecha_envio:r_fecha_envio, observaciones:observaciones, area:area
+        id_revisiones:id_revisiones, id_obra:id_obra, r_fecha_recibido:r_fecha_recibido,r_fecha_envio:r_fecha_envio, observaciones:observaciones, area:area
       },
       success: function (data) {
           $('#modificar_revision_direccion').removeClass("visible").addClass("hidden");
@@ -677,7 +713,7 @@ $('#edt_enviar_seguimiento').click(function (event) {
       url: '../../../controladores/_S_editar_revision.php',
       type: 'post',
       data: {
-        id_revisiones, id_obra:id_obra, r_fecha_recibido:r_fecha_recibido,r_fecha_envio:r_fecha_envio, observaciones:observaciones, area:area
+        id_revisiones:id_revisiones, id_obra:id_obra, r_fecha_recibido:r_fecha_recibido,r_fecha_envio:r_fecha_envio, observaciones:observaciones, area:area
       },
       success: function (data) {
           $('#modificar_revision_seguimiento').removeClass("visible").addClass("hidden");
@@ -749,7 +785,7 @@ $('#edt_enviar_licitaciones').click(function (event) {
       url: '../../../controladores/_S_editar_revision.php',
       type: 'post',
       data: {
-        id_revisiones, id_obra:id_obra, r_fecha_recibido:r_fecha_recibido,r_fecha_envio:r_fecha_envio, observaciones:observaciones, area:area
+        id_revisiones:id_revisiones, id_obra:id_obra, r_fecha_recibido:r_fecha_recibido,r_fecha_envio:r_fecha_envio, observaciones:observaciones, area:area
       },
       success: function (data) {
           $('#modificar_revision_licitaciones').removeClass("visible").addClass("hidden");
@@ -767,6 +803,11 @@ $('#edt_enviar_licitaciones').click(function (event) {
   });
 });
 
+
+$('.modal').on('hidden.bs.modal', function(e)
+   {
+       $(this).removeData();
+}) ;
 
 });
 
@@ -1022,12 +1063,12 @@ function addUbicacion(){
   var num_var_id = $('#m_total_ubicacion_campos').val();
   num_var_id = Number(num_var_id) + 1;
 
-  glb_m_ubicacion[num_var_id] = new Array(5);
-  glb_m_ubicacion[num_var_id][0]="";
-  glb_m_ubicacion[num_var_id][1]="";
-  glb_m_ubicacion[num_var_id][2]=0;
-  glb_m_ubicacion[num_var_id][3]=0;
-  glb_m_ubicacion[num_var_id][4]=0;
+  glb_m_ubicacion[num_var_id-1] = new Array(5);
+  glb_m_ubicacion[num_var_id-1][0]="";
+  glb_m_ubicacion[num_var_id-1][1]="";
+  glb_m_ubicacion[num_var_id-1][2]=0;
+  glb_m_ubicacion[num_var_id-1][3]=0;
+  glb_m_ubicacion[num_var_id-1][4]=0;
 
   $('#m_total_ubicacion_campos').val(num_var_id);
   var append_ubicacion="<div class='col-lg-12  col-sm-6' >"+
@@ -1065,12 +1106,12 @@ function addUbicacionGet(data_municipio,data_localidad){
   var num_var_id = $('#m_total_ubicacion_campos').val();
   num_var_id = Number(num_var_id) + 1;
 
-  glb_m_ubicacion[num_var_id] = new Array(5);
-  glb_m_ubicacion[num_var_id][0]="";
-  glb_m_ubicacion[num_var_id][1]="";
-  glb_m_ubicacion[num_var_id][2]=0;
-  glb_m_ubicacion[num_var_id][3]=0;
-  glb_m_ubicacion[num_var_id][4]=0;
+  glb_m_ubicacion[num_var_id-1] = new Array(5);
+  glb_m_ubicacion[num_var_id-1][0]="";
+  glb_m_ubicacion[num_var_id-1][1]="";
+  glb_m_ubicacion[num_var_id-1][2]=0;
+  glb_m_ubicacion[num_var_id-1][3]=0;
+  glb_m_ubicacion[num_var_id-1][4]=0;
   $('#m_total_ubicacion_campos').val(num_var_id);
 
   var append_ubicacion="<div class='col-lg-12  col-sm-6' >"+
@@ -1309,7 +1350,7 @@ function funcion_toastr(atributo,mensaje){
 
 function actualizar_revision_direccion(data){
   $('#tabla_direccion').empty();
-  var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Area</th><th>Fecha de recibido</th><th>Fecha de envio</th><th>Eliminar</th></tr></thead><tbody>";
+  var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Area</th><th>Fecha de recibido</th><th>Fecha de envio</th><th></th></tr></thead><tbody>";
   var len = 0;
   var i;
   for(i in data){
@@ -1325,7 +1366,7 @@ function actualizar_revision_direccion(data){
                        '<td>'+ data[i].area+'</td>'+
                        '<td>'+ data[i].fecha_ingreso+'</td>'+
                        '<td>'+ data[i].fecha_entrega+'</td>'+
-                       "<td><button type='button' class='btn btn-default'  onclick='borrar_revision("+data[i].id_revisiones+","+data[i].id_obra+",\"DIRECCION\")'><span class='glyphicon glyphicon-remove-circle' style='color:red' aria-hidden='true'></span></button><button type='button' class='btn btn-default'  onclick='editar_revision_direccion("+data[i].id_revisiones+","+data[i].id_obra+")'><span class='glyphicon glyphicon-pencil' style='color:blue' aria-hidden='true'></span></button></td>"+
+                       "<td><button type='button' class='btn btn-default'  onclick='borrar_revision("+data[i].id_revisiones+","+data[i].id_obra+",\"DIRECCION\")'><i class='fa fa-times' aria-hidden='true' style='color:red' ></i></button><button type='button' class='btn btn-default'  onclick='editar_revision_direccion("+data[i].id_revisiones+","+data[i].id_obra+")'><span class='glyphicon glyphicon-pencil' style='color:blue' aria-hidden='true'></span></button></td>"+
                        '</tr>';
      }
   contentRevision += "</tbody></table>";
@@ -1339,7 +1380,7 @@ else {
 
 function actualizar_revision_seguimiento(data){
   $('#tabla_seguimiento').empty();
-  var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th><th>Eliminar</th></tr></thead><tbody>";
+  var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th><th></th></tr></thead><tbody>";
   var len = 0;
   var i;
   for(i in data){
@@ -1354,7 +1395,7 @@ function actualizar_revision_seguimiento(data){
                        '<td>'+ data[i].observaciones+'</td>'+
                        '<td>'+ data[i].fecha_ingreso+'</td>'+
                        '<td>'+ data[i].fecha_entrega+'</td>'+
-                       "<td><button type='button' class='btn btn-default'  onclick='borrar_revision("+data[i].id_revisiones+","+data[i].id_obra+",\""+data[i].area+"\")'><span class='glyphicon glyphicon-remove-circle' style='color:red' aria-hidden='true'></span></button><button type='button' class='btn btn-default'  onclick='editar_revision_seguimiento("+data[i].id_revisiones+","+data[i].id_obra+")'><span class='glyphicon glyphicon-pencil' style='color:blue' aria-hidden='true'></span></button></td>"+
+                       "<td><button type='button' class='btn btn-default'  onclick='borrar_revision("+data[i].id_revisiones+","+data[i].id_obra+",\""+data[i].area+"\")'><i class='fa fa-times' aria-hidden='true' style='color:red' ></i></button><button type='button' class='btn btn-default'  onclick='editar_revision_seguimiento("+data[i].id_revisiones+","+data[i].id_obra+")'><span class='glyphicon glyphicon-pencil' style='color:blue' aria-hidden='true'></span></button></td>"+
                        '</tr>';
      }
   contentRevision += "</tbody></table>";
@@ -1368,7 +1409,7 @@ function actualizar_revision_seguimiento(data){
 
 function actualizar_revision_licitaciones(data){
   $('#tabla_licitaciones').empty();
-  var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th><th>Eliminar</th></tr></thead><tbody>";
+  var contentRevision = "<table class='table table-hover'><thead><tr><th>#</th><th>Observaciones</th><th>Fecha de recibido</th><th>Fecha de envio</th><th></th></tr></thead><tbody>";
   var len = 0;
   var i;
   for(i in data){
@@ -1383,7 +1424,7 @@ function actualizar_revision_licitaciones(data){
                        '<td>'+ data[i].observaciones+'</td>'+
                        '<td>'+ data[i].fecha_ingreso+'</td>'+
                        '<td>'+ data[i].fecha_entrega+'</td>'+
-                       "<td><button type='button' class='btn btn-default'  onclick='borrar_revision("+data[i].id_revisiones+","+data[i].id_obra+",\""+data[i].area+"\")'><span class='glyphicon glyphicon-remove-circle' style='color:red' aria-hidden='true'></span></button><button type='button' class='btn btn-default'  onclick='editar_revision_licitaciones("+data[i].id_revisiones+","+data[i].id_obra+")'><span class='glyphicon glyphicon-pencil' style='color:blue' aria-hidden='true'></span></button></td>"+
+                       "<td><button type='button' class='btn btn-default'  onclick='borrar_revision("+data[i].id_revisiones+","+data[i].id_obra+",\""+data[i].area+"\")'><i class='fa fa-times' aria-hidden='true' style='color:red' ></i></button><button type='button' class='btn btn-default'  onclick='editar_revision_licitaciones("+data[i].id_revisiones+","+data[i].id_obra+")'><span class='glyphicon glyphicon-pencil' style='color:blue' aria-hidden='true'></span></button></td>"+
                        '</tr>';
      }
   contentRevision += "</tbody></table>";
@@ -1397,7 +1438,7 @@ else {
 
 function actualizar_alcance(data){
   $('#tabla_alc').empty();
-  var contentAlcance = "<table id='tabla_alcance' class='table table-hover'><thead><tr><th>Tipo de Obra</th><th>Num. Obj.</th><th>Objeto</th><th>Cantidad</th><th>U.M.</th><th>Eliminar</th></tr></thead><tbody>";
+  var contentAlcance = "<table id='tabla_alcance' class='table table-hover'><thead><tr><th>Tipo de Obra</th><th>Num. Obj.</th><th>Objeto</th><th>Cantidad</th><th>U.M.</th><th></th></tr></thead><tbody id='tbody_alcance'>";
   var len = 0;
   var i;
   for (i in data) {
@@ -1405,6 +1446,7 @@ function actualizar_alcance(data){
         len++;
         }
   }
+  if(len>0){
     for(i=0; i<len; i++){
       contentAlcance += '<tr>' +
                         '<td>'+ data[i].tipo_obra+'</td>'+
@@ -1412,11 +1454,16 @@ function actualizar_alcance(data){
                         '<td>'+ data[i].objeto+'</td>'+
                         '<td>'+ data[i].cantidad+'</td>'+
                         '<td>'+ data[i].um+'</td>'+
-                        "<td><button type='button' class='btn btn-default'  onclick='borrar_alcance("+data[i].id_alcance+","+data[i].id_obra+")'><span class='glyphicon glyphicon-remove-circle' style='color:red' aria-hidden='true'></span></button></td>"+
+                        "<td><button type='button' class='btn btn-default'  onclick='borrar_alcance("+data[i].id_alcance+","+data[i].id_obra+")'><i class='fa fa-times' aria-hidden='true' style='color:red' ></i></button></td>"+
                         '</tr>';
       }
       contentAlcance += "</tbody></table>";
+   }
+   else{
+     contentAlcance = "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-eye-slash' aria-hidden='true'></i><strong> Expediente sin alcances</strong></div>"
+   }
       $('#tabla_alc').append(contentAlcance);
+
 }
 
 function actualizar_datos(act_id_obra){
@@ -1435,7 +1482,7 @@ function actualizar_datos(act_id_obra){
       if(valor!=""){
         setValorObra(act_id_obra,'estatus_recurso','AUTORIZADO').success(function (data) {
                               getValorObra(act_id_obra,'estatus_recurso').success(function (data) {
-                                contenidoRecurso = "Estatus del Recurso: <strong>"+data.estatus_recurso+"</strong>";
+                                contenidoRecurso = "Estatus del Recurso<br> <strong>"+data.estatus_recurso+"</strong>";
                                 $('#alerta_recurso').empty()
                                   .append(contenidoRecurso);
                               });
@@ -1447,7 +1494,7 @@ function actualizar_datos(act_id_obra){
           if(valor!=null){
             setValorObra(act_id_obra,'estatus_recurso','EN INTEGRACIÓN DE EXPEDIENTE').success(function (data) {
                                   getValorObra(act_id_obra,'estatus_recurso').success(function (data) {
-                                    contenidoRecurso = "Estatus del Recurso: <strong>"+data.estatus_recurso+"</strong>";
+                                    contenidoRecurso = "Estatus del Recurso<br> <strong>"+data.estatus_recurso+"</strong>";
                                     $('#alerta_recurso').empty()
                                       .append(contenidoRecurso);
                                   });
@@ -1460,7 +1507,7 @@ function actualizar_datos(act_id_obra){
 getValorObra(act_id_obra,'estatus_general').success(function (data) {
   valor = data.estatus_general;
   if(valor=='CANCELADA'){
-    contenidoObra = "Estatus Obra: <strong>"+valor+"</strong>";
+    contenidoObra = "Estatus Obra<br> <strong>"+valor+"</strong>";
     $('#alerta_obra').empty()
       .append(contenidoObra);
 
@@ -1471,7 +1518,7 @@ getValorObra(act_id_obra,'estatus_general').success(function (data) {
       if(valor!=null){
           setValorObra(act_id_obra,'estatus_general','AUN NO ENTREGADO').success(function (data) {
                           getValorObra(act_id_obra,'estatus_general').success(function (data) {
-                            contenidoObra = "Estatus Obra: <strong>"+data.estatus_general+"</strong>";
+                            contenidoObra = "Estatus Obra<br> <strong>"+data.estatus_general+"</strong>";
                             $('#alerta_obra').empty()
                               .append(contenidoObra);
 

@@ -7,6 +7,10 @@
               </div>
               <div class="panel-body">
 
+
+                <input type="hidden" class="form-control" id="m_id_obra" readonly >
+
+
                 <div class="col-lg-2  col-sm-6" id="dm_no_obra">
                   <label for="">No. de Obra</label>
                   <input type="text" class="form-control" id="m_no_obra">
@@ -59,13 +63,14 @@
                   <label>Tipo de Solicitud</label>
                   <select class="form-control option" name="" id="m_tipo_expediente">
                       <option></option>
+                      <option>AFECTACIONES Y COMPRA DE TERRENOS</option>
                       <option>COSTO-BENEFICIO</option>
                       <option>ESTUDIOS Y PROYECTOS</option>
+                      <option>MOBILIARIO Y EQUIPAMIENTO DE OBRA</option>
                       <option>OBRA</option>
+                      <option>PPS</option>
                       <option>PROYECTO INTEGRAL</option>
                       <option>SUPERVISIÓN</option>
-                      <option>MOBILIARIO Y EQUIPAMIENTO DE OBRA</option>
-                      <option>AFECTACIONES Y COMPRA DE TERRENOS</option>
                     </select>
                 </div>
 
@@ -87,26 +92,25 @@
                   <label>Unidad Responsable (U.R.)</label>
                   <select class="form-control option" name="" id="m_unidad_responsable">
                       <option></option>
-                      <option>DIRECCIÓN DE ALCANTARILLADO</option>
-                      <option>DIRECCIÓN DE CARRETERAS Y CAMINOS ESTATALES</option>
-                      <option>DIRECCION DE PROYECTOS</option>
-                      <option>DIRECCIÓN DE AGUA</option>
-                      <option>DIRECCIÓN DE SANEAMIENTO</option>
-                      <option>DIRECCIÓN DE ALCANTARILLADO</option>
-                      <option>OFICINA DEL C. SECRETARIO</option>
-                      <option>SUBSECRETARIA DE INFRAESTRUCTURA</option>
-                      <option>DIRECCIÓN DE OBRA PUBLICA</option>
-                      <option>DIRECCIÓN DE INFRAESTRUCTURA ESTRATEGICA</option>
-                      <option>SUBSECRETARIA DE COMUNICACIONES</option>
-                      <option>DIRECCIÓN DE INFRAESTRUCTURA DE COMUNICACIONES</option>
-                      <option>DIRECCIÓN DE CONSERVACION Y MANTENIMIENTO</option>
-                      <option>DIRECCIÓN DE NORMATIVIDAD Y GESTION CIUDADANA</option>
-                      <option>DIRECCIÓN TECNICA</option>
                       <option>COORDINACIÓN GENERAL ADMINISTRATIVA</option>
+                      <option>DIRECCIÓN DE AGUA</option>
+                      <option>DIRECCIÓN DE ALCANTARILLADO</option>
+                      <option>DIRECCIÓN DE ASUNTOS JURIDICOS</option>
+                      <option>DIRECCIÓN DE CARRETERAS Y CAMINOS ESTATALES</option>
+                      <option>DIRECCIÓN DE CONSERVACIÓN Y MANTENIMIENTO</option>
+                      <option>DIRECCIÓN DE INFRAESTRUCTURA DE COMUNICACIONES</option>
+                      <option>DIRECCIÓN DE INFRAESTRUCTURA ESTRATEGICA</option>
+                      <option>DIRECCIÓN DE NORMATIVIDAD Y GESTION CIUDADANA</option>
+                      <option>DIRECCIÓN DE OBRA PÚBLICA</option>
+                      <option>DIRECCION DE PROYECTOS</option>
                       <option>DIRECCIÓN DE RECURSOS FINANCIEROS</option>
                       <option>DIRECCIÓN DE RECURSOS HUMANOS</option>
                       <option>DIRECCIÓN DE RECURSOS MATERIALES Y SERVICIOS GENERALES</option>
-                      <option>DIRECCIÓN DE ASUNTOS JURIDICOS</option>
+                      <option>DIRECCIÓN DE SANEAMIENTO</option>
+                      <option>DIRECCIÓN TECNICA</option>
+                      <option>OFICINA DEL C. SECRETARIO</option>
+                      <option>SUBSECRETARIA DE COMUNICACIONES</option>
+                      <option>SUBSECRETARIA DE INFRAESTRUCTURA</option>
                     </select>
                 </div>
 
@@ -184,12 +188,12 @@
 
             <div class="col-lg-3  col-sm-6">
               <br>
-              <button type="button" id="m_btn_agregar_ubicacion" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+              <button type="button" id="m_btn_agregar_ubicacion" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
             </div>
 
               <div class="col-lg-3  col-sm-6">
               <input type="hidden" class="form-control" id="m_total_ubicacion_campos" value="1" readonly >
-            </div>
+              </div>
         </div>
 
             <div id="dm_panel_ubicacion_app">
