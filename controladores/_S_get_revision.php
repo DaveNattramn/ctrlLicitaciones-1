@@ -13,13 +13,22 @@
   	$j_revisiones["id_revisiones"]=utf8_encode($row["id_revisiones"]);
     $j_revisiones["id_obra"]=utf8_encode($row["id_obra"]);
     $j_revisiones["area"]=utf8_encode($row["area"]);
-    $j_revisiones["fecha_ingreso"]=utf8_encode($row["fecha_ingreso"]);
-    $j_revisiones["fecha_entrega"]=utf8_encode($row["fecha_entrega"]);
     $j_revisiones["observaciones"]=utf8_encode($row["observaciones"]);
+    $j_revisiones["fecha_ingreso"]=utf8_encode($row["fecha_ingreso"]);
     $j_revisiones["fecha_ingreso_d"]= DateTime::createFromFormat('Y-m-d H:i:s.u',utf8_encode($row["fecha_ingreso"]))->format("Y-m-d H:i:s");
-    $j_revisiones["fecha_entrega_d"]= DateTime::createFromFormat('Y-m-d H:i:s.u',utf8_encode($row["fecha_entrega"]))->format("Y-m-d H:i:s");
     $j_revisiones["fecha_ingreso_d2"]= DateTime::createFromFormat('Y-m-d H:i:s.u',utf8_encode($row["fecha_ingreso"]))->format("d M Y - h:i a");
+
+    if($row["fecha_entrega"]!=null){
+    $j_revisiones["fecha_entrega"]=utf8_encode($row["fecha_entrega"]);
+    $j_revisiones["fecha_entrega_d"]= DateTime::createFromFormat('Y-m-d H:i:s.u',utf8_encode($row["fecha_entrega"]))->format("Y-m-d H:i:s");
     $j_revisiones["fecha_entrega_d2"]= DateTime::createFromFormat('Y-m-d H:i:s.u',utf8_encode($row["fecha_entrega"]))->format("d M Y - h:i a");
+    }
+    else{
+      $j_revisiones["fecha_entrega"]="";
+      $j_revisiones["fecha_entrega_d"]= "";
+      $j_revisiones["fecha_entrega_d2"]= "";
+    }
+
 
 
   }

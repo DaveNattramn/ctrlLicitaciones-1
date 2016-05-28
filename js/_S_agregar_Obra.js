@@ -2,7 +2,8 @@ var glb_ubicacion = [];
 
 $(document).ready(function(){
 
-  glb_ubicacion[0] = new Array(5);
+
+  glb_ubicacion[0] = new Array(6);
   glb_ubicacion[0][0]="";
   glb_ubicacion[0][1]="";
 
@@ -33,7 +34,8 @@ $(document).ready(function(){
           if(glb_ubicacion[x][1]!=""){
               ubicacion.push({
                                 'municipio':glb_ubicacion[x][0],
-                                'localidad':glb_ubicacion[x][1]
+                                'localidad':glb_ubicacion[x][1],
+                                'no_localidad':glb_ubicacion[x][5]
               });
           }
         }
@@ -221,7 +223,7 @@ $(document).ready(function(){
 
     $("#municipio").change(function() {
       $('#localidad').empty();
-      glb_ubicacion[0] = new Array(5);
+      glb_ubicacion[0] = new Array(6);
       glb_ubicacion[0][0]="";
       glb_ubicacion[0][1]="";
       var resultado = actualizar_beneficiarios($('#total_ubicacion_campos').val());
@@ -243,8 +245,8 @@ $(document).ready(function(){
     $.each(data, function(key, value) {
         $('#localidad')
             .append($("<option></option>")
-            .attr("value",value)
-            .text(value));
+            .attr("value",value.localidad)
+            .text(value.localidad));
         });
       });
     }
@@ -270,6 +272,7 @@ glb_ubicacion[num_var_id][1]="";
 glb_ubicacion[num_var_id][2]=0;
 glb_ubicacion[num_var_id][3]=0;
 glb_ubicacion[num_var_id][4]=0;
+glb_ubicacion[num_var_id][5]="";
 
 $('#total_ubicacion_campos').val(num_var_id);
 var append_ubicacion="<div class='col-lg-12  col-sm-6' >"+
@@ -424,7 +427,7 @@ function getMunicipios(){
   }
 
   function municipio_i(i){
-    glb_ubicacion[i-1] = new Array(5);
+    glb_ubicacion[i-1] = new Array(6);
     glb_ubicacion[i-1][0]="";
     glb_ubicacion[i-1][1]="";
     $('#localidad'+i).empty();
@@ -446,8 +449,8 @@ function getMunicipios(){
   $.each(data, function(key, value) {
       $('#localidad'+i)
           .append($("<option></option>")
-          .attr("value",value)
-          .text(value));
+          .attr("value",value.localidad)
+          .text(value.localidad));
       });
     });
   }
@@ -519,6 +522,7 @@ function getMunicipios(){
     glb_ubicacion[i-1][2]=poblacion_directa;
     glb_ubicacion[i-1][3]=poblacion_indirecta;
     glb_ubicacion[i-1][4]=poblacion_total;
+    glb_ubicacion[i-1][5]=data.no_localidad;
   }
 
 

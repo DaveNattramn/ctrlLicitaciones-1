@@ -38,32 +38,32 @@
 
     <div class="col-md-4">
     <label for="dtp_input1">Fecha de Ingreso</label>
-    <div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="mr_fecha_recibido_d" >
-        <input class="form-control" type="text" value="" id="mr_fecha_recibido_d2" readonly>
+    <div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="mr_fecha_recibido_direccion" >
+        <input class="form-control" type="text" value="" id="mr_fecha_recibido_direccion2" readonly>
         <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
         <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
     </div>
-    <input type="hidden" id="mr_fecha_recibido_d" value="" />
+    <input type="hidden" id="mr_fecha_recibido_direccion" value="" />
     <br>
   </div>
 
   <div class="col-md-4 col-md-offset-4">
     <label for="dtp_input1">Fecha de Envio</label>
-    <div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="mr_fecha_envio_d" >
-        <input class="form-control" type="text" value="" id="mr_fecha_envio_d2" readonly>
+    <div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="mr_fecha_envio_direccion" >
+        <input class="form-control" type="text" value="" id="mr_fecha_envio_direccion2" readonly>
         <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
         <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
     </div>
-    <input type="hidden" id="mr_fecha_envio_d" value="" />
+    <input type="hidden" id="mr_fecha_envio_direccion" value="" />
     <br>
   </div>
 
-  <div class="col-lg-3  col-sm-6" id="mr_area_d2">
+  <div class="col-lg-3  col-sm-6" id="mr_area_direccion2">
     <label for="">Dirección</label>
-    <select  class="form-control option" id="mr_area_d">
-      <option>DIRECCIÓN DE</option>
-      <option>DIRECCIÓN DE</option>
-      <option>DIRECCIÓN DE</option>
+    <select  class="form-control option" id="mr_area_direccion">
+      <option>DIRECCIÓN GENERAL DE PROYECTOS</option>
+      <option>DIRECCIÓN GENERAL DE INFRAESTRUCTURA ESTRATÉGICA</option>
+      <option>DIRECCIÓN DE OBRA PÚBLICA</option>
       </select>
     <br>
   </div>
@@ -71,7 +71,7 @@
 
     <div class="col-lg-12">
         <label for="textArea" class="constrol-label">Observaciones generales del Expediente</label>
-        <textarea class="form-control" rows="2" id="mr_observaciones_d" name=""></textarea>
+        <textarea class="form-control" rows="2" id="mr_observaciones_direccion" name=""></textarea>
         <input type="hidden" class="form-control" name="" value="">
         <br>
     </div>
@@ -91,35 +91,35 @@
     <legend></legend>
 
     <!---AGREGAR UNA NUEVA REVISIÓN -->
-    <div> <input type="hidden" id="edt_mr_id_revisiones_d" value="" /></div>
+    <div> <input type="hidden" id="edt_mr_id_revisiones_direccion" value="" /></div>
     <div class="col-md-4">
       <label for="dtp_input1">Fecha de Ingreso</label>
-      <div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="edt_mr_fecha_recibido_d" >
-        <input class="form-control" type="text" value="" id="edt_mr_fecha_recibido_d2" readonly>
+      <div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="edt_mr_fecha_recibido_direccion" >
+        <input class="form-control" type="text" value="" id="edt_mr_fecha_recibido_direccion2" readonly>
         <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
         <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
       </div>
-      <input type="hidden" id="edt_mr_fecha_recibido_d" value="" />
+      <input type="hidden" id="edt_mr_fecha_recibido_direccion" value="" />
       <br>
     </div>
 
     <div class="col-md-4 col-md-offset-4">
       <label for="dtp_input1">Fecha de Envio</label>
-      <div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="edt_mr_fecha_envio_d" >
-        <input class="form-control" type="text" value="" id="edt_mr_fecha_envio_d2" readonly>
+      <div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="edt_mr_fecha_envio_direccion" >
+        <input class="form-control" type="text" value="" id="edt_mr_fecha_envio_direccion2" readonly>
         <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
         <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
       </div>
-      <input type="hidden" id="edt_mr_fecha_envio_d" value="" />
+      <input type="hidden" id="edt_mr_fecha_envio_direccion" value="" />
       <br>
     </div>
 
-    <div class="col-lg-3  col-sm-6" id="edt_mr_area_d2">
+    <div class="col-lg-3  col-sm-6" id="edt_mr_area_direccion2">
       <label for="">Dirección</label>
-      <select  class="form-control option" id="edt_mr_area_d">
-        <option>DIRECCIÓN DE</option>
-        <option>DIRECCIÓN DE</option>
-        <option>DIRECCIÓN DE</option>
+      <select  class="form-control option" id="edt_mr_area_direccion">
+        <option>DIRECCIÓN GENERAL DE PROYECTOS</option>
+        <option>DIRECCIÓN GENERAL DE INFRAESTRUCTURA ESTRATÉGICA</option>
+        <option>DIRECCIÓN DE OBRA PÚBLICA</option>
       </select>
       <br>
     </div>
@@ -127,7 +127,7 @@
 
     <div class="col-lg-12">
       <label for="textArea" class="constrol-label">Observaciones generales del Expediente</label>
-      <textarea class="form-control" rows="2" id="edt_mr_observaciones_d" name=""></textarea>
+      <textarea class="form-control" rows="2" id="edt_mr_observaciones_direccion" name=""></textarea>
       <input type="hidden" class="form-control" name="" value="">
       <br>
     </div>
@@ -168,29 +168,38 @@
 
 <div class="col-md-4">
 <label for="dtp_input1">Fecha de Ingreso</label>
-<div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="mr_fecha_recibido_s" >
-    <input class="form-control" type="text" value="" id="mr_fecha_recibido_s2" readonly>
+<div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="mr_fecha_recibido_seguimiento" >
+    <input class="form-control" type="text" value="" id="mr_fecha_recibido_seguimiento2" readonly>
     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
 </div>
-<input type="hidden" id="mr_fecha_recibido_s" value="" />
+<input type="hidden" id="mr_fecha_recibido_seguimiento" value="" />
 <br>
 </div>
 
 <div class="col-md-4 col-md-offset-4">
 <label for="dtp_input1">Fecha de Envio</label>
-<div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="mr_fecha_envio_s" >
-    <input class="form-control" type="text" value="" id="mr_fecha_envio_s2" readonly>
+<div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="mr_fecha_envio_seguimiento" >
+    <input class="form-control" type="text" value="" id="mr_fecha_envio_seguimiento2" readonly>
     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
 </div>
-<input type="hidden" id="mr_fecha_envio_s" value="" />
+<input type="hidden" id="mr_fecha_envio_seguimiento" value="" />
 <br>
 </div>
 
+
+  <div style="display:none;" id="mr_area_seguimiento2">
+    <label for="">Dirección</label>
+    <select  class="form-control option" id="mr_area_seguimiento">
+      <option>SEGUIMIENTO A LA INVERSIÓN</option>
+      </select>
+    <br>
+  </div>
+
 <div class="col-lg-12">
     <label for="textArea" class="constrol-label">Observaciones generales del Expediente</label>
-    <textarea class="form-control" rows="2" id="mr_observaciones_s" name=""></textarea>
+    <textarea class="form-control" rows="2" id="mr_observaciones_seguimiento" name=""></textarea>
     <input type="hidden" class="form-control" name="" value="">
     <br>
 </div>
@@ -208,32 +217,42 @@
 <legend></legend>
 
 <!---AGREGAR UNA NUEVA REVISIÓN -->
-<div> <input type="hidden" id="edt_mr_id_revisiones_s" value="" /></div>
+<div> <input type="hidden" id="edt_mr_id_revisiones_seguimiento" value="" /></div>
 <div class="col-md-4">
 <label for="dtp_input1">Fecha de Ingreso</label>
-<div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="edt_mr_fecha_recibido_s" >
-    <input class="form-control" type="text" value="" id="edt_mr_fecha_recibido_s2" readonly>
+<div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="edt_mr_fecha_recibido_seguimiento" >
+    <input class="form-control" type="text" value="" id="edt_mr_fecha_recibido_seguimiento2" readonly>
     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
 </div>
-<input type="hidden" id="edt_mr_fecha_recibido_s" value="" />
+<input type="hidden" id="edt_mr_fecha_recibido_seguimiento" value="" />
 <br>
 </div>
 
 <div class="col-md-4 col-md-offset-4">
 <label for="dtp_input1">Fecha de Envio</label>
-<div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="edt_mr_fecha_envio_s" >
-    <input class="form-control" type="text" value="" id="edt_mr_fecha_envio_s2" readonly>
+<div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="edt_mr_fecha_envio_seguimiento" >
+    <input class="form-control" type="text" value="" id="edt_mr_fecha_envio_seguimiento2" readonly>
     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
 </div>
-<input type="hidden" id="edt_mr_fecha_envio_s" value="" />
+<input type="hidden" id="edt_mr_fecha_envio_seguimiento" value="" />
 <br>
 </div>
 
+
+<div style="display:none;" id="edt_mr_area_seguimiento2">
+  <label for="">Dirección</label>
+  <select  class="form-control option" id="edt_mr_area_seguimiento">
+    <option>SEGUIMIENTO A LA INVERSIÓN</option>
+  </select>
+  <br>
+</div>
+
+
 <div class="col-lg-12">
     <label for="textArea" class="constrol-label">Observaciones generales del Expediente</label>
-    <textarea class="form-control" rows="2" id="edt_mr_observaciones_s" name=""></textarea>
+    <textarea class="form-control" rows="2" id="edt_mr_observaciones_seguimiento" name=""></textarea>
     <input type="hidden" class="form-control" name="" value="">
     <br>
 </div>
@@ -274,32 +293,41 @@
 
     <div class="col-md-4">
     <label for="dtp_input1">Fecha de Ingreso</label>
-    <div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="mr_fecha_recibido_l" >
-        <input class="form-control" type="text" value="" id="mr_fecha_recibido_l2" readonly>
+    <div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="mr_fecha_recibido_licitaciones" >
+        <input class="form-control" type="text" value="" id="mr_fecha_recibido_licitaciones2" readonly>
         <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
         <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
     </div>
-    <input type="hidden" id="mr_fecha_recibido_l" value="" />
+    <input type="hidden" id="mr_fecha_recibido_licitaciones" value="" />
     <br>
   </div>
 
   <div class="col-md-4 col-md-offset-4">
     <label for="dtp_input1">Fecha de Envio</label>
-    <div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="mr_fecha_envio_l" >
-        <input class="form-control" type="text" value="" id="mr_fecha_envio_l2" readonly>
+    <div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="mr_fecha_envio_licitaciones" >
+        <input class="form-control" type="text" value="" id="mr_fecha_envio_licitaciones2" readonly>
         <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
         <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
     </div>
-    <input type="hidden" id="mr_fecha_envio_l" value="" />
+    <input type="hidden" id="mr_fecha_envio_licitaciones" value="" />
     <br>
   </div>
 
 
 
 
+    <div style="display:none;" id="mr_area_licitaciones2">
+      <label for="">Dirección</label>
+      <select  class="form-control option" id="mr_area_licitaciones">
+        <option>LICITACIONES</option>
+        </select>
+      <br>
+    </div>
+
+
     <div class="col-lg-12">
         <label for="textArea" class="constrol-label">Observaciones generales del Expediente</label>
-        <textarea class="form-control" rows="2" id="mr_observaciones_l" name=""></textarea>
+        <textarea class="form-control" rows="2" id="mr_observaciones_licitaciones" name=""></textarea>
         <input type="hidden" class="form-control" name="" value="">
         <br>
     </div>
@@ -315,35 +343,42 @@
       <legend></legend>
 
       <!---AGREGAR UNA NUEVA REVISIÓN -->
-      <div> <input type="hidden" id="edt_mr_id_revisiones_l" value="" /></div>
+      <div> <input type="hidden" id="edt_mr_id_revisiones_licitaciones" value="" /></div>
       <div class="col-md-4">
       <label for="dtp_input1">Fecha de Ingreso</label>
-      <div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="edt_mr_fecha_recibido_l" >
-          <input class="form-control" type="text" value="" id="edt_mr_fecha_recibido_l2" readonly>
+      <div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="edt_mr_fecha_recibido_licitaciones" >
+          <input class="form-control" type="text" value="" id="edt_mr_fecha_recibido_licitaciones2" readonly>
           <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
           <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
       </div>
-      <input type="hidden" id="edt_mr_fecha_recibido_l" value="" />
+      <input type="hidden" id="edt_mr_fecha_recibido_licitaciones" value="" />
       <br>
     </div>
 
     <div class="col-md-4 col-md-offset-4">
       <label for="dtp_input1">Fecha de Envio</label>
-      <div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="edt_mr_fecha_envio_l" >
-          <input class="form-control" type="text" value="" id="edt_mr_fecha_envio_l2" readonly>
+      <div class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="edt_mr_fecha_envio_licitaciones" >
+          <input class="form-control" type="text" value="" id="edt_mr_fecha_envio_licitaciones2" readonly>
           <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
           <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
       </div>
-      <input type="hidden" id="edt_mr_fecha_envio_l" value="" />
+      <input type="hidden" id="edt_mr_fecha_envio_licitaciones" value="" />
       <br>
     </div>
 
 
 
+    <div style="display:none;" id="edt_mr_area_licitaciones2">
+      <label for="">Dirección</label>
+      <select  class="form-control option" id="edt_mr_area_licitaciones">
+        <option>LICITACIONES</option>
+      </select>
+      <br>
+    </div>
 
       <div class="col-lg-12">
           <label for="textArea" class="constrol-label">Observaciones generales del Expediente</label>
-          <textarea class="form-control" rows="2" id="edt_mr_observaciones_l" name=""></textarea>
+          <textarea class="form-control" rows="2" id="edt_mr_observaciones_licitaciones" name=""></textarea>
           <input type="hidden" class="form-control" name="" value="">
           <br>
       </div>

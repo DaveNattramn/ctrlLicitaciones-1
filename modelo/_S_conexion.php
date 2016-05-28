@@ -43,6 +43,12 @@ class ADMIN{
           return $exec;
       }
 
+      public function getArrayUbicacion(){
+          $sql = "SELECT * FROM municipio_localidad order by municipio_nombre";
+          $exec = odbc_exec($this->conexion, $sql);
+          return $exec;
+      }
+
       public function getEstructuraF($idobra){
           $sql = "SELECT * FROM estructura_financiera WHERE id_obra ='".$idobra."'";
           $exec = odbc_exec($this->conexion, $sql);
@@ -258,7 +264,7 @@ public function ordenaSelectObraNormativa($req,$req_o_c,$req_o_d,$req_s,$req_l){
 
 
       public function get_fecha_reciente_Dir($id_obra){
-        $sql = "SELECT MIN(fecha_ingreso) As fecha from revisiones WHERE id_obra='".$id_obra."' AND (area!='LICITACIONES' AND area!='SEGUIMIENTO A LA INVERSIÓN')";
+        $sql = "SELECT MIN(fecha_ingreso) As fecha from revisiones WHERE id_obra='".$id_obra."' AND (area!='LICITACIONES' AND area not like'%SEGUIMIENTO A LA INVERS%')";
         $exec = odbc_exec($this->conexion, $sql);
 
         return $exec;
@@ -282,8 +288,16 @@ public function getRevisiones($id_obra,$area){
   return $exec;
 }
 
+public function getTodasRevisiones($id_obra){
+  $sql = "SELECT * FROM revisiones WHERE id_obra ='".$id_obra."'  ORDER BY fecha_ingreso ASC";
+  $exec = odbc_exec($this->conexion, $sql);
+  return $exec;
+}
+
 public function getRevisionesDir($id_obra){
-  $sql = "SELECT * FROM revisiones WHERE id_obra ='".$id_obra."'  AND (area!='LICITACIONES' AND area!='SEGUIMIENTO A LA INVERSIÓN') ORDER BY fecha_ingreso ASC";
+
+  $sql = "SELECT * FROM revisiones WHERE id_obra ='".$id_obra."'  AND (area!='LICITACIONES' AND area not like'%SEGUIMIENTO A LA INVERS%') ORDER BY fecha_ingreso ASC";
+
   $exec = odbc_exec($this->conexion, $sql);
   return $exec;
 }
@@ -382,7 +396,7 @@ public function select_municipios(){
 }
 
 public function select_localidad($municipio){
-  $sql = "SELECT localidad_nombre from municipio_localidad WHERE municipio_nombre='".$municipio."'  ORDER BY localidad_nombre ASC";
+  $sql = "SELECT localidad_nombre, localidad from municipio_localidad WHERE municipio_nombre='".$municipio."'  ORDER BY localidad_nombre ASC";
 
       $exec = odbc_exec($this->conexion, $sql);
         return $exec;

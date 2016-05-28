@@ -84,7 +84,11 @@
 
                 <div class="col-lg-3  col-sm-6" id="dm_dimension_inversion">
                   <label for="">Dimensión de Inversión</label>
-                  <input type="text" class="form-control" id="m_dimension_inversion">
+                  <select class="form-control option" id="m_dimension_inversion">
+                    <option></option>
+                    <option>UNICA</option>
+                    <option>MULTIPLE</option>
+                    </select>
                   <br>
                 </div>
 
@@ -118,13 +122,14 @@
                   <label>Etapa</label>
                   <select class="form-control option" name="" id="m_etapa">
                       <option></option>
-                      <option>Primera</option>
-                      <option>Segunda</option>
-                      <option>Tercera</option>
-                      <option>Cuarta</option>
-                      <option>Quinta</option>
-                      <option>Sexta</option>
-                      <option>No Aplica</option>
+                      <option>UNICA</option>
+                      <option>PRIMERA</option>
+                      <option>SEGUNDA</option>
+                      <option>TERCERA</option>
+                      <option>CUARTA</option>
+                      <option>QUINTA</option>
+                      <option>SEXTA</option>
+                      <option>NO APLICA</option>
                     </select>
                 </div>
 
@@ -135,7 +140,11 @@
 
                 <div class="col-lg-3  col-sm-6" id="dm_propuesta_anual">
                   <label for="">Propuesta Anual</label>
-                  <input type="text" class="form-control" id="m_propuesta_anual">
+                  <select class="form-control option" id="m_propuesta_anual">
+                    <option></option>
+                    <option>SÍ</option>
+                    <option>NO</option>
+                  </select>
                   <br>
                 </div>
 
@@ -147,8 +156,18 @@
 
                 <div class="col-lg-4  col-sm-6" id="dm_tipo_adj_solicitado">
                   <label for="">Modalidad de Ejecución</label>
-                  <input type="text" class="form-control" id="m_tipo_adj_solicitado">
-                  <br>
+                  <select class="form-control option" name="" id="m_tipo_adj_solicitado">
+                    <option></option>
+                    <option>ADJUDICACIÓN DIRECTA</option>
+                    <option>ADMINISTRACIÓN DEPENDENCIA</option>
+                    <option>ADMINISTRACIÓN MUNICIPAL</option>
+                    <option>BENEFICIARIOS</option>
+                    <option>CONCURSO POR INVITACIÓN</option>
+                    <option>DEPENDENCIA</option>
+                    <option>INVITACIÓN A 3</option>
+                    <option>INVITACIÓN A 5</option>
+                    <option>LICITACIÓN PÚBLICA</option>
+                  </select>
                 </div>
 
                 <div class="col-lg-4" id="dm_partidas">
@@ -169,9 +188,13 @@
 
       <div class="col-lg-12  col-sm-6" id="panel_ubicacion">
 
+        <div class="col-md-1">
+        <input type="hidden" class="form-control" id="m_total_ubicacion_campos" value="1" readonly >
+        </div>
+
         <div class='col-lg-12  col-sm-6' >
 
-            <div class="col-lg-3  col-sm-6" id="dm_municipio">
+            <div class="col-md-4" id="dm_municipio">
               <label for="">Municipio</label>
               <select  class="form-control option" id="m_municipio">
 
@@ -179,21 +202,24 @@
               <br>
             </div>
 
-            <div class="col-lg-3  col-sm-6" id="dm_localidad">
+            <div class="col-md-5" id="dm_localidad">
               <label for="">Localidad</label>
               <select class="form-control option" id="m_localidad">
               </select>
               <br>
             </div>
 
-            <div class="col-lg-3  col-sm-6">
+            <div class="col-md-2" id="dm_no_localidad" readonly>
+              <label for="">No.</label>
+              <input type="text" class="form-control" id="m_no_localidad">
+              <br>
+            </div>
+
+            <div class="col-md-1">
               <br>
               <button type="button" id="m_btn_agregar_ubicacion" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
             </div>
 
-              <div class="col-lg-3  col-sm-6">
-              <input type="hidden" class="form-control" id="m_total_ubicacion_campos" value="1" readonly >
-              </div>
         </div>
 
             <div id="dm_panel_ubicacion_app">

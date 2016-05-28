@@ -169,8 +169,13 @@
 
 																<div class="col-lg-3  col-sm-6" id="d_dimension_inversion">
 	 														    <label for="">Dimensión de Inversión</label>
-	 														    <input type="text" class="form-control" id="dimension_inversion">
+																	<select class="form-control option" id="dimension_inversion">
+																		<option></option>
+																		<option>UNICA</option>
+																		<option>MULTIPLE</option>
+																	</select>
 																	<br>
+
  													      </div>
 
 																<div class="col-lg-3  col-sm-6" id="d_dependencia_solicitante">
@@ -219,13 +224,14 @@
 	 														    <label for="">Etapa</label>
 																	<select class="form-control option" name="" id="etapa">
 								                      <option></option>
-								                      <option>Primera</option>
-								                      <option>Segunda</option>
-								                      <option>Tercera</option>
-								                      <option>Cuarta</option>
-								                      <option>Quinta</option>
-								                      <option>Sexta</option>
-								                      <option>No Aplica</option>
+																			<option>UNICA</option>
+								                      <option>PRIMERA</option>
+								                      <option>SEGUNDA</option>
+								                      <option>TERCERA</option>
+								                      <option>CUARTA</option>
+								                      <option>QUINTA</option>
+								                      <option>SEXTA</option>
+								                      <option>NO APLICA</option>
 								                    </select>
  													      </div>
 
@@ -236,7 +242,11 @@
 
 																<div class="col-lg-3  col-sm-6" id="d_propuesta_anual">
 	 														    <label for="">Propuesta Anual</label>
-	 														    <input type="text" class="form-control" id="propuesta_anual">
+																	<select class="form-control option" id="propuesta_anual">
+								                    <option></option>
+								                    <option>SÍ</option>
+								                    <option>NO</option>
+								                  </select>
  													      </div>
 
 																<div class="col-lg-3  col-sm-6" id="d_normativa_aplicar">
@@ -247,7 +257,18 @@
 
 																<div class="col-lg-3  col-sm-6" id="d_tipo_adj_solicitado">
 	 														    <label for="">Modalidad de Ejecución</label>
-	 														    <input type="text" class="form-control" id="tipo_adj_solicitado">
+																	<select class="form-control option" name="" id="tipo_adj_solicitado">
+																	  <option></option>
+																		<option>ADJUDICACIÓN DIRECTA</option>
+																		<option>ADMINISTRACIÓN DEPENDENCIA</option>
+																		<option>ADMINISTRACIÓN MUNICIPAL</option>
+																		<option>BENEFICIARIOS</option>
+																		<option>CONCURSO POR INVITACIÓN</option>
+																		<option>DEPENDENCIA</option>
+																		<option>INVITACIÓN A 3</option>
+																		<option>INVITACIÓN A 5</option>
+																		<option>LICITACIÓN PÚBLICA</option>
+																	</select>
 																	<br>
  													      </div>
 
@@ -460,7 +481,7 @@
 
 		            </div>
 
-		            <div class="modal-body">
+		            <div class="modal-body" id="m_tabs">
 
 									<div class="col-lg-12">
 									  <ul class="nav nav-tabs nav-justified">

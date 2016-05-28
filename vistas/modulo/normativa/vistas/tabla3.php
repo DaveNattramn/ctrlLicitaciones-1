@@ -9,7 +9,6 @@
 <style type='text/css'>
 
 
-
 .atributo {min-width: 150px;font-size:10px;color:#31708F !important;text-align: right;}
 .valor {min-width: 150px;font-size:10px;text-align: left; color:#110}
 .columna {font-size:11px;color:#31708F !important;text-align: center;}

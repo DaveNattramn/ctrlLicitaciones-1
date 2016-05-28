@@ -17,7 +17,7 @@
 
 		<script type="text/javascript" language="javascript" class="init">
 			$(document).ready(function() {
-				var _glb_ubicacion = [];
+				/*var _glb_ubicacion = [];
     		_glb_ubicacion[0] = new Array(2);
 				_glb_ubicacion[1] = new Array(2);
 				_glb_ubicacion[2] = new Array(2);
@@ -35,26 +35,25 @@
 					});
 				}
 				ubicacion = JSON.stringify(ubicacion);
-
-
+				*/
+				var id_obra = "3402";
 				$.ajax({
 
 				url: '../../../controladores/_S_test.php',
 				type: 'post',
 				data: {
-					ubicacion:ubicacion,
+					id_obra:id_obra,
 
 				},
+				  dataType: 'json',
 				success: function (data) {
 
+						
 				}
 				,
-
 				error: function (jqXHR, textStatus, errorThrown) {
 					alert(errorThrown);
 				}
-
-
 				});
 
 		});
