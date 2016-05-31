@@ -230,6 +230,7 @@ public function ordenaSelectObraNormativa($req,$req_o_c,$req_o_d,$req_s,$req_l){
 
       public function validaObra($obra){
         $sql = "SELECT COUNT(obra) AS obra FROM obra WHERE obra ='".$obra."'";
+        
         $exec = odbc_exec($this->conexion, $sql);
             if ($exec) {
                 return $exec;
@@ -404,7 +405,7 @@ public function select_localidad($municipio){
 
 public function select_no_localidad($municipio,$localidad){
   $sql = "SELECT no_localidad from municipio_localidad WHERE municipio_nombre='".$municipio."' AND localidad_nombre='".$localidad."'  ORDER BY localidad_nombre ASC";
-  
+
       $exec = odbc_exec($this->conexion, $sql);
         return $exec;
 }
