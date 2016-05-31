@@ -196,7 +196,7 @@
 
             <div class="col-md-4" id="dm_municipio">
               <label for="">Municipio</label>
-              <select  class="form-control option" id="m_municipio">
+              <select  class="form-control option" id="m_municipio1">
 
                 </select>
               <br>
@@ -204,14 +204,15 @@
 
             <div class="col-md-5" id="dm_localidad">
               <label for="">Localidad</label>
-              <select class="form-control option" id="m_localidad">
+              <select class="form-control option" id="m_localidad1">
               </select>
               <br>
             </div>
 
-            <div class="col-md-2" id="dm_no_localidad" readonly>
+            <div class="col-md-2" id="dm_no_localidad" >
               <label for="">No.</label>
-              <input type="text" class="form-control" id="m_no_localidad">
+              <select class="form-control option" id="m_no_localidad1">
+                </select>
               <br>
             </div>
 

@@ -79,8 +79,9 @@
   	$nestedData['id_obra']=utf8_encode($row['id_obra']);
   	$nestedData['municipio']=utf8_encode($row['municipio']);
     $nestedData['localidad']=utf8_encode($row['localidad']);
-    $nestedData['poblacion_localidad'] = utf8_encode(odbc_result($bd->select_localidadPoblacion($row['municipio'],$row['localidad']),1));
-    $nestedData['poblacion_total'] = utf8_encode(odbc_result($bd->select_localidadPoblacion($row['municipio'],"TOTAL DEL MUNICIPIO"),1));
+    $nestedData['no_localidad']=utf8_encode($row['no_localidad']);    
+    $nestedData['poblacion_localidad'] = utf8_encode(odbc_result($bd->select_localidadPoblacion($row['municipio'],$row['localidad'],$row['no_localidad']),1));
+    $nestedData['poblacion_total'] = utf8_encode(odbc_result($bd->select_localidadPoblacion($row['municipio'],"TOTAL DEL MUNICIPIO","0000"),1));
     $j_ubicacion['ubicacion_'.$i++]=$nestedData;
   }
   $j_obra['ubicacion']  = $j_ubicacion;

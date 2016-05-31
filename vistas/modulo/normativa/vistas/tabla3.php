@@ -29,8 +29,6 @@ img {
             var parent = $(window.opener.document).contents();
             var data;
 
-
-
             $("#t_obra").text(parent.find("#m_obra").val());
             $("#t_tipo_inversion").text(parent.find("#m_tipo_inversion").val());
             $("#t_tipo_expediente").text(parent.find("#m_tipo_expediente").val());
@@ -44,8 +42,30 @@ img {
             $("#t_partidas").text(parent.find("#m_partidas").val());
             $("#t_propuesta_anual").text(parent.find("#m_propuesta_anual").val());
 
-            $("#t_municipio").text(parent.find("#m_municipio").val());
-            $("#t_localidad").text(parent.find("#m_localidad").val());
+						getUbicacion(parent.find('#m_id_obra').val()  ).success(function (data) {
+							  var municipios = "";
+								var localidades = "";
+								var len = 0;
+								var i;
+								for (i in data) {
+									if (data.hasOwnProperty(i)) {
+										len++;
+									}
+								}
+								if(len>0){
+									for(i=0; i<len; i++){
+										municipios = municipios + data[i].municipio;
+										localidades = localidades + data[i].localidad;
+										if((i<(len-1))){
+											municipios = municipios + ", ";
+											localidades = localidades + ", ";
+										}
+									}
+								}
+								$("#t_municipio").text(municipios);
+								$("#t_localidad").text(localidades);
+						});
+
             $("#t_beneficiarios_directos").text(parent.find("#m_beneficiarios_directos").val());
             $("#t_beneficiarios_indirectos").text(parent.find("#m_beneficiarios_indirectos").val());
             $("#t_empleos_directos").text(parent.find("#m_empleos_directos").val());
@@ -104,6 +124,16 @@ img {
 
             $("#CONTENIDO").html(data);
         }
+
+				function getUbicacion(idobra){
+				    return $.ajax({
+				      type: 'POST',
+				      url: '../../../../controladores/_S_get_ubicacion.php',
+				      data: {"id_obra" : idobra},
+				      dataType: 'json',
+				    });
+
+				}
 
 				function getAlcances(id_obra){
 				    return $.ajax({

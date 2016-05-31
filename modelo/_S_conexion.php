@@ -204,7 +204,7 @@ public function ordenaSelectObraNormativa($req,$req_o_c,$req_o_d,$req_s,$req_l){
               DECLARE @ID INT
           		SET @ID = SCOPE_IDENTITY()";
               foreach($ubicacion_decode as $ubi){
-                $sql.= "INSERT INTO ubicacion(id_obra,municipio,localidad) VALUES (@ID,'".utf8_decode($ubi->municipio)."', '".utf8_decode($ubi->localidad)."')  ";
+                $sql.= "INSERT INTO ubicacion(id_obra,municipio,localidad,no_localidad) VALUES (@ID,'".utf8_decode($ubi->municipio)."', '".utf8_decode($ubi->localidad)."', '".utf8_decode($ubi->no_localidad)."')  ";
               }
       $sql.= "INSERT INTO estructura_financiera(id_obra,total,programa_federal,aporte_federal,programa_estatal,aporte_estatal,programa_municipal,aporte_municipal,aportacion_beneficiarios,aportacion_otros) VALUES (@ID,'".$monto_solicitado."', '".$programa_federal."', '".$aporte_federal."', '".$programa_estatal."', '".$aporte_estatal."', '".$programa_municipal."', '".$aporte_municipal."', '".$aportacion_beneficiarios."', '".$aportacion_otros."')
               COMMIT TRANSACTION _tr
@@ -364,7 +364,7 @@ public function set_valor_obra($id_obra,$columna,$valor){
 
                 DELETE from ubicacion WHERE id_obra=".$id_obra."  " ;
                 foreach($ubicacion_decode as $ubi){
-                  $sql.= "INSERT INTO ubicacion(id_obra,municipio,localidad) VALUES (".$id_obra."  ,'".utf8_decode($ubi->municipio)."', '".utf8_decode($ubi->localidad)."')  ";
+                  $sql.= "INSERT INTO ubicacion(id_obra,municipio,localidad,no_localidad) VALUES (".$id_obra."  ,'".utf8_decode($ubi->municipio)."', '".utf8_decode($ubi->localidad)."', '".utf8_decode($ubi->no_localidad)."')  ";
                 }
             $sql.=  " COMMIT TRANSACTION _tr
                 END TRY
@@ -396,15 +396,21 @@ public function select_municipios(){
 }
 
 public function select_localidad($municipio){
-  $sql = "SELECT localidad_nombre, localidad from municipio_localidad WHERE municipio_nombre='".$municipio."'  ORDER BY localidad_nombre ASC";
+  $sql = "SELECT localidad_nombre from municipio_localidad WHERE municipio_nombre='".$municipio."'  ORDER BY localidad_nombre ASC";
 
       $exec = odbc_exec($this->conexion, $sql);
         return $exec;
 }
 
+public function select_no_localidad($municipio,$localidad){
+  $sql = "SELECT no_localidad from municipio_localidad WHERE municipio_nombre='".$municipio."' AND localidad_nombre='".$localidad."'  ORDER BY localidad_nombre ASC";
+  
+      $exec = odbc_exec($this->conexion, $sql);
+        return $exec;
+}
 
-public function select_localidadPoblacion($municipio_nombre,$localidad_nombre){
-  $sql = "SELECT poblacion_total FROM municipio_localidad WHERE municipio_nombre='".$municipio_nombre."' AND localidad_nombre='".$localidad_nombre."' ";
+public function select_localidadPoblacion($municipio_nombre,$localidad_nombre,$no_localidad){
+  $sql = "SELECT poblacion_total FROM municipio_localidad WHERE municipio_nombre='".$municipio_nombre."' AND localidad_nombre='".$localidad_nombre."' AND no_localidad='".$no_localidad."' ";
 
   $exec = odbc_exec($this->conexion, $sql);
   return $exec;

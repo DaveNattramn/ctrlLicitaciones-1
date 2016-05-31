@@ -295,33 +295,39 @@
 
 															<div class="col-lg-12  col-sm-6" id="panel_ubicacion">
 
+																															<div class="col-lg-3  col-sm-6">
+																															<input type="hidden" class="form-control" id="total_ubicacion_campos" value="1" readonly>
+																														</div>
 															<div class='col-lg-12  col-sm-6' >
 
-																<div class="col-lg-3  col-sm-6">
+																<div class="col-md-4">
 																	<label for="">Municipio</label>
-																	<select  class="form-control option" id="municipio">
+																	<select  class="form-control option" id="municipio1">
 
 																		</select>
 																	<br>
 																</div>
 
-																<div class="col-lg-3  col-sm-6">
+																<div class="col-md-5">
 																	<label for="">Localidad</label>
-																	<select class="form-control option" id="localidad">
+																	<select class="form-control option" id="localidad1">
 
 																	</select>
 																	<br>
 																</div>
 
+																<div class="col-md-2" id="d_no_localidad" >
+																	<label for="">No.</label>
+																	<select class="form-control option" id="no_localidad1" >
+																	</select>
+																	<br>
+																</div>
 
-														<div class="col-lg-3  col-sm-6">
+														<div class="col-md-1">
 															<br>
 															<button type="button" id="btn_agregar_ubicacion" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
 														</div>
 
-															<div class="col-lg-3  col-sm-6">
-															<input type="hidden" class="form-control" id="total_ubicacion_campos" value="1" readonly>
-														</div>
 													</div>
 
 														<div id="panel_ubicacion_app">
@@ -517,7 +523,8 @@
 									<legend></legend>
 		            <div class="modal-footer">
 
-											              <button id="btn_resumen" type="button" class="btn btn-warning pull-left"><i class="fa fa-external-link" aria-hidden="true"></i> Resumen</button>
+									<button id="btn_resumen" type="button" class="btn btn-warning pull-left"><i class="fa fa-external-link" aria-hidden="true"></i> Resumen</button>
+									<button id="activar_obra" type="button" class="btn btn-success" ><span class="glyphicon glyphicon-check" aria-hidden="true" ></span> Activar Proyecto</button>
 		              <button id="cancelar_obra" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar Proyecto</button>
 									<button type="button" id="modificar_obra" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Modificar</button>
 									<button type="button" id="actualizar_obra" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar</button>
