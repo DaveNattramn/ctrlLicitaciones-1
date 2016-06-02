@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$("#no_au").click(function(event) {
-		$("#tabla_no_autorizados").fadeIn(10000);
+		$("#tabla_no_autorizados").fadeIn();
 		$("#tabla_autorizados").fadeOut();
 
 		$("#no_au").addClass("active");
@@ -10,7 +10,7 @@ $(document).ready(function(){
 
 	$("#au").click(function(event) {
 		$("#tabla_no_autorizados").fadeOut();
-		$("#tabla_autorizados").fadeIn(10000);
+		$("#tabla_autorizados").fadeIn();
 
 		$("#au").addClass("active");
 		$("#general").removeClass("active");

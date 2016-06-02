@@ -35,21 +35,16 @@ $(function() {
 					var explode = data.split("_");
 					var user = explode[0];
 					var modul = explode[1];
-					alert(user);
-					alert(modul);
 
 					if (user == "David Flores Alvarez") {
-						alert("la sesion de debio iniciar");
 						window.location.href = "admin.php";
 					}
 					else
 					{
 						if (modul == "Normativa") {
-							alert("TU MODULO ES: "+ modul);
 							window.location.href = "vistas/modulo/normativa/";
 						}
 						if (modul == "Licitaciones") {
-							alert("TU MODULO ES: "+ modul);
 							window.location.href = "vistas/modulo/licitaciones/";
 						}
 					}
