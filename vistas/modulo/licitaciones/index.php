@@ -74,12 +74,12 @@
                           <li class=""><a href="#no_entregados" data-toggle="tab" aria-expanded="true"><i class="fa fa-clock-o" aria-hidden="true"></i> Aún no Entregados</a></li>
                           <li class=""><a href="#sit" data-toggle="tab" aria-expanded="true"><i class="fa fa-file-text" aria-hidden="true"></i> En Revisión S.I.T.</a></li>
                           <li class=""><a href="#daop" data-toggle="tab" aria-expanded="false"><i class="fa fa-list-alt" aria-hidden="true"></i> En Revisión D.A.O.P.</a></li>
-                          <li class=""><a href="#progra" data-toggle="tab" aria-expanded="true"><i class="fa fa-list-ol" aria-hidden="true"></i> En Programación para Licitación</a></li>
+                          <li class=""><a href="#progra" data-toggle="tab" aria-expanded="true"><i class="fa fa-list-ol" aria-hidden="true"></i> En Programación para Licitación <span class="badge">3</span></a></li>
                           <li class=""><a href="#proce" data-toggle="tab" aria-expanded="true"><i class="fa fa-calendar" aria-hidden="true"></i> En Proceso de Licitación</a></li>
                         </ul>
                         <div id="myTabContent" class="tab-content">
 
-                          <div class="col-lg-9">
+                          <div class="col-lg-12">
                             <br>
                             <input class="form-control input-sm" type="text" id="" placeholder="Buscar Obra...">
                             <br>
@@ -93,11 +93,15 @@
                           </div>
 
                           <div class="tab-pane fade" id="no_entregados">
-                            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                            <?php 
+                              require("vistas/no_entregados.php");
+                            ?>
                           </div>
 
                           <div class="tab-pane fade" id="sit">
-                            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                            <?php 
+                              require("vistas/revision_sit.php");
+                            ?>
                           </div>
 
                           <div class="tab-pane fade" id="daop">
@@ -126,6 +130,8 @@
       <script src="../../../js/jquery21.js"></script>
       <script src="../../../js/bootstrap.js"></script>
       <script src="../../../js/scripts_generales.js"></script>
+
+      <script src="js/no_entregados.js"></script>
 
 
 	</body>

@@ -12,6 +12,7 @@
 			<th>Tipo de Procedimiento</th>
 			<th>Encargado de Integración</th>
 			<th>Encargado de Revisión</th>
+			<th>Estatus</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -27,6 +28,7 @@
 			<td>LICITACIÓN PÚBLICA FEDERAL</td>
 			<td>Edgardo</td>
 			<td>Caro</td>
+			<td>En Revisión Normativa</td>
 		</tr>
 	</tbody>
 </table>
