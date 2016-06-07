@@ -1,11 +1,9 @@
 $(document).ready(function(){
-	$("#no_au").click(function(event) {
-		$("#tabla_no_autorizados").fadeIn();
-		$("#tabla_autorizados").fadeOut();
 
-		$("#no_au").addClass("active");
-		$("#general").removeClass("active");
-		$("#au").removeClass("active");
+	$("#busqueda").focus();
+
+	$("#todos").click(function(event) {
+		$("#generallll").fadeIn();
 	});  
 
 	$("#au").click(function(event) {
@@ -13,7 +11,7 @@ $(document).ready(function(){
 		$("#tabla_autorizados").fadeIn();
 
 		$("#au").addClass("active");
-		$("#general").removeClass("active");
+		$("#general").removeClass("	active");
 		$("#no_au").removeClass("active");
 	});
 

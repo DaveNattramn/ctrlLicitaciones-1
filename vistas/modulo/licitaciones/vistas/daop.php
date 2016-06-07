@@ -1,4 +1,4 @@
-<h4><i class="fa fa-file-text" aria-hidden="true"></i> En Revisión S.I.T. <span class="badge" style="margin-right: 0px;">6</span></h4><legend></legend> 
+<h4><i class="fa fa-list-alt" aria-hidden="true"></i> En Revisión D.A.O.P. <span class="badge" style="margin-right: 0px;">26</span></h4><legend></legend> 
 
 <table class="table table-bordered table-hover">
   <thead>
@@ -30,7 +30,7 @@
       <td>Edgardo</td>
       <td>Rodrigo</td>
       <td>En Revisión Normativa</td>
-      <td>kjasdh jkhsd jkh</td>
+      <td>uyt uyt uyt uyt </td>
     </tr>
     <tr>
       <td>2</td>
@@ -44,7 +44,7 @@
       <td>Edgardo</td>
       <td>Caro  </td>
       <td>En Revisión Normativa</td>
-      <td> dkfjh kdjf h</td>
+      <td> ksjkjdfh skjdh fkjh</td>
     </tr>
   </tbody>
 </table>  

@@ -1,3 +1,4 @@
+<h4><i class="fa fa-list" aria-hidden="true"></i> Todas las Obras <span class="badge" style="margin-right: 0px;">14</span></h4><legend></legend> 
 <table class="table table-bordered table-hover">
 	<thead>
 		<tr>
@@ -16,7 +17,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
+		<tr id="modal-id">
 			<td>1</td>
 			<td>30</td>
 			<td>23</td>

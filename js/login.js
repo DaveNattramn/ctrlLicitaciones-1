@@ -39,7 +39,7 @@ $(function() {
 					if (user == "David Flores Alvarez") {
 						window.location.href = "admin.php";
 					}
-					else
+					else  
 					{
 						if (modul == "Normativa") {
 							window.location.href = "vistas/modulo/normativa/";
