@@ -19,27 +19,23 @@
 		<link rel="stylesheet" href="../../../css/navbar.css">
 	    <link rel="stylesheet" href="../../../css/side-menu.css">
 	    <link rel="shortcut icon" href="../../../favicon.ico" />
-			<link href="../../../css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-
-
-            <script src="../../../js/jquery21.js"></script>
-            <script src="../../../js/bootstrap.js"></script>
-            <script src="../../../js/scripts_generales.js"></script>
-						<script src="../../../js/_S_agregar_obra.js"></script>
-					  <script src="../../../js/_S_tabla_obra.js"></script>
-						<script src="../../../js/jquery-dateFormat.js"></script>
-
-						<script src="js/nvo_alcance.js"></script>
-						<script src="js/effects.js"></script>
-
-						<script src="js/datetimepicker.js"></script>
-						<script type="text/javascript" src="../../../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-						<script type="text/javascript" src="../../../js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+		<link href="../../../css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+        <script src="../../../js/jquery21.js"></script>
+        <script src="../../../js/bootstrap.js"></script>
+        <script src="../../../js/scripts_generales.js"></script>
+		<script src="../../../js/_S_agregar_obra.js"></script>
+		<script src="../../../js/_S_tabla_obra.js"></script>
+		<script src="../../../js/jquery-dateFormat.js"></script>
+		<script src="js/nvo_alcance.js"></script>
+		<script src="js/effects.js"></script>
+		<script src="js/datetimepicker.js"></script>
+		<script type="text/javascript" src="../../../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="../../../js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 
 		<title>S.I.T. | NORMATIVA </title>
 
 
-<link rel="stylesheet" type="text/css" href="../../../recursos/DataTables/datatables.css">
+		<link rel="stylesheet" type="text/css" href="../../../recursos/DataTables/datatables.css">
 		<script type="text/javascript" src="../../../recursos/DataTables/datatables2.js"></script>
 
 		<link rel="stylesheet" href="../../../css/toastr.css">

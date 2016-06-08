@@ -21,7 +21,12 @@
 		<link rel="stylesheet" href="../../../css/navbar.css">
 	    <link rel="stylesheet" href="../../../css/side-menu.css">
 	    <link rel="shortcut icon" href="../../../favicon.ico" />
+      <script src="../../../js/jquery-dateFormat.js"></script>
+      <link href="../../../css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+      <script src="js/datetimepicker.js"></script>
 		<title>Licitaciones y Concursos | S.I.T.</title>
+      <script type="text/javascript" src="../../../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../../../js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 	</head>
 
 	<body>
@@ -163,21 +168,9 @@
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modal">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Información de la Obra</h4>
-            </div>
-            <div class="modal-body">
-
-                <?php 
-                  require("vistas/modal_general.php");
-                 ?>
-              
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+          <?php 
+            require("vistas/modal_general.php");
+          ?>
         </div>
       </div>
     </div>

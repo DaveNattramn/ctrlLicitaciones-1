@@ -69,6 +69,8 @@
                 </div>
                 <a href="#modulos" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#MainMenu">Modulos <i class="fa fa-cubes fa-lg"></i></a>
                 <div class="collapse" id="modulos">
+                  <a href="vistas/modulo/normativa" id="" class="btn1 list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Normativa</a>
+                  <a href="vistas/modulo/licitaciones" id="" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Licitaciones</a>
                 </div>
               </div>
             </div>
