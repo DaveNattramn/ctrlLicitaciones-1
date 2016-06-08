@@ -77,18 +77,21 @@
               <!---->
               <div class="col-lg-2 col-md-2">
                 <div id="menu-principal">
-                    <div class="list-group panel-primary">
-                      <a href="" class="list-group-item list-group-item active">Inicio <i class="fa fa-dashboard fa-lg"></i></a>
+                    <div class="list-group panel-info">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Panel Menu</h3>
+                      </div>
+                      <!--<a href="" class="list-group-item list-group-item active">Inicio <i class="fa fa-dashboard fa-lg"></i></a>-->
                       <!--<a href="#demo3" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#MainMenu">Inicio <i class="fa fa-dashboard fa-lg"></i></a>-->
                       <a href="#Info" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#MainMenu">Proyectos <i class="fa fa-clipboard" aria-hidden="true"></i></a>
                       <div class="collapse" id="Info">
-                        <a href="#todos_proyectos" id="todos" class="btn1 list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> General</a>
-                        <a href="#no_entregados" id="no_entregados" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Aún no Entregados</a>
-                        <a href="#sit" id="sit" class="btn1 list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> En Revisión S.I.T.</a>
-                        <a href="#daop" id="daop" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> En Revisión D.A.O.P.</a>
-                        <a href="#progra" id="progra" class="btn1 list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> En Programación para Licitación</a>
-                        <a href="#proceso" id="proceso" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> En Proceso de Licitación</a>
-                        <a href="#adjudicada" id="adjudicada" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Adjudicada D.A.O.P.</a>
+                        <a href="#" id="todos" class="btn1 list-group-item active"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> General</a>
+                        <a href="#" id="no_entre" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Aún no Entregados</a>
+                        <a href="#" id="en_sit" class="btn1 list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> En Revisión S.I.T.</a>
+                        <a href="#" id="en_daop" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> En Revisión D.A.O.P.</a>
+                        <a href="#" id="en_progra" class="btn1 list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> En Programación para Licitación</a>
+                        <a href="#" id="en_proce" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> En Proceso de Licitación</a>
+                        <a href="#" id="adju" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Adjudicada D.A.O.P.</a>
                       </div>
                       <a href="#modulos" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#MainMenu">Identificadores <i class="fa fa-thumb-tack" aria-hidden="true"></i></a>
                       <div class="collapse" id="modulos">
@@ -111,43 +114,43 @@
                 </ul>
               </div>-->
 
-              <div class="col-lg-10" id="general" hidden="true">
+              <div class="col-lg-10" id="general">
                 <?php 
                   require("vistas/tabla_general.php");
                 ?>
               </div>
 
-              <div class="col-lg-10" id="no_entregados" hidden="true">
+              <div class="col-lg-10" id="no_entregados" hidden>
                 <?php 
                   require("vistas/no_entregados.php");
                 ?>
               </div>
 
-              <div class="col-lg-10" id="sit" hidden="true">
+              <div class="col-lg-10" id="sit" hidden>
                 <?php 
                   require("vistas/revision_sit.php");
                 ?>
               </div>
 
-              <div class="col-lg-10" id="daop" hidden="true">
+              <div class="col-lg-10" id="daop" hidden>
                 <?php 
                   require("vistas/daop.php");
                 ?>
               </div>
 
-              <div class="col-lg-10" id="progra" hidden="true">
+              <div class="col-lg-10" id="progra" hidden>
                 <?php 
                   require("vistas/progra.php");
                 ?>
               </div>
 
-              <div class="col-lg-10" id="proce" hidden="true">
+              <div class="col-lg-10" id="proce" hidden>
                 <?php 
                   require("vistas/proceso.php");
                 ?>
               </div>
 
-              <div class="col-lg-10" id="adjudicadas">
+              <div class="col-lg-10" id="adjudicadas" hidden>
                 <?php 
                   require("vistas/adjudicadas.php");
                 ?>
@@ -157,25 +160,27 @@
             
     <!--CUERPO MODAL-->
 
-
-    <div class="modal fade" id="modal">
-      <div class="modal-dialog" style="width:1000px;">
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modal">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Modal title</h4>
-          </div>
-          <div class="modal-body">
-            
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title">Información de la Obra</h4>
+            </div>
+            <div class="modal-body">
+
+                <?php 
+                  require("vistas/modal_general.php");
+                 ?>
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
         </div>
       </div>
     </div>
-
 
 
 
@@ -187,9 +192,6 @@
 
       <script src="js/no_entregados.js"></script>
       <script src="js/trigger_modal.js"></script>
-      <script>
-      $('.calendar-demo').calendar();
-    </script>
 
 
 	</body>
