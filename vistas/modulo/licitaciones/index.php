@@ -21,6 +21,11 @@
 		<link rel="stylesheet" href="../../../css/navbar.css">
 	    <link rel="stylesheet" href="../../../css/side-menu.css">
 	    <link rel="shortcut icon" href="../../../favicon.ico" />
+      <link href="../../../css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+        <script src="../../../js/jquery21.js"></script>
+        <script src="../../../js/bootstrap.js"></script>
+        <script src="../../../js/scripts_generales.js"></script>
+    <script src="../../../js/jquery-dateFormat.js"></script>
       <script src="../../../js/jquery-dateFormat.js"></script>
       <link href="../../../css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
       <script src="js/datetimepicker.js"></script>

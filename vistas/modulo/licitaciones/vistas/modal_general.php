@@ -1,6 +1,24 @@
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  <h4 class="modal-title">Información de la Obra</h4>
+
+  <div class="col-lg-12">
+
+	<div class="col-lg-4 col-sm-4">
+		<h4 class="modal-title">Información de la Obra</h4>
+	</div>
+
+	<div class="col-lg-4 col-sm-4">
+		<div class="alert alert-dismissible alert-success" align="center" id="alerta_recurso">
+			AUTORIZADO
+		</div>
+	</div>
+	<div class="col-lg-4 col-sm-4">
+		<div class="alert alert-dismissible alert-success" align="center" id="alerta_obra">
+			ADJUDICADA D.A.O.P.
+		</div>
+	</div>
+</div>
+
   <h6 align="right">- 2016</h6>
 </div>
 <div class="modal-body">
@@ -104,14 +122,14 @@
 		<div class="col-lg-2 col-md-2">
 			<div class="form-group">
 				<label for="">Programa</label>
-				<input type="text" class="form-control" id="" placeholder="SI / NO">
+				<input type="text" class="form-control" id="" placeholder="">
 			</div>
 		</div>
 
 		<h5>Datos Autorización</h5><legend></legend>
 
-		<div class="col-lg-5"  id="dm_fecha_autorizacion">
-	        <label for="">Fecha del Oficio Autorización</label>
+		<div class="col-lg-3"  id="dm_fecha_autorizacion">
+	        <label for="">Fecha del Oficio</label>
 	        <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="" data-link-format="yyyy-mm-dd">
 	              <input id="" class="form-control" size="25" type="text" value=""  readonly="" disabled>
 	              <span id="" class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
@@ -120,6 +138,38 @@
 	        <input id="" type="hidden" value="" /><br/>
 	        <br>
 	    </div>
+
+	    <div class="col-lg-3"  id="dm_fecha_autorizacion">
+	        <label for="">Fecha de Recibido</label>
+	        <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="" data-link-format="yyyy-mm-dd">
+	              <input id="" class="form-control" size="25" type="text" value=""  readonly="" disabled>
+	              <span id="" class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+	              <span id="" class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+	        </div>
+	        <input id="" type="hidden" value="" /><br/>
+	        <br>
+	    </div>
+
+	    <div class="col-lg-3"  id="dm_fecha_autorizacion">
+	        <label for="">75 Días Contratación</label>
+	        <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="" data-link-format="yyyy-mm-dd">
+	              <input id="" class="form-control" size="25" type="text" value=""  readonly="" disabled>
+	              <span id="" class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+	              <span id="" class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+	        </div>
+	        <input id="" type="hidden" value="" /><br/>
+	        <br>
+	    </div>
+
+	    <div class="col-lg-3 col-md-3">
+			<div class="form-group">
+				<label for="">No. de Oficio</label>
+				<input type="text" class="form-control" id="" placeholder="SFA-DSI-AI-797/2016 ">
+			</div>
+			<br>
+		</div>
+
+		<h5>Programas y Aportaciones</h5>
 
 
 	</div><!--row-->
