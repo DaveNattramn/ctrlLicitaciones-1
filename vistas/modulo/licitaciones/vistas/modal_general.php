@@ -3,20 +3,32 @@
 
   <div class="col-lg-12">
 
+  	<div class="row">
+  		<h4 class="modal-title">Información de la Obra</h4>
+  	</div>
+
 	<div class="col-lg-4 col-sm-4">
-		<h4 class="modal-title">Información de la Obra</h4>
+
+		<blockquote>
+		  <small>Identificador 1: <cite title="Source Title">Prioritario del Ejecutivo</cite></small>
+		</blockquote>
+
+	</div>
+
+	<div class="col-lg-4 col-md-4">
+		<blockquote>
+		  <small>Identificador 2: <cite title="Source Title">Edificaciones</cite></small>
+		</blockquote>
 	</div>
 
 	<div class="col-lg-4 col-sm-4">
-		<div class="alert alert-dismissible alert-success" align="center" id="alerta_recurso">
-			AUTORIZADO
-		</div>
-	</div>
-	<div class="col-lg-4 col-sm-4">
-		<div class="alert alert-dismissible alert-success" align="center" id="alerta_obra">
+		<div class="alert alert-dismissible alert-success" align="right" id="alerta_obra">
 			ADJUDICADA D.A.O.P.
 		</div>
+
 	</div>
+
+	
 </div>
 
   <h6 align="right">- 2016</h6>
@@ -166,10 +178,67 @@
 				<label for="">No. de Oficio</label>
 				<input type="text" class="form-control" id="" placeholder="SFA-DSI-AI-797/2016 ">
 			</div>
+			<br><br>
+		</div>
+
+		<h5>Programas y Aportaciones</h5><legend></legend>
+
+		<div class="col-lg-4" id="d_programa_federal">
+			<label for="">Programa Federal</label>
+			<input type="text" class="form-control" id="programa_federal">
 			<br>
 		</div>
 
-		<h5>Programas y Aportaciones</h5>
+		<div class="col-lg-4" id="d_programa_estatal">
+			<label for="">Programa Estatal</label>
+			<input type="text" class="form-control" id="programa_estatal">
+			<br>
+		</div>
+
+		<div class="col-lg-4" id="d_programa_municipal">
+			<label for="">Programa Municipal</label>
+			<input type="text" class="form-control" id="programa_municipal">
+			<br>
+		</div>
+
+		<div class="col-lg-4" id="d_aporte_federal">
+			<div class="input-group">
+				<span class="input-group-addon">$</span>
+				<input type="text" class="form-control" placeholder="Aportación Federal" id="aporte_federal">
+			</div>
+      	</div>
+		<div class="col-lg-4">
+			<div class="input-group">
+				<span class="input-group-addon">$</span>
+				<input type="text" class="form-control" placeholder="Aportación Estatal" id="aporte_estatal">
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="input-group">
+			  	<span class="input-group-addon">$</span>
+			  	<input type="text" class="form-control" placeholder="Aportación Municipal" id="aporte_municipal">
+			</div>
+			<br>
+		</div>
+		<legend></legend>
+		<div class="col-lg-6  col-sm-6">
+			<label for="">Aportación Beneficiarios</label>
+			<div class="input-group">
+				<span class="input-group-addon">$</span>
+				<input type="text" class="form-control" id="aportacion_beneficiarios">
+			</div>
+			<br>
+		</div>
+		<div class="col-lg-6  col-sm-6">
+			<label for="">Aportación Otros</label>
+			<div class="input-group">
+				<span class="input-group-addon">$</span>
+				<input type="text" class="form-control" id="aportacion_otros">
+			</div>
+			<br>
+		</div>
+		<div class="col-lg-12" id="suma_total">
+		</div>
 
 
 	</div><!--row-->

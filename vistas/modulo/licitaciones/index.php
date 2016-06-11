@@ -22,10 +22,8 @@
 	    <link rel="stylesheet" href="../../../css/side-menu.css">
 	    <link rel="shortcut icon" href="../../../favicon.ico" />
       <link href="../../../css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-        <script src="../../../js/jquery21.js"></script>
-        <script src="../../../js/bootstrap.js"></script>
-        <script src="../../../js/scripts_generales.js"></script>
-    <script src="../../../js/jquery-dateFormat.js"></script>
+      <script src="../../../js/jquery21.js"></script>
+      <script src="../../../js/jquery-dateFormat.js"></script>
       <script src="../../../js/jquery-dateFormat.js"></script>
       <link href="../../../css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
       <script src="js/datetimepicker.js"></script>
@@ -52,6 +50,14 @@
       			 	     <li class="dropdown">
       			 	       <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo utf8_encode($user[0]); ?> <span	class="caret"></span></a>
       			 	       <ul class="dropdown-menu" role="menu">
+                      <?php 
+                        if ($user[0] == "David Flores Alvarez") {
+                          ?>
+                            <li><a href="../../../admin.php"><i class="fa fa-undo" aria-hidden="true"></i> Volver a Admin</a></li>
+                            <li class="divider"></li>
+                          <?php
+                        }
+                       ?>
       			 	         <li><a href="../../../controladores/cerrar_sesion.php"><i class="fa fa-power-off"></i> Cerrar Sesión</a></li>
       			 	       </ul>
       			 	     </li>
@@ -122,6 +128,11 @@
                   <li class="" id="au"><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> En Proceso de Licitación</a></li>
                   <li class="" id="au"><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>Adjudicada D.A.O.P.</a></li>
                 </ul>
+
+                      <script src="js/jquery-3.0.0.min.js"></script>
+      <script src="../../../js/jquery21.js"></script>
+
+
               </div>-->
 
               <div class="col-lg-10" id="general">
@@ -183,8 +194,7 @@
 
 
 
-    	<script src="../../../js/jquery21.js"></script>
-      <script src="../../../js/jquery21.js"></script>
+
       <script src="../../../js/bootstrap.js"></script>
       <script src="../../../js/scripts_generales.js"></script>
 

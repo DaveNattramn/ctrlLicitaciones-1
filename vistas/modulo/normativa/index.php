@@ -68,6 +68,14 @@
       			 	     <li class="dropdown">
       			 	       <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo utf8_encode($user[0]); ?> <span	 	class="		caret"></span></a>
       			 	       <ul class="dropdown-menu" role="menu">
+      			 	       	<?php 
+      			 	         	if ($user[0] == "David Flores Alvarez") {
+      			 	         		?>
+      			 	         			<li><a href="../../../admin.php"><i class="fa fa-undo" aria-hidden="true"></i> Volver a Admin</a></li>
+      			 	         			<li class="divider"></li>
+      			 	         		<?php
+      			 	         	}
+      			 	         ?>
       			 	         <li><a href="../../../controladores/cerrar_sesion.php"><i class="fa fa-power-off"></i> Cerrar Sesión</a></li>
       			 	       </ul>
       			 	     </li>
@@ -92,6 +100,7 @@
 											<!--<div class="container"><!--div container-->
 
 												<div class="col-lg-12"> <!--div col lg 12 tabla -->
+
 														<table class="table table-hover table-condensed " id="mostrar">
 															     <thead>
 																    <tr>
@@ -104,6 +113,8 @@
 																			<th style="width: 10%">Tipo de Procedimiento</th>
 																    </tr>
 															     </thead>
+
+															     
 
 														</table>
 
