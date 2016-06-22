@@ -99,7 +99,7 @@
                       </div>
                       <!--<a href="" class="list-group-item list-group-item active">Inicio <i class="fa fa-dashboard fa-lg"></i></a>-->
                       <!--<a href="#demo3" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#MainMenu">Inicio <i class="fa fa-dashboard fa-lg"></i></a>-->
-                      <a href="#Info" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#MainMenu">Proyectos <i class="fa fa-clipboard" aria-hidden="true"></i></a>
+                      <a href="#Info" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#MainMenu">Estatus <i class="fa fa-clipboard" aria-hidden="true"></i></a>
                       <div class="collapse" id="Info">
                         <a href="#" id="todos" class="btn1 list-group-item active"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> General</a>
                         <a href="#" id="no_entre" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Aún no Entregados</a>
@@ -107,7 +107,7 @@
                         <a href="#" id="en_daop" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> En Revisión D.A.O.P.</a>
                         <a href="#" id="en_progra" class="btn1 list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> En Programación para Licitación</a>
                         <a href="#" id="en_proce" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> En Proceso de Licitación</a>
-                        <a href="#" id="adju" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Adjudicada D.A.O.P.</a>
+                        <a href="#" id="adju" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Adjudicadas</a>
                       </div>
                       <a href="#modulos" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#MainMenu">Identificadores <i class="fa fa-thumb-tack" aria-hidden="true"></i></a>
                       <div class="collapse" id="modulos">
@@ -200,6 +200,12 @@
 
       <script src="js/no_entregados.js"></script>
       <script src="js/trigger_modal.js"></script>
+      <script>
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip();
+        });
+      </script>
+      <script src="js/Identificadores.js"></script>
 
 
 	</body>

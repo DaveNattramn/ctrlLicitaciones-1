@@ -1,8 +1,6 @@
-<h4><i class="fa fa-check-circle" aria-hidden="true"></i> Adjudicadas </h4><legend></legend> 
-
 <ul class="nav nav-tabs">
 	<li class="active"><a href="#home" data-toggle="tab" aria-expanded="true"><i class="fa fa-building" aria-hidden="true"></i> Adjudicadas D.A.O.P.</a></li>
-	<li class=""><a href="#profile" data-toggle="tab" aria-expanded="false"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Adjudicadas Directas </a></li>
+	<li class=""><a href="#profile" data-toggle="tab" aria-expanded="false"><i class="fa fa-share" aria-hidden="true"></i> Adjudicadas Directas </a></li>
 </ul>
 
 <div id="myTabContent" class="tab-content">
